@@ -5,24 +5,24 @@
 
     <item
         android:id="@+id/activity_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_nav_home"
         android:title="홈"/>
 <!--  TODO 지도 vector 넣어야함.  -->
     <item
         android:id="@+id/activity_map"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_nav_map"
         android:title="지도"/>
     <item
         android:id="@+id/activity_menu"
-        android:icon="@drawable/ic_menu"
+        android:icon="@drawable/ic_nav_menu"
         android:title="메뉴판"/>
     <item
         android:id="@+id/activity_community"
-        android:icon="@drawable/ic_community"
+        android:icon="@drawable/ic_nav_community"
         android:title="커뮤니티"/>
     <item
         android:id="@+id/activity_mypage"
-        android:icon="@drawable/ic_mypage"
+        android:icon="@drawable/ic_nav_mypage"
         android:title="마이"/>
 
 </menu>
