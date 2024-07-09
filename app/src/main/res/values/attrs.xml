@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="OnboardButton">
-        <attr name="buttonText" format="string" />
-        <attr name="buttonImage" format="reference" />
+        <attr name="onboardButtonText" format="string" />
+        <attr name="onboardButtonImage" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="BigButton">
-        <attr name="buttonText" format="string" />
+        <attr name="BigButtonText" format="string" />
     </declare-styleable>
 </resources>
