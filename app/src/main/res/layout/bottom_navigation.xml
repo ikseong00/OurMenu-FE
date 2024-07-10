@@ -18,12 +18,9 @@
         app:labelVisibilityMode="labeled"
         android:paddingHorizontal="20dp"
         app:menu="@menu/menu_bottom_nav"
-        android:elevation="40dp"
-        android:layout_marginTop="40dp"
         app:itemPaddingTop="14dp"
         app:itemPaddingBottom="14dp"
-        android:background="@color/Neutral_White"
-        />
+        android:background="@color/Neutral_White" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
