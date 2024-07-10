@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--  일반 textfield  -->
+
+    <EditText
+        android:id="@+id/edittext_login_signup"
+        android:layout_width="173dp"
+        android:layout_height="44dp"
+        android:background="@drawable/edittext_bg_normal"
+        android:textColor="@color/Neutral_700"
+        android:textColorHint="@color/Neutral_500"
+        android:textSize="14sp"
+        android:fontFamily="@font/pretendard"
+        android:textFontWeight="700"
+        android:hint="default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
