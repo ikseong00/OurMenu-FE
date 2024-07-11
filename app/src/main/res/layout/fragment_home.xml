@@ -62,7 +62,8 @@
                     android:text="한 음식"
                     android:textSize="44sp"
                     android:textColor="@color/Neutral_900"
-                    android:fontFamily="@font/pretendard_regular" />
+                    android:fontFamily="@font/regular"
+                    android:textFontWeight="300"/>
 
             </LinearLayout>
 
@@ -98,7 +99,8 @@
                     android:textColor="@color/Neutral_900"
                     android:textSize="44sp"
                     android:text="드려요"
-                    android:fontFamily="@font/pretendard_regular"/>
+                    android:textFontWeight="300"
+                    android:fontFamily="@font/regular"/>
 
             </LinearLayout>
 
@@ -194,6 +196,89 @@
                 android:orientation="horizontal"
                 />
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="320dp"
+                android:layout_height="108dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_second"
+                android:background="@color/Neutral_100"
+                app:shapeAppearanceOverlay="@style/corner_rd_12"
+                android:layout_marginTop="28dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Neutral_900"
+                android:textSize="14sp"
+                android:text="메뉴 추천이 마음에 드시나요?"
+                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/pretendard_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_second"
+                android:layout_marginTop="50dp"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/siv_home_good_button"
+                android:layout_width="134dp"
+                android:layout_height="32dp"
+                android:background="@color/Neutral_White"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_second"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="82.5dp"
+                android:layout_marginStart="41dp"
+                app:shapeAppearanceOverlay="@style/corner_rd_8"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textFontWeight="500"
+                app:layout_constraintStart_toStartOf="@id/siv_home_good_button"
+                app:layout_constraintTop_toTopOf="@id/siv_home_good_button"
+                app:layout_constraintEnd_toEndOf="@id/siv_home_good_button"
+                app:layout_constraintBottom_toBottomOf="@id/siv_home_good_button"
+                android:textColor="@color/Neutral_900"
+                android:text="😃 딱 좋아요"
+                />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/siv_home_bad_button"
+                android:layout_width="134dp"
+                android:layout_height="32dp"
+                android:background="@color/Neutral_White"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_second"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="82.5dp"
+                android:layout_marginEnd="41dp"
+                app:shapeAppearanceOverlay="@style/corner_rd_8"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textFontWeight="500"
+                app:layout_constraintStart_toStartOf="@id/siv_home_bad_button"
+                app:layout_constraintTop_toTopOf="@id/siv_home_bad_button"
+                app:layout_constraintEnd_toEndOf="@id/siv_home_bad_button"
+                app:layout_constraintBottom_toBottomOf="@id/siv_home_bad_button"
+                android:textColor="@color/Neutral_900"
+                android:text="😥 아쉬워요" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_second"
+                android:text="답변을 바탕으로 메뉴 추천의 기준이\n아워님 맞춤으로 수정돼요!"
+                android:textColor="@color/Neutral_500"
+                android:textFontWeight="500"
+                android:fontFamily="@font/regular"
+                android:textAlignment="center"
+                android:layout_marginTop="160dp"
+                />
+            
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
