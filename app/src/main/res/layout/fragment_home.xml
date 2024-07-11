@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_home_mention"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="~~할 때"
+        android:fontFamily="@font/bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="44sp"
+        android:textColor="@color/Neutral_900"
+        android:textFontWeight="700"
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="20dp" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/iv_home_recommend_icon"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/sample_menu_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/tv_home_mention"
+        app:layout_constraintStart_toStartOf="@id/tv_home_mention" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="매콤"
+        android:fontFamily="@font/bold"
+        android:textSize="44sp"
+        android:textColor="@color/Neutral_900"
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
