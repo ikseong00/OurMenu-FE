@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.OurMenu" parent="Base.Theme.OurMenu" />
+
+    <style name="corner_rd_32">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+
+    <style name="corner_rd_12">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 </resources>
