@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/siv_item_big_menu_image"
+        android:id="@+id/siv_item_menu_image_main"
         android:layout_width="304dp"
         android:layout_height="244dp"
         app:shapeAppearanceOverlay="@style/corner_rd_32"
@@ -18,7 +18,7 @@
 
 
     <TextView
-        android:id="@+id/tv_item_big_menu"
+        android:id="@+id/tv_item_menu_main"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="MENU"
@@ -30,7 +30,7 @@
         android:layout_marginBottom="39dp"/>
 
     <TextView
-        android:id="@+id/tv_item_big_store"
+        android:id="@+id/tv_item_store_main"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         app:layout_constraintStart_toStartOf="parent"
