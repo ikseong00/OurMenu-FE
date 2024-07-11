@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- TODO 나중에 LinearLayout 으로 묶기 - 가독성 편하게 -->
             <TextView
                 android:id="@+id/tv_home_mention"
                 android:layout_width="wrap_content"
@@ -112,8 +113,9 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal" />
 
+            <!-- 여기부터 sub 첫번째 메뉴 추천 -->
             <LinearLayout
-                android:id="@+id/ll_home_recommend_sub"
+                android:id="@+id/ll_home_recommend_sub_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/rv_home_menu_main"
@@ -126,10 +128,9 @@
                     android:layout_height="32dp"
                     android:src="@drawable/sample_menu_image"
                     android:scaleType="centerCrop"
-                    android:layout_marginEnd="4dp"
-                    />
+                    android:layout_marginEnd="4dp"/>
                 <TextView
-                    android:id="@+id/tv_home_mention_xsub_first"
+                    android:id="@+id/tv_home_mention_sub_first"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="집밥이 그리울 땐,"
@@ -138,26 +139,64 @@
                     android:fontFamily="@font/pretendard_bold"
                     android:layout_gravity="center"/>
 
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home_menu_sub"
+                android:id="@+id/rv_home_menu_sub_first"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintTop_toBottomOf="@id/ll_home_recommend_sub"
-                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@id/ll_home_recommend_sub_first"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:listitem="@layout/item_home_menu_sub"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
                 />
 
+            <!-- 여기부터 두번째 sub 메뉴 추천 -->
+
+            <LinearLayout
+                android:id="@+id/ll_home_recommend_sub_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_home_menu_sub_first"
+                app:layout_constraintStart_toStartOf="@id/ll_home_recommend_main"
+                android:layout_marginTop="24dp">
+
+                <ImageView
+                    android:id="@+id/iv_home_icon_recommend_sub_second"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/sample_menu_image"
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="4dp"/>
+                <TextView
+                    android:id="@+id/tv_home_mention_sub_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="집밥이 그리울 땐,"
+                    android:textSize="20sp"
+                    android:textColor="@color/Neutral_900"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_menu_sub_second"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/ll_home_recommend_sub_second"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_home_menu_sub"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
