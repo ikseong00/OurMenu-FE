@@ -23,7 +23,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/edittext_bg_normal"
-        android:fontFamily="@font/pretendard_bold"
+        android:fontFamily="@font/pretendard_700"
         android:hint="ID / E-mail"
         android:textColor="@color/Neutral_500"
         android:textSize="12sp"
@@ -38,7 +38,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edittext_bg_normal"
-        android:fontFamily="@font/pretendard_bold"
+        android:fontFamily="@font/pretendard_700"
         android:hint="Password"
         android:textColor="@color/Neutral_500"
         android:textSize="12sp"
@@ -53,10 +53,9 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_bg_enabled"
-        android:fontFamily="@font/pretendard_regular"
+        android:fontFamily="@font/pretendard_700"
         android:text="@string/login"
         android:textColor="@color/Neutral_White"
-        android:textFontWeight="700"
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +75,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/pretendard_regular"
+        android:fontFamily="@font/pretendard_500"
         android:text="로그인 상태 유지"
         android:textColor="@color/Neutral_500"
-        android:textFontWeight="500"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/cb_maintain_login"
         app:layout_constraintStart_toEndOf="@id/cb_maintain_login"
@@ -101,10 +99,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:fontFamily="@font/pretendard_regular"
+        android:fontFamily="@font/pretendard_500"
         android:text="아이디 찾기"
         android:textColor="@color/Neutral_500"
-        android:textFontWeight="500"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/b_login_login"
         app:layout_constraintTop_toBottomOf="@id/b_login_login" />
@@ -112,38 +109,36 @@
     <View
         android:layout_width="1dp"
         android:layout_height="12dp"
-        app:layout_constraintStart_toEndOf="@id/tv_find_id"
-        app:layout_constraintTop_toTopOf="@id/tv_find_id"
-        app:layout_constraintBottom_toBottomOf="@id/tv_find_id"
         android:layout_marginStart="8dp"
-        android:background="@color/Neutral_500" />
+        android:background="@color/Neutral_500"
+        app:layout_constraintBottom_toBottomOf="@id/tv_find_id"
+        app:layout_constraintStart_toEndOf="@id/tv_find_id"
+        app:layout_constraintTop_toTopOf="@id/tv_find_id" />
 
     <TextView
         android:id="@+id/tv_find_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/pretendard_regular"
+        android:layout_marginTop="65dp"
+        android:fontFamily="@font/pretendard_500"
         android:text="비밀번호 찾기"
         android:textColor="@color/Neutral_500"
-        android:textFontWeight="500"
         android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login"
-        app:layout_constraintStart_toEndOf="@id/tv_find_id" />
+        app:layout_constraintStart_toEndOf="@id/tv_find_id"
+        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login"
-        android:text="계정이 없으신가요?"
         android:layout_marginTop="139dp"
+        android:fontFamily="@font/pretendard_500"
+        android:text="계정이 없으신가요?"
         android:textColor="@color/Neutral_500"
         android:textSize="14sp"
-        android:fontFamily="@font/pretendard_regular"
-        android:textFontWeight="500" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
 
     <Button
         android:id="@+id/b_login_signup"
@@ -152,10 +147,9 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="184dp"
         android:background="@drawable/button_bg_outlined"
-        android:fontFamily="@font/pretendard_regular"
+        android:fontFamily="@font/pretendard_500"
         android:text="@string/signup"
         android:textColor="@color/Primary_500_main"
-        android:textFontWeight="500"
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,9 +161,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/iv_logo_copyright"
@@ -181,14 +175,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:fontFamily="@font/pretendard_regular"
+            android:fontFamily="@font/pretendard_400"
             android:text="@string/copyright"
             android:textColor="@color/Neutral_500"
             android:textSize="10sp" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
