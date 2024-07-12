@@ -25,7 +25,7 @@
         android:background="@drawable/edittext_bg_normal"
         android:fontFamily="@font/pretendard_700"
         android:hint="ID / E-mail"
-        android:textColor="@color/Neutral_500"
+        android:textColorHint="@color/Neutral_500"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,16 +40,16 @@
         android:background="@drawable/edittext_bg_normal"
         android:fontFamily="@font/pretendard_700"
         android:hint="Password"
-        android:textColor="@color/Neutral_500"
+        android:textColorHint="@color/Neutral_500"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/cb_login_show_password"
-        android:layout_width="16dp"
-        android:layout_height="13dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="8.5dp"
         android:button="@drawable/checkbox_bg"
         app:layout_constraintStart_toStartOf="@id/et_login_password"
@@ -77,7 +77,6 @@
         app:layout_constraintEnd_toEndOf="@id/et_login_password"
         app:layout_constraintTop_toTopOf="@id/cb_login_show_password" />
 
-
     <Button
         android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
@@ -85,7 +84,9 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="53dp"
         android:background="@drawable/button_bg_enabled"
+        android:elevation="6dp"
         android:fontFamily="@font/pretendard_700"
+        android:stateListAnimator="@null"
         android:text="@string/login"
         android:textColor="@color/Neutral_White"
         android:textSize="16sp"
@@ -94,10 +95,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_login_password" />
 
-    <CheckBox
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/cb_login_maintain"
-        android:layout_width="16dp"
-        android:layout_height="13dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="8.5dp"
         android:button="@drawable/checkbox_bg"
         app:layout_constraintStart_toStartOf="@id/btn_login_login"
@@ -135,6 +136,7 @@
         android:layout_marginTop="184dp"
         android:background="@drawable/button_bg_outlined"
         android:fontFamily="@font/pretendard_500"
+        android:stateListAnimator="@null"
         android:text="@string/signup"
         android:textColor="@color/Primary_500_main"
         android:textSize="16sp"
@@ -167,6 +169,5 @@
             android:textSize="10sp" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
