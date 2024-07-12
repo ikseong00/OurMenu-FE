@@ -46,12 +46,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
+    <CheckBox
+        android:id="@+id/cb_login_show_password"
+        android:layout_width="16dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="8.5dp"
+        android:button="@drawable/checkbox_bg"
+        app:layout_constraintStart_toStartOf="@id/et_login_password"
+        app:layout_constraintTop_toBottomOf="@id/et_login_password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/pretendard_500"
+        android:text="비밀번호 보기"
+        android:textColor="@color/Neutral_500"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/cb_login_show_password"
+        app:layout_constraintStart_toEndOf="@id/cb_login_show_password"
+        app:layout_constraintTop_toTopOf="@id/cb_login_show_password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_500"
+        android:text="비밀번호 찾기"
+        android:textColor="@color/Neutral_500"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/et_login_password"
+        app:layout_constraintTop_toTopOf="@id/cb_login_show_password" />
+
+
     <Button
-        android:id="@+id/b_login_login"
+        android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="53dp"
         android:background="@drawable/button_bg_enabled"
         android:fontFamily="@font/pretendard_700"
         android:text="@string/login"
@@ -63,13 +95,13 @@
         app:layout_constraintTop_toBottomOf="@id/et_login_password" />
 
     <CheckBox
-        android:id="@+id/cb_maintain_login"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="12.5dp"
+        android:id="@+id/cb_login_maintain"
+        android:layout_width="16dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="8.5dp"
         android:button="@drawable/checkbox_bg"
-        app:layout_constraintStart_toStartOf="@id/b_login_login"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
+        app:layout_constraintStart_toStartOf="@id/btn_login_login"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_login" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,54 +111,9 @@
         android:text="로그인 상태 유지"
         android:textColor="@color/Neutral_500"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/cb_maintain_login"
-        app:layout_constraintStart_toEndOf="@id/cb_maintain_login"
-        app:layout_constraintTop_toTopOf="@id/cb_maintain_login" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="57dp"
-        android:background="@color/Neutral_300"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
-
-    <TextView
-        android:id="@+id/tv_find_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:fontFamily="@font/pretendard_500"
-        android:text="아이디 찾기"
-        android:textColor="@color/Neutral_500"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/b_login_login"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="12dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/Neutral_500"
-        app:layout_constraintBottom_toBottomOf="@id/tv_find_id"
-        app:layout_constraintStart_toEndOf="@id/tv_find_id"
-        app:layout_constraintTop_toTopOf="@id/tv_find_id" />
-
-    <TextView
-        android:id="@+id/tv_find_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="65dp"
-        android:fontFamily="@font/pretendard_500"
-        android:text="비밀번호 찾기"
-        android:textColor="@color/Neutral_500"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/tv_find_id"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
+        app:layout_constraintBottom_toBottomOf="@id/cb_login_maintain"
+        app:layout_constraintStart_toEndOf="@id/cb_login_maintain"
+        app:layout_constraintTop_toTopOf="@id/cb_login_maintain" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -138,10 +125,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
+        app:layout_constraintTop_toBottomOf="@id/btn_login_login" />
 
     <Button
-        android:id="@+id/b_login_signup"
+        android:id="@+id/btn_login_signup"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
@@ -154,7 +141,7 @@
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/b_login_login" />
+        app:layout_constraintTop_toBottomOf="@id/btn_login_login" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -166,7 +153,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/iv_logo_copyright"
             android:layout_width="59dp"
             android:layout_height="18dp"
             android:src="@drawable/ic_logo_ourmenu" />
