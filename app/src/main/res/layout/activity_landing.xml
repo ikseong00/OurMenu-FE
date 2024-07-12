@@ -127,30 +127,23 @@
 
         <ImageView
             android:id="@+id/iv_landing_kakao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:src="@drawable/ic_kakao" />
 
         <ImageView
-            android:id="@+id/iv_landing_naver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/ic_naver" />
-
-        <ImageView
             android:id="@+id/iv_landing_google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_google" />
 
         <ImageView
-            android:id="@+id/iv_landing_insta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/iv_landing_naver"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:src="@drawable/ic_insta" />
+            android:src="@drawable/ic_naver" />
 
     </LinearLayout>
 
