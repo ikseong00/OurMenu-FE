@@ -5,7 +5,27 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 <!--        <item name="android:windowBackground">@color/Neutral_White</item>-->
 <!--        <item name="colorOnPrimary">@color/Neutral_White</item>-->
-
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="corner_rd_32">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+
+    <style name="corner_rd_12">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="corner_rd_8">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+      
+    <style name="NavigationFont" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>
