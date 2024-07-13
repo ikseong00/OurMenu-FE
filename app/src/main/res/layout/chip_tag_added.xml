@@ -6,7 +6,7 @@
     android:text="text"
     android:background="@drawable/chip_shape_tag_added"
     android:paddingHorizontal="15dp"
-    android:fontFamily="@font/regular"
+    android:fontFamily="@font/pretendard_600"
     android:textColor="@color/Neutral_700"
     android:textSize="14sp"
     android:includeFontPadding="false"
