@@ -11,7 +11,7 @@ import com.example.ourmenu.databinding.ItemHomeMenuMainBinding
 
 class HomeMenuMainRVAdapter(val items: ArrayList<HomeMenuData>, val context:Context): RecyclerView.Adapter<HomeMenuMainRVAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemHomeMenuMainBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemHomeMenuMainBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: HomeMenuData){
             binding.tvItemMenuMain.text = item.menu
             binding.tvItemStoreMain.text = item.store

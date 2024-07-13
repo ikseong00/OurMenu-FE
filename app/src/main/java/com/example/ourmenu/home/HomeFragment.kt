@@ -11,6 +11,7 @@ import com.example.ourmenu.R
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.FragmentHomeBinding
 import com.example.ourmenu.home.adapter.HomeMenuMainRVAdapter
+import com.example.ourmenu.home.adapter.HomeMenuSubRVAdapter
 import kotlin.math.max
 
 class HomeFragment : Fragment() {
@@ -25,12 +26,19 @@ class HomeFragment : Fragment() {
 
         initDummyData()
         initMainMenuRV()
+        initSubMenuRV()
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return binding.root
+    }
+
+    private fun initSubMenuRV() {
+        binding.rvHomeMenuSubFirst.adapter = HomeMenuSubRVAdapter(dummyItems)
+        binding.rvHomeMenuSubSecond.adapter = HomeMenuSubRVAdapter(dummyItems)
     }
 
 
     private fun initDummyData() {
+        dummyItems = ArrayList<HomeMenuData>()
         for (i in 1..6){
             dummyItems.add(
                 HomeMenuData("1", "menu2", "store3")
