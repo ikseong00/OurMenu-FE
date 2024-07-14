@@ -15,9 +15,11 @@
         <activity
             android:name=".account.AccountActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".landing.LandingActivity"
             android:exported="true">
@@ -27,6 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

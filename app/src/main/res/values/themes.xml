@@ -25,7 +25,7 @@
     </style>
 
     <style name="NavigationFont" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:fontFamily">@font/pretendard_600</item>
         <item name="android:textSize">12sp</item>
     </style>
 
