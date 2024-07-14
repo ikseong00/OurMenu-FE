@@ -34,6 +34,8 @@ class MenuInfoFragment : Fragment() {
 
             binding.vpMenuInfoMenuImage.adapter = MenuInfoVPAdapter(dummyItems)
             binding.vpMenuInfoMenuImage.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+            binding.indicaotr.attachTo(binding.vpMenuInfoMenuImage)
         }
     }
 }
