@@ -41,7 +41,44 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/map_bottom_sheet"
+        android:id="@+id/cl_map_goto_map_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="122dp"
+        android:background="@drawable/button_shape_goto_map"
+        android:elevation="6dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        app:layout_anchor="@id/cl_map_bottom_sheet"
+        app:layout_anchorGravity="top|end">
+
+        <TextView
+            android:id="@+id/tv_map_goto_map_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_600"
+            android:text="지도 앱으로 이동"
+            android:textColor="@color/Neutral_White"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_map"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_map_goto_map_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_map_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="244dp"
         android:background="@drawable/bottom_sheet_bg"
@@ -50,7 +87,8 @@
         android:paddingVertical="12dp"
         app:behavior_hideable="false"
         app:behavior_peekHeight="100dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <!--        id가 너무 길어져서 이 아래부터 bottom sheet는 bs로 통일-->
         <ImageView
