@@ -3,7 +3,7 @@
     class="android.widget.TextView"
     android:layout_width="wrap_content"
     android:layout_height="22dp"
-    android:background="@drawable/chip_shape_tag_basic"
+    android:background="@drawable/chip_shape_tag"
     android:fontFamily="@font/pretendard_600"
     android:includeFontPadding="false"
     android:paddingHorizontal="15dp"

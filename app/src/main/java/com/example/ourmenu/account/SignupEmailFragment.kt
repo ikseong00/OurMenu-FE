@@ -13,7 +13,7 @@ class SignupEmailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = FragmentSignupEmailBinding.inflate(layoutInflater)
+
     }
 
     override fun onCreateView(
@@ -21,6 +21,7 @@ class SignupEmailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        binding = FragmentSignupEmailBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }
