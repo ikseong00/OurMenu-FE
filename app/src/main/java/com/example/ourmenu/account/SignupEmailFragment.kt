@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
+import com.example.ourmenu.adapters.SpinnerAdapter
 import androidx.fragment.app.Fragment
+import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupEmailBinding
 
 class SignupEmailFragment : Fragment() {
@@ -22,7 +25,12 @@ class SignupEmailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSignupEmailBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        val adapter = SpinnerAdapter<String>(requireContext())
+        adapter.initListener()
+        adapter.setDropDownViewResource(R.layout.spinner_item_background)
+
+        binding.spnEmail.adapter = adapter
+
         return binding.root
     }
 }

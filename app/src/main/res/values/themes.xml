@@ -34,6 +34,8 @@
         <item name="overlapAnchor"> false</item>
         <item name="android:spinnerMode">dropdown</item>
         <item name="android:dropDownWidth">match_parent</item>
+        <item name="android:dropDownVerticalOffset">8dp</item>
+        <item name="android:dropDownHeight">700dp</item>
     </style>
 
 </resources>
