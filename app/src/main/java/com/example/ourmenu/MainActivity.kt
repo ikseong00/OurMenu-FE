@@ -11,17 +11,23 @@ import com.example.ourmenu.menu.MenuInfoFragment
 import com.example.ourmenu.mypage.MypageFragment
 
 class MainActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initBottomNavigation()
 
-        setContentView(binding.root)
+        // 처음 화면을 HomeFragment로 설정
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_frm, HomeFragment())
+                .commitAllowingStateLoss()
+        }
     }
 
     private fun initBottomNavigation() {
@@ -31,41 +37,48 @@ class MainActivity : AppCompatActivity() {
         binding.mainBottomNav.selectedItemId = R.id.home_fragment
 
         binding.mainBottomNav.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.home_fragment -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.map_fragment -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.main_frm, MapFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.menu_fragment -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.main_frm, MenuFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.community_fragment -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.main_frm, CommunityFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
+
                 R.id.mypage_fragment -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.main_frm, MypageFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
-
             }
             false
         }
-
     }
 }
