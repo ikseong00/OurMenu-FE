@@ -111,7 +111,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_shape_create"
         android:fontFamily="@font/pretendard_600"
-        android:text="인증 메일 보내기"
+        android:text="확인"
         android:textColor="@color/Neutral_White"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
