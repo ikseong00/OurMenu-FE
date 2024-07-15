@@ -117,35 +117,15 @@
         app:layout_constraintStart_toStartOf="@id/v_landing_social_textbox"
         app:layout_constraintTop_toTopOf="@id/v_landing_social_textbox" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iv_landing_kakao"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@id/v_landing_social_textbox"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/v_landing_social_textbox">
-
-        <ImageView
-            android:id="@+id/iv_landing_kakao"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_kakao" />
-
-        <ImageView
-            android:id="@+id/iv_landing_google"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/ic_google" />
-
-        <ImageView
-            android:id="@+id/iv_landing_naver"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/ic_naver" />
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_kakao" />
 
     <LinearLayout
         android:layout_width="wrap_content"
