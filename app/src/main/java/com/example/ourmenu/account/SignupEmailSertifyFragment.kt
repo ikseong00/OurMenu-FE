@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
+import com.example.ourmenu.databinding.FragmentSignupEmailSertifyBinding
 
 class SignupEmailSertifyFragment : Fragment() {
+    lateinit var binding : FragmentSignupEmailSertifyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -16,5 +18,8 @@ class SignupEmailSertifyFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = inflater.inflate(R.layout.fragment_signup_email_sertify, container, false)
+    ): View? {
+        binding = FragmentSignupEmailSertifyBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 }
