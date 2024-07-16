@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.example.ourmenu.R
+import com.example.ourmenu.account.SignupEmailFragment
+import com.example.ourmenu.databinding.FragmentSignupEmailBinding
+import com.example.ourmenu.databinding.SpinnerDefaultBackgroundTextBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundEditBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundNullBinding
