@@ -23,7 +23,8 @@
         android:includeFontPadding="false"
         android:paddingHorizontal="15dp"
         android:paddingVertical="15dp"
-        android:textColor="@color/Neutral_500"
+        android:textColor="@color/Neutral_700"
+        android:textColorHint="@color/Neutral_500"
         android:textSize="12sp"
         app:backgroundTint="@null" />
 
