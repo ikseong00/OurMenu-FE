@@ -31,7 +31,7 @@ class SignupEmailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         fun bgchange(){
-            binding.spnEmail.setBackgroundResource(R.drawable.spinner_shape_upsidedown)
+//            binding.spnEmail.setBackgroundResource(R.drawable.spinner_shape_upsidedown)
         }
         fun bgchange2(){
             binding.spnEmail.setBackgroundResource(R.drawable.spinner_shape_default)
