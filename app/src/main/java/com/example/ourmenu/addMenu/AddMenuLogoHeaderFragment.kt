@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentAddMenuLogoHeaderBinding
 
 class AddMenuLogoHeaderFragment : Fragment() {
@@ -26,8 +27,9 @@ class AddMenuLogoHeaderFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-//        childFragmentManager.beginTransaction()
-//            .replace(R.id.cl_add_menu_logo_main, TitleFragment())
-//            .commitNow()
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.cl_add_menu_logo_main, AddMenuMapFragment())
+            .commitNow()
     }
 }

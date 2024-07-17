@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         android:background="@color/Primary_100" />
 
+
+    <View
+        android:id="@+id/v_add_menu_search_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Neutral_White"
+        android:visibility="gone" />
+
+
     <EditText
         android:id="@+id/et_add_menu_search"
         android:layout_width="320dp"
@@ -36,7 +45,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="68dp"
         android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_add_menu_search_result" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_add_menu_bottom_sheet"
