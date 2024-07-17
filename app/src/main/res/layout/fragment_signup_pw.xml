@@ -14,6 +14,7 @@
         android:layout_marginTop="92dp"
         android:fontFamily="@font/pretendard_600"
         android:text="비밀번호를 입력해주세요."
+        android:textColor="@color/Neutral_900"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,14 +30,16 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_enter_email" />
+
     <FrameLayout
         android:id="@+id/fl_password_enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_required"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_required">
+
         <EditText
             android:id="@+id/et_password_enter"
             android:layout_width="match_parent"
@@ -53,24 +56,26 @@
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_required" />
+
         <ImageView
             android:id="@+id/iv_check"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="28dp"
             android:src="@drawable/ic_password_check"
-            android:layout_gravity="center_vertical|end"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/fl_password_enter_repeat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_password_enter">
+
         <EditText
             android:id="@+id/et_password_enter_repeat"
             android:layout_width="match_parent"
@@ -85,14 +90,15 @@
             android:textColor="@color/Neutral_700"
             android:textColorHint="@color/Neutral_500"
             android:textSize="12sp" />
+
         <ImageView
             android:id="@+id/iv_check_repeat"
             android:layout_width="16dp"
             android:layout_height="16dp"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="28dp"
             android:src="@drawable/ic_password_check"
-            android:layout_gravity="center_vertical|end"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </FrameLayout>
 
     <CheckBox

@@ -15,8 +15,6 @@
                 android:drawable="@drawable/ic_polygon_down"
                 android:gravity="center_vertical|end"
                 android:right="17.5dp" />
-
         </layer-list>
-
     </item>
 </selector>

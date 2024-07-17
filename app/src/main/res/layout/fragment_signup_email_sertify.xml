@@ -13,6 +13,7 @@
         android:layout_marginTop="92dp"
         android:fontFamily="@font/pretendard_600"
         android:text="메일을 보냈습니다!"
+        android:textColor="@color/Neutral_900"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,63 +44,67 @@
             android:id="@+id/et_code_1"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/et_code_2"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_code_3"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_code_4"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_code_5"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
+
         <EditText
             android:id="@+id/et_code_6"
             android:layout_width="37dp"
             android:layout_height="44dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/edittext_shape_bordered"
             android:fontFamily="@font/pretendard_600"
-            android:textColor="@color/Neutral_700"
-            android:textSize="16sp"
             android:padding="15dp"
-            android:layout_marginRight="8dp"/>
+            android:textColor="@color/Neutral_700"
+            android:textSize="16sp" />
 
 
     </LinearLayout>
@@ -114,8 +119,8 @@
         android:fontFamily="@font/pretendard_600"
         android:text="확인"
         android:textColor="@color/Neutral_White"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@null"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

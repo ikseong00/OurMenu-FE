@@ -14,6 +14,7 @@
         android:layout_marginTop="92dp"
         android:fontFamily="@font/pretendard_600"
         android:text="이메일을 입력해주세요."
+        android:textColor="@color/Neutral_900"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,12 +94,12 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_shape_big"
+        android:enabled="false"
         android:fontFamily="@font/pretendard_600"
         android:text="인증 메일 보내기"
         android:textColor="@color/Neutral_White"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:enabled="false"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
