@@ -218,7 +218,7 @@
                 android:layout_marginTop="264dp"
                 android:layout_marginBottom="-12dp"
                 app:cardBackgroundColor="@color/Neutral_100"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_menu_info_memo_content"
                 app:layout_constraintEnd_toEndOf="parent"
