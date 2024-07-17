@@ -9,7 +9,7 @@ import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupEmailSertifyBinding
 
 class SignupEmailSertifyFragment : Fragment() {
-    lateinit var binding : FragmentSignupEmailSertifyBinding
+    lateinit var binding: FragmentSignupEmailSertifyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,6 +20,14 @@ class SignupEmailSertifyFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSignupEmailSertifyBinding.inflate(inflater, container, false)
+
+        binding.btnSignupEmailSertify.setOnClickListener{
+            parentFragmentManager.beginTransaction()
+                .addToBackStack("SignupEmailSertify")
+                .replace(R.id.cl_mainscreen, SignupPwFragment())
+                .commit()
+        }
+
         return binding.root
     }
 }
