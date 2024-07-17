@@ -17,7 +17,7 @@ class AddMenuActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main, AddMenuLogoHeaderFragment())
+                .replace(R.id.main, AddMenuMapFragment())
                 .commitNow()
         }
     }
