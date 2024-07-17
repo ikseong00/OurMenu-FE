@@ -43,5 +43,4 @@
             android:src="@drawable/ic_magnifier" />
     </FrameLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
