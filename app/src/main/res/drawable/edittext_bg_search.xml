@@ -8,7 +8,7 @@
             <corners android:radius="8dp" />
             <!-- 배경색  -->
             <solid android:color="@color/Neutral_White" />
-            <padding android:bottom="12dp" android:left="28dp" android:right="17dp" android:top="12dp" />
+            <padding android:left="28dp" android:right="17dp" />
 
         </shape>
 
@@ -22,7 +22,7 @@
             <corners android:radius="8dp" />
             <!-- 배경색  -->
             <solid android:color="@color/Neutral_White" />
-            <padding android:bottom="12dp" android:left="28dp" android:right="17dp" android:top="12dp" />
+            <padding android:left="28dp" android:right="17dp" />
 
         </shape>
     </item>

@@ -10,6 +10,8 @@
         android:id="@+id/cl_add_menu_logo_topbar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
+        android:background="@color/Neutral_White"
+        android:elevation="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -17,6 +19,7 @@
             android:id="@+id/iv_add_menu_logo_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:padding="3.75dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_arrow_left"
