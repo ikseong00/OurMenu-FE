@@ -63,6 +63,11 @@ class AddMenuMapFragment : Fragment() {
             }
         }
 
+        // 뒤로가기 버튼 클릭 이벤트 처리
+        binding.ivAddMenuLogoBack.setOnClickListener {
+            handleBackPress()
+        }
+
         return binding.root
     }
 
@@ -168,5 +173,22 @@ class AddMenuMapFragment : Fragment() {
         binding.clAddMenuBottomSheet.postDelayed({
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }, 100)
+    }
+
+    private fun handleBackPress() {
+        if (binding.vAddMenuSearchBg.visibility == View.VISIBLE ||
+            binding.rvAddMenuSearchResults.visibility == View.VISIBLE
+        ) {
+            // 검색 화면이 보일 때 -> 지도 화면으로 전환
+            binding.vAddMenuSearchBg.visibility = View.GONE
+            binding.rvAddMenuSearchResults.visibility = View.GONE
+            binding.clAddMenuRecentSearch.visibility = View.GONE
+            binding.etAddMenuSearch.clearFocus()
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
+        } else {
+            // 지도 화면이 보일 때 -> 이전 화면으로 돌아가기
+            requireActivity().onBackPressed()
+        }
     }
 }
