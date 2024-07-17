@@ -38,23 +38,14 @@ class SignupEmailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
-
-        fun bgchange() {
-            binding.spnEmail.setBackgroundResource(R.drawable.spinner_shape_upsidedown)
-        }
-
-        fun bgchange2() {
-            binding.spnEmail.setBackgroundResource(R.drawable.spinner_shape_default)
-        }
         binding = FragmentSignupEmailBinding.inflate(inflater, container, false)
         val bindingEdit = SpinnerItemBackgroundEditBinding.inflate(inflater, container, false)
-        val adapter = SpinnerAdapter<String>(requireContext(),this)
+        val adapter = SpinnerAdapter<String>(requireContext(), this)
         adapter.initListener()
         adapter.setDropDownViewResource(R.layout.spinner_item_background)
         binding.spnEmail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == 1||position == 0) {
+                if (position == 1 || position == 0) {
                     adflag = false
                     flagCheck()
                 } else {
@@ -76,18 +67,6 @@ class SignupEmailFragment : Fragment() {
             bindingEdit.flSpinnerItemBackgroundEdit.requestFocus()
         }
 
-        /*binding.spnEmail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val binding = SpinnerItemBackgroundBinding.inflate(inflater,container,false)
-                binding.tvSpinnerItemBackground.setBackgroundResource(R.drawable.spinner_shape_upsidedown)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                val binding = SpinnerItemBackgroundBinding.inflate(inflater,container,false)
-                binding.tvSpinnerItemBackground.setBackgroundResource(R.drawable.spinner_shape_upsidedown)
-            }
-        }*/
-
         binding.btnSignupEmail.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .addToBackStack("SignupEmail")
@@ -105,7 +84,7 @@ class SignupEmailFragment : Fragment() {
                 if (!s.isNullOrEmpty()) {
                     idflag = true
                     flagCheck()
-                }else{
+                } else {
                     idflag = false
                     flagCheck()
                 }
@@ -129,7 +108,7 @@ class SignupEmailFragment : Fragment() {
     fun flagCheck() {
         if (idflag and adflag) {
             binding.btnSignupEmail.setEnabled(true)
-        }else{
+        } else {
             binding.btnSignupEmail.setEnabled(false)
         }
     }
