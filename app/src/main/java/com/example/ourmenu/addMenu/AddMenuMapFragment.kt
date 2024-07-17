@@ -80,10 +80,12 @@ class AddMenuMapFragment : Fragment() {
             if (hasFocus) {
                 binding.vAddMenuSearchBg.visibility = View.VISIBLE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
+                binding.clAddMenuRecentSearch.visibility = View.VISIBLE
                 adapter.updateItems(recentItems)
             } else {
                 binding.vAddMenuSearchBg.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.GONE
+                binding.clAddMenuRecentSearch.visibility = View.GONE
             }
         }
 
@@ -105,8 +107,10 @@ class AddMenuMapFragment : Fragment() {
                     count: Int,
                 ) {
                     if (s.isNullOrEmpty()) {
+                        binding.clAddMenuRecentSearch.visibility = View.VISIBLE
                         adapter.updateItems(recentItems)
                     } else {
+                        binding.clAddMenuRecentSearch.visibility = View.GONE
                         val filteredItems =
                             ArrayList(
                                 allItems.filter {
@@ -117,7 +121,13 @@ class AddMenuMapFragment : Fragment() {
                     }
                 }
 
-                override fun afterTextChanged(s: Editable?) {}
+                override fun afterTextChanged(s: Editable?) {
+                    if (s.isNullOrEmpty()) {
+                        binding.clAddMenuRecentSearch.visibility = View.VISIBLE
+                    } else {
+                        binding.clAddMenuRecentSearch.visibility = View.GONE
+                    }
+                }
             },
         )
     }
