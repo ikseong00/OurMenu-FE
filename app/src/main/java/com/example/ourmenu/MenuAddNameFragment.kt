@@ -21,6 +21,13 @@ class MenuAddNameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenuAddNameBinding.inflate(inflater,container,false)
+        binding.btnMenuAddNameNext.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .addToBackStack("MenuAddNameFragment")
+                .replace(R.id.cl_mainscreen,MenuAddTagFragment()) //id 변경해야됨
+                .commit()
+        }
+
         return binding.root
     }
 }
