@@ -1,4 +1,4 @@
-package com.example.ourmenu.adapters
+package com.example.ourmenu.account.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
