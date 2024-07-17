@@ -9,7 +9,7 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
-import com.example.ourmenu.adapters.SpinnerAdapter
+import com.example.ourmenu.account.adapters.SpinnerAdapter
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupEmailBinding
