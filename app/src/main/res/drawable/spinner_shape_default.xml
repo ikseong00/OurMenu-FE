@@ -31,7 +31,7 @@
                 </shape>
             </item>
             <item
-                android:drawable="@drawable/ic_polygon_up"
+                android:drawable="@drawable/ic_chevron_down"
                 android:gravity="center_vertical|end"
                 android:right="17.5dp"/>
 
