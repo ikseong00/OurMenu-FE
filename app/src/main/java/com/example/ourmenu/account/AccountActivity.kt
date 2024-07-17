@@ -24,7 +24,10 @@ class AccountActivity : AppCompatActivity() {
         }
 
         binding.ivBack.setOnClickListener {
-            finish()
+            supportFragmentManager.popBackStack()
+            if (supportFragmentManager.backStackEntryCount == 0){
+                finish()
+            }
         }
     }
 

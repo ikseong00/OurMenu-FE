@@ -19,6 +19,12 @@ class SignupPwFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupPwBinding.inflate(inflater,container,false)
+        binding.btnSignupPw.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .addToBackStack("SignupPw")
+                .replace(R.id.cl_mainscreen,SignupNameFragment())
+                .commit()
+        }
         return binding.root
     }
 

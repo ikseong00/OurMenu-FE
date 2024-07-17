@@ -1,11 +1,14 @@
-package com.example.ourmenu.adapters
+package com.example.ourmenu.account.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.ourmenu.R
+import com.example.ourmenu.account.SignupEmailFragment
+import com.example.ourmenu.databinding.FragmentSignupEmailBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundEditBinding
 import com.example.ourmenu.databinding.SpinnerItemBackgroundNullBinding
@@ -27,6 +30,10 @@ class SpinnerAdapter<T> constructor(context: Context) :
         val editbinding = SpinnerItemBackgroundEditBinding.inflate(LayoutInflater.from(context), parent, false)
         if (position == 1){
             return editbinding.root
+        }
+        if (position == 0){
+            view.requireViewById<TextView>(R.id.tv_spinner_default_background).apply { text = ""
+            hint = "텍스트" }
         }
         return view
     }
