@@ -16,14 +16,15 @@
             android:exported="false"/>
 
         <activity
+            android:name=".menuinfo.MenuInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".account.AccountActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".landing.LandingActivity"
             android:exported="true">
@@ -33,8 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

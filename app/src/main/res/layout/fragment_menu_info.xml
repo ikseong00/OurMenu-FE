@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.MenuInfoFragment">
+    tools:context=".menuinfo.MenuInfoFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2
@@ -42,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_700"
+            android:maxLength="15"
             android:text="화산라멘"
             android:textColor="@color/Neutral_900"
-            android:textSize="20sp"
-            android:maxLength="15"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_menu_info_menu_price"
