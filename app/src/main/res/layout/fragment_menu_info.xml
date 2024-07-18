@@ -14,18 +14,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/indicaotr"
+        android:id="@+id/idc_menu_info_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/vp_menu_info_menu_image"
-        app:layout_constraintEnd_toEndOf="@id/vp_menu_info_menu_image"
-        app:layout_constraintBottom_toBottomOf="@id/vp_menu_info_menu_image"
         android:layout_marginBottom="12dp"
         app:dotsColor="@color/Neutral_700"
-        app:selectedDotColor="@color/Neutral_White"
-        app:dotsWidthFactor="0"
         app:dotsSize="4dp"
-        app:dotsSpacing="6dp"/>
+        app:dotsSpacing="6dp"
+        app:dotsWidthFactor="0"
+        app:layout_constraintBottom_toBottomOf="@id/vp_menu_info_menu_image"
+        app:layout_constraintEnd_toEndOf="@id/vp_menu_info_menu_image"
+        app:layout_constraintStart_toStartOf="@id/vp_menu_info_menu_image"
+        app:selectedDotColor="@color/Neutral_White" />
 
 
     <LinearLayout
@@ -44,7 +44,8 @@
             android:fontFamily="@font/pretendard_700"
             android:text="화산라멘"
             android:textColor="@color/Neutral_900"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:maxLength="15"/>
 
         <TextView
             android:id="@+id/tv_menu_info_menu_price"
@@ -68,17 +69,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/ll_menu_info_menu"
         app:layout_constraintTop_toBottomOf="@id/ll_menu_info_menu" />
-
-    <ImageView
-        android:id="@+id/iv_menu_info_goto_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_bg_corner_20_no_storke_white"
-        android:elevation="10dp"
-        android:src="@drawable/ic_goto_map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vp_menu_info_menu_image" />
 
     <View
         android:id="@+id/v_menu_info_line"
@@ -228,7 +218,7 @@
                 android:layout_marginTop="264dp"
                 android:layout_marginBottom="-12dp"
                 app:cardBackgroundColor="@color/Neutral_100"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_menu_info_memo_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -271,6 +261,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_menu_info_memo_title" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menu_info_goto_map_btn"
+                android:layout_width="124dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="19dp"
+                android:background="@drawable/button_shape_goto_map_white"
+                android:elevation="6dp"
+                android:paddingHorizontal="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/pretendard_600"
+                    android:text="지도보기"
+                    android:textColor="@color/Primary_500_main"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_map_orange"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
