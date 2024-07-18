@@ -87,6 +87,9 @@ class AddMenuMapFragment : Fragment() {
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
                 binding.clAddMenuRecentSearch.visibility = View.VISIBLE
                 adapter.updateItems(recentItems)
+
+                // bottom sheet가 떠있는 상태에서 검색바를 클릭하면 bottom sheet가 사라지도록
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             } else {
                 binding.vAddMenuSearchBg.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.GONE
