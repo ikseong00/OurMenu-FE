@@ -5,11 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.ItemHomeMenuSubBinding
+import com.example.ourmenu.home.iteminterface.HomeItemClickListener
 
-class HomeMenuSubRVAdapter(val items: ArrayList<HomeMenuData>) : RecyclerView.Adapter<HomeMenuSubRVAdapter.ViewHolder>() {
+class HomeMenuSubRVAdapter(val items: ArrayList<HomeMenuData>) :
+    RecyclerView.Adapter<HomeMenuSubRVAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemHomeMenuSubBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(item : HomeMenuData) {
+    private lateinit var itemClickListener: HomeItemClickListener
+
+    fun setOnItemClickListener(onItemClickListener: HomeItemClickListener) {
+        itemClickListener = onItemClickListener
+    }
+
+    inner class ViewHolder(private val binding: ItemHomeMenuSubBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeMenuData) {
+            // 아이템 클릭 리스너 추가
+            binding.root.setOnClickListener {
+                itemClickListener.onItemClick(item)
+            }
+
             binding.tvItemMenuSub.text = item.menu
             binding.tvItemStoreSub.text = item.store
             // TODO Glide 추가.

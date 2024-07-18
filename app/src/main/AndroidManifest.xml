@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OurMenu"
         tools:targetApi="31">
+        <activity android:name=".menuinfo.MenuInfoActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".account.AccountActivity"
             android:exported="false"
