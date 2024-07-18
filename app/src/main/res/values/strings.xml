@@ -6,6 +6,8 @@
     <string name="copyright">Copyright © OURMENU Corp. All Rights Reserved.</string>
     <string name="login">로그인</string>
     <string name="signup">계정 만들기</string>
+    <string name="next">다음</string>
+
     <string name="menu">화산라멘</string>
     <string name="price">14,000원</string>
     <string name="place_name">화산라멘 멘야마쯔리 홍대점</string>
@@ -13,4 +15,5 @@
     <string name="address">서울 마포구 와우산로 112</string>
     <string name="place_type">음식점</string>
     <string name="distance">19km</string>
+    <string name="time">매일 10:00 - 21:00</string>
 </resources>
