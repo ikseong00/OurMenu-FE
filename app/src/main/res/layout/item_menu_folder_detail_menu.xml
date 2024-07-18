@@ -71,12 +71,12 @@
         android:text="12,000원"
         android:textColor="@color/Neutral_700"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_item_menu_folder_detail_menu_goto_button"
+        app:layout_constraintBottom_toBottomOf="@id/iv_item_menu_folder_detail_menu_goto_map_button"
         app:layout_constraintStart_toStartOf="@id/tv_item_menu_folder_detail_menu_store"
-        app:layout_constraintTop_toTopOf="@id/iv_item_menu_folder_detail_menu_goto_button" />
+        app:layout_constraintTop_toTopOf="@id/iv_item_menu_folder_detail_menu_goto_map_button" />
 
     <ImageView
-        android:id="@+id/iv_item_menu_folder_detail_menu_goto_button"
+        android:id="@+id/iv_item_menu_folder_detail_menu_goto_map_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"

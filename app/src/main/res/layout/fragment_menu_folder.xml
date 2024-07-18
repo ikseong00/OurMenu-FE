@@ -82,6 +82,7 @@
         android:layout_marginTop="64dp"
         app:layout_constraintTop_toBottomOf="@id/iv_menu_folder_main_image" />
 
+    <!--  TODO 버튼위치수정   -->
     <Button
         android:id="@+id/btn_menu_folder_add_menu"
         android:layout_width="match_parent"
@@ -99,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-<!-- TODO 카테고리 필터 추가 -->
+    <!-- TODO 카테고리 필터 추가 -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
