@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.ActivityMenuInfoBinding
 
@@ -18,6 +19,12 @@ class MenuInfoActivity : AppCompatActivity() {
         binding = ActivityMenuInfoBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.menu_info_frm, MenuInfoFragment())
+            .commitAllowingStateLoss()
+
 
     }
 }
