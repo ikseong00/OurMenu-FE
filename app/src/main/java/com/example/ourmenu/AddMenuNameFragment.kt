@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ourmenu.databinding.FragmentMenuAddNameBinding
+import com.example.ourmenu.databinding.FragmentAddMenuNameBinding
 
-class MenuAddNameFragment : Fragment() {
+class AddMenuNameFragment : Fragment() {
 
-    lateinit var binding : FragmentMenuAddNameBinding
+    lateinit var binding : FragmentAddMenuNameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +20,11 @@ class MenuAddNameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMenuAddNameBinding.inflate(inflater,container,false)
-        binding.btnMenuAddNameNext.setOnClickListener {
+        binding = FragmentAddMenuNameBinding.inflate(inflater,container,false)
+        binding.btnAddMenuNameNext.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .addToBackStack("MenuAddNameFragment")
-                .replace(R.id.cl_mainscreen,MenuAddTagFragment()) //id 변경해야됨
+                .replace(R.id.cl_mainscreen,AddMenuTagFragment()) //id 변경해야됨
                 .commit()
         }
 

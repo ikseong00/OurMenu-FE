@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_email_sended"
+        android:id="@+id/tv_signup_email_sended"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_required"
+        android:id="@+id/tv_signup_required"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -28,20 +28,20 @@
         android:textColor="@color/Neutral_500"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_email_sended" />
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_email_sended" />
 
     <LinearLayout
-        android:id="@+id/ll_email_enter"
+        android:id="@+id/ll_signup_email_code_enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_required">
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_required">
 
         <EditText
-            android:id="@+id/et_code_1"
+            android:id="@+id/et_signup_code_1"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"
@@ -52,7 +52,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_code_2"
+            android:id="@+id/et_signup_code_2"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"
@@ -63,7 +63,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_code_3"
+            android:id="@+id/et_signup_code_3"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"
@@ -74,7 +74,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_code_4"
+            android:id="@+id/et_signup_code_4"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"
@@ -85,7 +85,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_code_5"
+            android:id="@+id/et_signup_code_5"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"
@@ -96,7 +96,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_code_6"
+            android:id="@+id/et_signup_code_6"
             android:layout_width="37dp"
             android:layout_height="44dp"
             android:layout_marginRight="8dp"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_menu_add_name"
+    android:id="@+id/cl_add_menu_name"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp">
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_menu_add_name_menuimage"
+                android:id="@+id/iv_add_menu_name_menuimage"
                 android:layout_width="228dp"
                 android:layout_height="176dp"
                 android:background="@color/Neutral_300"
@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_name"
+                android:id="@+id/tv_add_menu_name_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -35,10 +35,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_menu_add_name_menuimage" />
+                app:layout_constraintTop_toBottomOf="@id/iv_add_menu_name_menuimage" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_name_must"
+                android:id="@+id/tv_add_menu_name_name_must"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -46,18 +46,18 @@
                 android:text="*"
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/tv_menu_add_name_name"
-                app:layout_constraintTop_toBottomOf="@id/iv_menu_add_name_menuimage" />
+                app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_name"
+                app:layout_constraintTop_toBottomOf="@id/iv_add_menu_name_menuimage" />
 
             <FrameLayout
-                android:id="@+id/fl_menu_add_name_name"
+                android:id="@+id/fl_add_menu_name_name"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_name">
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_name">
 
                 <EditText
-                    android:id="@+id/et_menu_add_name_name"
+                    android:id="@+id/et_add_menu_name_name"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginTop="4dp"
@@ -70,7 +70,7 @@
                     app:backgroundTint="@null" />
 
                 <ImageView
-                    android:id="@+id/iv_menu_add_name_name"
+                    android:id="@+id/iv_add_menu_name_name"
                     android:layout_width="18dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|end"
@@ -79,7 +79,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/tv_menu_add_name_menu"
+                android:id="@+id/tv_add_menu_name_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -88,10 +88,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fl_menu_add_name_name" />
+                app:layout_constraintTop_toBottomOf="@id/fl_add_menu_name_name" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_menu_must"
+                android:id="@+id/tv_add_menu_name_menu_must"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -99,11 +99,11 @@
                 android:text="*"
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/tv_menu_add_name_menu"
-                app:layout_constraintTop_toBottomOf="@id/fl_menu_add_name_name" />
+                app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_menu"
+                app:layout_constraintTop_toBottomOf="@id/fl_add_menu_name_name" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_menu"
+                android:id="@+id/et_add_menu_name_menu"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginTop="4dp"
@@ -115,10 +115,10 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_menu" />
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_menu" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_price"
+                android:id="@+id/tv_add_menu_name_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -127,10 +127,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_menu" />
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_menu" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_price"
+                android:id="@+id/et_add_menu_name_price"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginTop="4dp"
@@ -142,10 +142,10 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_price" />
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_price" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_restaurant"
+                android:id="@+id/tv_add_menu_name_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -154,10 +154,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_price" />
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_price" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_restaurant_must"
+                android:id="@+id/tv_add_menu_name_restaurant_must"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -165,11 +165,11 @@
                 android:text="*"
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/tv_menu_add_name_restaurant"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_price" />
+                app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_restaurant"
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_price" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_restaurant"
+                android:id="@+id/et_add_menu_name_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginTop="4dp"
@@ -181,10 +181,10 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_restaurant" />
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_restaurant" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_address"
+                android:id="@+id/tv_add_menu_name_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -193,10 +193,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_restaurant" />
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_restaurant" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_address_must"
+                android:id="@+id/tv_add_menu_name_address_must"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -204,11 +204,11 @@
                 android:text="*"
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/tv_menu_add_name_address"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_restaurant" />
+                app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_address"
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_restaurant" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_address1"
+                android:id="@+id/et_add_menu_name_address1"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginTop="4dp"
@@ -220,10 +220,10 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_address" />
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_address" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_address2"
+                android:id="@+id/et_add_menu_name_address2"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_marginTop="4dp"
@@ -235,10 +235,10 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_address1" />
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_address1" />
 
             <TextView
-                android:id="@+id/tv_menu_add_name_time"
+                android:id="@+id/tv_add_menu_name_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -247,10 +247,10 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_menu_add_name_address2" />
+                app:layout_constraintTop_toBottomOf="@id/et_add_menu_name_address2" />
 
             <EditText
-                android:id="@+id/et_menu_add_name_time"
+                android:id="@+id/et_add_menu_name_time"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:layout_marginTop="4dp"
@@ -262,7 +262,7 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_menu_add_name_time" />
+                app:layout_constraintTop_toBottomOf="@id/tv_add_menu_name_time" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -270,7 +270,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_menu_add_name_next"
+        android:id="@+id/btn_add_menu_name_next"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="20dp"

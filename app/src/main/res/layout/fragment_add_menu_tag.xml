@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_menu_add_tag"
+    android:id="@+id/cl_add_menu_tag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/tv_menu_add_tag_tag"
+        android:id="@+id/tv_add_menu_tag_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_600"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/fl_menu_add_tag_tag"
+        android:id="@+id/fl_add_menu_tag_tag"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_menu_add_tag_tag">
+        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_tag">
 
         <EditText
-            android:id="@+id/et_menu_add_tag_tag"
+            android:id="@+id/et_add_menu_tag_tag"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginTop="4dp"
@@ -38,7 +38,7 @@
             app:backgroundTint="@null" />
 
         <ImageView
-            android:id="@+id/iv_menu_add_tag_tag"
+            android:id="@+id/iv_add_menu_tag_tag"
             android:layout_width="18dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical|end"
@@ -47,7 +47,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_menu_add_tag_memo"
+        android:id="@+id/tv_add_menu_tag_memo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -56,10 +56,10 @@
         android:textColor="@color/Neutral_900"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_menu_add_tag_tag" />
+        app:layout_constraintTop_toBottomOf="@id/fl_add_menu_tag_tag" />
 
     <EditText
-        android:id="@+id/et_menu_add_tag_memo"
+        android:id="@+id/et_add_menu_tag_memo"
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:layout_marginTop="4dp"
@@ -72,10 +72,10 @@
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_menu_add_tag_memo" />
+        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_memo" />
 
     <TextView
-        android:id="@+id/tv_menu_add_tag_icon"
+        android:id="@+id/tv_add_menu_tag_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -84,15 +84,15 @@
         android:textColor="@color/Neutral_900"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_menu_add_tag_memo" />
+        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo" />
 
     <FrameLayout
-        android:id="@+id/fl_menu_add_tag_mappin"
+        android:id="@+id/fl_add_menu_tag_mappin"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_menu_add_tag_memo">
+        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo">
 
         <ImageView
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btn_menu_add_tag_confirm"
+        android:id="@+id/btn_add_menu_tag_confirm"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/button_shape_big"
