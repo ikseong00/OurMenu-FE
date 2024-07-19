@@ -90,11 +90,11 @@ class AddMenuMapFragment : Fragment() {
                     bottomSheet: View,
                     slideOffset: Float,
                 ) {
-                    val maxHeight = binding.root.rootView.height - dpToPx(100)
-                    if (bottomSheet.height > maxHeight) {
-                        bottomSheet.layoutParams.height = maxHeight
-                        bottomSheet.requestLayout()
-                    }
+//                    val maxHeight = binding.root.rootView.height - dpToPx(100)
+//                    if (bottomSheet.height > maxHeight) {
+//                        bottomSheet.layoutParams.height = maxHeight
+//                        bottomSheet.requestLayout()
+//                    }
                 }
             },
         )
