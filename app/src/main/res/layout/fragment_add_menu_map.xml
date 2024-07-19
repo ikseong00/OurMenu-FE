@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@color/Neutral_White"
-        android:elevation="8dp">
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_add_menu_logo_back"
@@ -36,6 +38,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <EditText
+        android:id="@+id/et_add_menu_search"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/edittext_bg_search"
+        android:drawableRight="@drawable/ic_search"
+        android:elevation="1dp"
+        android:fontFamily="@font/pretendard_500"
+        android:hint="가게 이름 검색"
+        android:textColor="@color/Neutral_700"
+        android:textColorHint="@color/Neutral_500"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- TODO: 지도 들어가는 부분 -->
     <View
         android:layout_width="match_parent"
@@ -50,26 +71,12 @@
         android:background="@color/Neutral_White"
         android:visibility="gone" />
 
-    <Button
-        android:id="@+id/btn_add_menu_next"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_shape_big"
-        android:elevation="8dp"
-        android:fontFamily="@font/pretendard_700"
-        android:text="@string/next"
-        android:textColor="@color/Neutral_White"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:backgroundTint="@null" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_add_menu_recent_search"
@@ -105,182 +112,207 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_add_menu_bottom_sheet"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_sheet_bg"
         android:elevation="6dp"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="0dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-
-        <ImageView
-            android:id="@+id/iv_add_menu_bs_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_bottomsheet_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_add_menu_bs_place_info"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_btn">
+            android:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_add_menu_bs_info"
+                android:id="@+id/cl_add_menu_bottom_sheet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:background="@drawable/bottom_sheet_bg"
+                android:elevation="6dp"
+                app:behavior_hideable="true"
+                app:behavior_peekHeight="0dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_add_menu_bs_place_name"
+
+                <ImageView
+                    android:id="@+id/iv_add_menu_bs_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_700"
-                    android:text="@string/menu"
-                    android:textColor="@color/Neutral_900"
-                    android:textSize="20sp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_bottomsheet_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iv_add_menu_bs_address"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_add_menu_bs_place_info"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pin_gray"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_add_menu_bs_place_name" />
-
-
-                <TextView
-                    android:id="@+id/tv_add_menu_bs_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/pretendard_400"
-                    android:text="@string/place_name"
-                    android:textColor="@color/Neutral_700"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/iv_add_menu_bs_address"
-                    app:layout_constraintTop_toBottomOf="@id/tv_add_menu_bs_place_name" />
-
-                <ImageView
-                    android:id="@+id/iv_add_menu_bs_time"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_time"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_address" />
-
-                <TextView
-                    android:id="@+id/tv_add_menu_bs_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/pretendard_400"
-                    android:text="@string/time"
-                    android:textColor="@color/Neutral_700"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/iv_add_menu_bs_time"
-                    app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_address" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_add_menu_bs_imgs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_info">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/siv_add_menu_bs_img1"
-                    android:layout_width="104dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/menu_sample"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearance="@style/corner_rd_12" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/siv_add_menu_bs_img2"
-                    android:layout_width="104dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="4dp"
-                    android:src="@drawable/menu_sample"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img3"
-                    app:layout_constraintStart_toEndOf="@id/siv_add_menu_bs_img1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearance="@style/corner_rd_12" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/siv_add_menu_bs_img3"
-                    android:layout_width="104dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="4dp"
-                    android:src="@drawable/menu_sample"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:paddingVertical="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/siv_add_menu_bs_img2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearance="@style/corner_rd_12" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_btn">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_add_menu_bs_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_add_menu_bs_place_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendard_700"
+                            android:text="@string/menu"
+                            android:textColor="@color/Neutral_900"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_add_menu_bs_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_pin_gray"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_add_menu_bs_place_name" />
+
+
+                        <TextView
+                            android:id="@+id/tv_add_menu_bs_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/pretendard_400"
+                            android:text="@string/place_name"
+                            android:textColor="@color/Neutral_700"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@id/iv_add_menu_bs_address"
+                            app:layout_constraintTop_toBottomOf="@id/tv_add_menu_bs_place_name" />
+
+                        <ImageView
+                            android:id="@+id/iv_add_menu_bs_time"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_time"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_address" />
+
+                        <TextView
+                            android:id="@+id/tv_add_menu_bs_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/pretendard_400"
+                            android:text="@string/time"
+                            android:textColor="@color/Neutral_700"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toEndOf="@id/iv_add_menu_bs_time"
+                            app:layout_constraintTop_toBottomOf="@id/iv_add_menu_bs_address" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_add_menu_bs_imgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_info">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/siv_add_menu_bs_img1"
+                            android:layout_width="104dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/menu_sample"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/corner_rd_12" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/siv_add_menu_bs_img2"
+                            android:layout_width="104dp"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="4dp"
+                            android:src="@drawable/menu_sample"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img3"
+                            app:layout_constraintStart_toEndOf="@id/siv_add_menu_bs_img1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/corner_rd_12" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/siv_add_menu_bs_img3"
+                            android:layout_width="104dp"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="4dp"
+                            android:src="@drawable/menu_sample"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/siv_add_menu_bs_img2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/corner_rd_12" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_add_menu_place_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info"
+                    tools:listitem="@layout/item_add_menu_place_menu">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_add_menu_btn_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Neutral_White"
+                    android:paddingVertical="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <Button
+                        android:id="@+id/btn_add_menu_next"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/button_shape_big"
+                        android:elevation="8dp"
+                        android:fontFamily="@font/pretendard_700"
+                        android:text="@string/next"
+                        android:textColor="@color/Neutral_White"
+                        android:textSize="16sp"
+                        app:backgroundTint="@null"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_add_menu_place_menu"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info"
-            tools:listitem="@layout/item_add_menu_place_menu">
-
-
-
-        </androidx.recyclerview.widget.RecyclerView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <EditText
-        android:id="@+id/et_add_menu_search"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/edittext_bg_search"
-        android:drawableRight="@drawable/ic_search"
-        android:elevation="1dp"
-        android:fontFamily="@font/pretendard_500"
-        android:hint="가게 이름 검색"
-        android:textColor="@color/Neutral_700"
-        android:textColorHint="@color/Neutral_500"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
