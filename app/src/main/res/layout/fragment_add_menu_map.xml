@@ -50,6 +50,22 @@
         android:background="@color/Neutral_White"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/btn_add_menu_next"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_shape_big"
+        android:elevation="8dp"
+        android:fontFamily="@font/pretendard_700"
+        android:text="@string/next"
+        android:textColor="@color/Neutral_White"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:backgroundTint="@null" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +75,7 @@
             android:id="@+id/cl_add_menu_recent_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
+            android:paddingBottom="4dp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -91,11 +107,11 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:elevation="6dp"
         android:id="@+id/cl_add_menu_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_bg"
+        android:elevation="6dp"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -236,13 +252,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_add_menu_place_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="88dp"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info"
-            tools:listitem="@layout/item_add_menu_place_menu" />
+            tools:listitem="@layout/item_add_menu_place_menu">
+
+
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <EditText
         android:id="@+id/et_add_menu_search"
@@ -262,22 +282,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/btn_add_menu_next"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_shape_big"
-        android:elevation="6dp"
-        android:fontFamily="@font/pretendard_700"
-        android:text="@string/next"
-        android:textColor="@color/Neutral_White"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:backgroundTint="@null" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
