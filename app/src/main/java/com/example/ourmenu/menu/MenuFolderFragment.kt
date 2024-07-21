@@ -23,6 +23,7 @@ class MenuFolderFragment : Fragment() {
 
         }
 
+
         return binding.root
 
     }
