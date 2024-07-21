@@ -75,7 +75,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/tv_menu_folder_main_name"
+            android:id="@+id/et_menu_folder_main_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
