@@ -6,6 +6,7 @@ import com.example.ourmenu.community.CommunityFragment
 import com.example.ourmenu.databinding.ActivityMainBinding
 import com.example.ourmenu.home.HomeFragment
 import com.example.ourmenu.map.MapFragment
+import com.example.ourmenu.menu.MenuFolderFragment
 import com.example.ourmenu.menu.MenuFragment
 import com.example.ourmenu.mypage.MypageFragment
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_fragment -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.main_frm, MenuFragment())
+                        .replace(R.id.main_frm, MenuFolderFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }

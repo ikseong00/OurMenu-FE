@@ -19,6 +19,10 @@ class MenuFolderFragment : Fragment() {
 
         binding = FragmentMenuFolderBinding.inflate(layoutInflater)
 
+        binding.ivMenuFolderVert.setOnClickListener {
+
+        }
+
         return binding.root
 
     }
