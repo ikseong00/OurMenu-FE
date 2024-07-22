@@ -1,13 +1,11 @@
 package com.example.ourmenu
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ourmenu.community.CommunityFragment
 import com.example.ourmenu.databinding.ActivityMainBinding
 import com.example.ourmenu.home.HomeFragment
 import com.example.ourmenu.map.MapFragment
-import com.example.ourmenu.menu.MenuFolderActivity
 import com.example.ourmenu.menu.MenuFolderFragment
 import com.example.ourmenu.menu.MenuFragment
 import com.example.ourmenu.mypage.MypageFragment

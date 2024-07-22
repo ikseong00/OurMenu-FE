@@ -88,6 +88,12 @@ class MenuFolderFragment : Fragment() {
                 isEnabled = true
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pen, 0, 0, 0)
             }
+
+            // 메뉴 추가하기 버튼 gone
+            binding.btnMenuFolderAddMenu.visibility = View.GONE
+
+            // 확인 버튼 visible
+            binding.btnMenuFolderEditOk.visibility = View.VISIBLE
         }
 
         /* 삭제하기 클릭
@@ -127,6 +133,10 @@ class MenuFolderFragment : Fragment() {
                 isEnabled = false
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
+            // 확인 버튼 gone
+            binding.btnMenuFolderEditOk.visibility = View.GONE
+            // 메뉴 추가하기 버튼 visible
+            binding.btnMenuFolderAddMenu.visibility = View.VISIBLE
             // TODO 확인 버튼 클릭 API 구현
 
         }
