@@ -10,8 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
+import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
+import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
 
 class MenuFolderFragment : Fragment() {
 
@@ -23,17 +26,26 @@ class MenuFolderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        initVertOnClickListener()
-
         binding = FragmentMenuFolderBinding.inflate(layoutInflater)
 
-
-
-
+        initVertOnClickListener()
+        initRV()
 
 
         return binding.root
 
+    }
+
+    private fun initRV() {
+        val dummyItems = ArrayList<HomeMenuData>()
+        for (i in 1..9) {
+            dummyItems.add(
+                HomeMenuData(i.toString(), i.toString(), "store3")
+            )
+        }
+
+        binding.rvMenuFolderMenuList.adapter = MenuFolderRVAdapter(dummyItems)
+        binding.rvMenuFolderMenuList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.S) // 이거 있어야 setRenderEffect 가능
