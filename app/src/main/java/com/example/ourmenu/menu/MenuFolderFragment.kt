@@ -28,12 +28,19 @@ class MenuFolderFragment : Fragment() {
 
         binding = FragmentMenuFolderBinding.inflate(layoutInflater)
 
+        initItemClickListener()
         initVertOnClickListener()
         initRV()
 
 
         return binding.root
 
+    }
+
+    private fun initItemClickListener() {
+        // TODO 뒤로가기 설정
+        binding.ivMenuFolderArrowLeft.setOnClickListener {
+        }
     }
 
     private fun initRV() {
