@@ -140,9 +140,16 @@ class AddMenuMapFragment : Fragment() {
     }
 
     private fun initMenuRV() {
-        menuAdapter = AddMenuPlaceMenuRVAdapter(placeMenuItems)
+        menuAdapter =
+            AddMenuPlaceMenuRVAdapter(placeMenuItems) { selectedPosition ->
+                // 아이템이 선택되었을 때 버튼을 활성화
+                binding.btnAddMenuNext.isEnabled = true
+            }
         binding.rvAddMenuPlaceMenu.layoutManager = LinearLayoutManager(context)
         binding.rvAddMenuPlaceMenu.adapter = menuAdapter
+
+        // 버튼 초기 상태를 비활성화
+        binding.btnAddMenuNext.isEnabled = false
     }
 
     private fun initResultRV() {
