@@ -1,5 +1,6 @@
 package com.example.ourmenu.addMenu
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
@@ -34,6 +35,7 @@ class AddMenuMapFragment : Fragment() {
 
     private var isKeyboardVisible = false
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -234,7 +236,10 @@ class AddMenuMapFragment : Fragment() {
         // 키보드가 사라질 때 Bottom Sheet가 화면의 가장 아래에 위치하도록
         binding.clAddMenuBottomSheet.postDelayed({
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            bottomSheetBehavior.peekHeight = dpToPx(204)
+            val displayMetrics = resources.displayMetrics
+            val screenHeight = displayMetrics.heightPixels
+            val height = screenHeight - dpToPx(80)
+            binding.clAddMenuBottomSheet.layoutParams.height = height
             binding.clAddMenuBottomSheet.requestLayout()
         }, 100)
     }
@@ -270,10 +275,6 @@ class AddMenuMapFragment : Fragment() {
         binding.vAddMenuSearchBg.visibility = View.VISIBLE
         binding.rvAddMenuSearchResults.visibility = View.VISIBLE
         binding.clAddMenuRecentSearch.visibility = View.GONE
-
-        // 키보드 숨기기
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
     }
 
     private fun dpToPx(dp: Int): Int {

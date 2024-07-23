@@ -50,8 +50,9 @@
         android:elevation="1dp"
         android:fontFamily="@font/pretendard_500"
         android:hint="가게 이름 검색"
-        android:inputType="text"
         android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
         android:textColor="@color/Neutral_700"
         android:textColorHint="@color/Neutral_500"
         android:textSize="18sp"
@@ -117,13 +118,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
+            android:elevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -132,9 +133,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bottom_sheet_bg"
-                android:elevation="6dp"
+                android:elevation="8dp"
                 app:behavior_hideable="true"
-                app:behavior_peekHeight="0dp"
+                app:behavior_peekHeight="200dp"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -285,6 +286,7 @@
                     android:id="@+id/rv_add_menu_place_menu"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:paddingBottom="84dp"
                     app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info"
                     tools:listitem="@layout/item_add_menu_place_menu">
 
