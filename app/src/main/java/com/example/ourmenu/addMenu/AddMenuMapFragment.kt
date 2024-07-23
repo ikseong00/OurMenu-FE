@@ -3,11 +3,11 @@ package com.example.ourmenu.addMenu
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -100,7 +100,38 @@ class AddMenuMapFragment : Fragment() {
 
         // 뒤로가기 버튼 클릭 이벤트 처리
         binding.ivAddMenuLogoBack.setOnClickListener {
+            binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
             handleBackPress()
+        }
+
+        // 검색바 focus됐을 때
+        binding.etAddMenuSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.vAddMenuSearchBg.visibility = View.VISIBLE
+                binding.rvAddMenuSearchResults.visibility = View.VISIBLE
+                binding.clAddMenuRecentSearch.visibility = View.VISIBLE
+                resultAdapter.updateItems(recentPlaceItems)
+                binding.etAddMenuSearch.text.clear() // 입력 필드 비우기
+
+                // bottom sheet가 떠있는 상태에서 검색바를 클릭하면 bottom sheet가 사라지도록
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            } else {
+                binding.vAddMenuSearchBg.visibility = View.GONE
+                binding.rvAddMenuSearchResults.visibility = View.GONE
+                binding.clAddMenuRecentSearch.visibility = View.GONE
+            }
+        }
+
+        // 검색바에서 엔터 키 이벤트 처리
+        binding.etAddMenuSearch.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)
+            ) {
+                performSearch(binding.etAddMenuSearch.text.toString())
+                true
+            } else {
+                false
+            }
         }
 
         return binding.root
@@ -120,65 +151,6 @@ class AddMenuMapFragment : Fragment() {
             }
         binding.rvAddMenuSearchResults.layoutManager = LinearLayoutManager(context)
         binding.rvAddMenuSearchResults.adapter = resultAdapter
-
-        // 검색바 focus됐을 때
-        binding.etAddMenuSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.vAddMenuSearchBg.visibility = View.VISIBLE
-                binding.rvAddMenuSearchResults.visibility = View.VISIBLE
-                binding.clAddMenuRecentSearch.visibility = View.VISIBLE
-                resultAdapter.updateItems(recentPlaceItems)
-
-                // bottom sheet가 떠있는 상태에서 검색바를 클릭하면 bottom sheet가 사라지도록
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                binding.vAddMenuSearchBg.visibility = View.GONE
-                binding.rvAddMenuSearchResults.visibility = View.GONE
-                binding.clAddMenuRecentSearch.visibility = View.GONE
-            }
-        }
-
-        // 검색했을 때 결과 표시
-        binding.etAddMenuSearch.addTextChangedListener(
-            object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int,
-                ) {
-                }
-
-                override fun onTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    before: Int,
-                    count: Int,
-                ) {
-                    if (s.isNullOrEmpty()) {
-                        binding.clAddMenuRecentSearch.visibility = View.VISIBLE
-                        resultAdapter.updateItems(recentPlaceItems)
-                    } else {
-                        binding.clAddMenuRecentSearch.visibility = View.GONE
-                        val filteredItems =
-                            ArrayList(
-                                placeItems.filter {
-                                    it.placeName.contains(s, ignoreCase = true)
-                                },
-                            )
-                        resultAdapter.updateItems(filteredItems)
-                    }
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                    if (s.isNullOrEmpty()) {
-                        binding.clAddMenuRecentSearch.visibility = View.VISIBLE
-                    } else {
-                        binding.clAddMenuRecentSearch.visibility = View.GONE
-                    }
-                }
-            },
-        )
     }
 
     private fun initDummyData() {
@@ -281,6 +253,26 @@ class AddMenuMapFragment : Fragment() {
             // 지도 화면이 보일 때 -> 이전 화면으로 돌아가기
             requireActivity().onBackPressed()
         }
+    }
+
+    private fun performSearch(query: String) {
+        if (query.isEmpty()) {
+            binding.clAddMenuRecentSearch.visibility = View.VISIBLE
+            resultAdapter.updateItems(recentPlaceItems)
+        } else {
+            binding.clAddMenuRecentSearch.visibility = View.GONE
+            val filteredItems = ArrayList(placeItems.filter { it.placeName.contains(query, ignoreCase = true) })
+            resultAdapter.updateItems(filteredItems)
+        }
+
+        // 검색 결과 화면 표시
+        binding.vAddMenuSearchBg.visibility = View.VISIBLE
+        binding.rvAddMenuSearchResults.visibility = View.VISIBLE
+        binding.clAddMenuRecentSearch.visibility = View.GONE
+
+        // 키보드 숨기기
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
     }
 
     private fun dpToPx(dp: Int): Int {
