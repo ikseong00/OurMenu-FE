@@ -261,7 +261,7 @@ class AddMenuMapFragment : Fragment() {
         // 키보드가 사라질 때 Bottom Sheet가 화면의 가장 아래에 위치하도록
         binding.clAddMenuBottomSheet.postDelayed({
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            bottomSheetBehavior.peekHeight = dpToPx(200)
+            bottomSheetBehavior.peekHeight = dpToPx(204)
             binding.clAddMenuBottomSheet.requestLayout()
         }, 100)
     }

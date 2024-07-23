@@ -113,7 +113,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="6dp"
@@ -233,6 +232,7 @@
                             android:id="@+id/siv_add_menu_bs_img1"
                             android:layout_width="104dp"
                             android:layout_height="80dp"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/menu_sample"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img2"
@@ -245,6 +245,7 @@
                             android:layout_width="104dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="4dp"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/menu_sample"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/siv_add_menu_bs_img3"
@@ -257,6 +258,7 @@
                             android:layout_width="104dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="4dp"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/menu_sample"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -269,6 +271,13 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/Neutral_300"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_add_menu_place_menu"
