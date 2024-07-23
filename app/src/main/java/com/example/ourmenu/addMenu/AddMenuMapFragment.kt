@@ -147,6 +147,7 @@ class AddMenuMapFragment : Fragment() {
         resultAdapter =
             AddMenuSearchResultRVAdapter(arrayListOf()) { place ->
                 showPlaceDetails(place)
+                binding.etAddMenuSearch.setText(place.placeName) // 검색 결과 item의 placeName으로 input field 설정
                 returnToMap()
             }
         binding.rvAddMenuSearchResults.layoutManager = LinearLayoutManager(context)
