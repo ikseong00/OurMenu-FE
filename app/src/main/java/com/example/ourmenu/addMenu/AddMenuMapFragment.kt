@@ -74,27 +74,12 @@ class AddMenuMapFragment : Fragment() {
                     bottomSheet: View,
                     newState: Int,
                 ) {
-                    when (newState) {
-//                        BottomSheetBehavior.STATE_EXPANDED, BottomSheetBehavior.STATE_COLLAPSED -> {
-//                            binding.container.visibility = View.VISIBLE
-//                        }
-//                        BottomSheetBehavior.STATE_HIDDEN -> {
-//                            binding.container.visibility = View.GONE
-//                        }
-//
-//                        else -> {}
-                    }
                 }
 
                 override fun onSlide(
                     bottomSheet: View,
                     slideOffset: Float,
                 ) {
-//                    val maxHeight = binding.root.rootView.height - dpToPx(100)
-//                    if (bottomSheet.height > maxHeight) {
-//                        bottomSheet.layoutParams.height = maxHeight
-//                        bottomSheet.requestLayout()
-//                    }
                 }
             },
         )
@@ -103,6 +88,13 @@ class AddMenuMapFragment : Fragment() {
         binding.root.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            }
+        }
+
+        // bottom sheet를 클릭했을 때 위로 올라오도록 설정
+        binding.clAddMenuBottomSheet.setOnClickListener {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
         }
 
@@ -266,20 +258,11 @@ class AddMenuMapFragment : Fragment() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
 
-//        // 키보드가 사라질 때 Bottom Sheet가 화면의 가장 아래에 위치하도록
-//        binding.clAddMenuBottomSheet.postDelayed({
-//            // BottomSheet를 보이도록 설정하고 peekHeight 만큼 보이도록 설정
-//            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-//            bottomSheetBehavior.peekHeight = dpToPx(202)
-//            binding.clAddMenuBottomSheet.requestLayout()
-//        }, 100)
-
-        // BottomSheet를 보이도록 설정하고 container도 보이도록 설정
+        // 키보드가 사라질 때 Bottom Sheet가 화면의 가장 아래에 위치하도록
         binding.clAddMenuBottomSheet.postDelayed({
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            bottomSheetBehavior.peekHeight = dpToPx(284)
+            bottomSheetBehavior.peekHeight = dpToPx(200)
             binding.clAddMenuBottomSheet.requestLayout()
-//            binding.container.visibility = View.VISIBLE
         }, 100)
     }
 
