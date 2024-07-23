@@ -263,18 +263,24 @@ class AddMenuMapFragment : Fragment() {
 
     private fun performSearch(query: String) {
         if (query.isEmpty()) {
-            binding.clAddMenuRecentSearch.visibility = View.VISIBLE
-            resultAdapter.updateItems(recentPlaceItems)
+            binding.rvAddMenuSearchResults.visibility = View.GONE
+            binding.clAddMenuNoResult.visibility = View.VISIBLE
         } else {
             binding.clAddMenuRecentSearch.visibility = View.GONE
             val filteredItems = ArrayList(placeItems.filter { it.placeName.contains(query, ignoreCase = true) })
             resultAdapter.updateItems(filteredItems)
-        }
 
-        // 검색 결과 화면 표시
-        binding.vAddMenuSearchBg.visibility = View.VISIBLE
-        binding.rvAddMenuSearchResults.visibility = View.VISIBLE
-        binding.clAddMenuRecentSearch.visibility = View.GONE
+            if (filteredItems.isEmpty()) {
+                binding.clAddMenuNoResult.visibility = View.VISIBLE
+            } else {
+                binding.clAddMenuNoResult.visibility = View.GONE
+
+                // 검색 결과 화면 표시
+//                binding.vAddMenuSearchBg.visibility = View.VISIBLE
+                binding.rvAddMenuSearchResults.visibility = View.VISIBLE
+                binding.clAddMenuRecentSearch.visibility = View.GONE
+            }
+        }
     }
 
     private fun dpToPx(dp: Int): Int {
