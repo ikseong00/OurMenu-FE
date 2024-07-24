@@ -1,6 +1,5 @@
 package com.example.ourmenu.addMenu
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
@@ -35,7 +34,6 @@ class AddMenuMapFragment : Fragment() {
 
     private var isKeyboardVisible = false
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,8 +86,11 @@ class AddMenuMapFragment : Fragment() {
 
         // bottom sheet 바깥을 클릭했을 때 bottom sheet 숨기기
         binding.root.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+                binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
+
+                // TODO: 지도에서 focus 사라지도록?
             }
         }
 
