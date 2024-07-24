@@ -8,8 +8,9 @@
     app:backgroundTint="@null"
     android:fontFamily="@font/pretendard_600"
     android:includeFontPadding="false"
-    android:paddingHorizontal="15dp"
+    android:paddingHorizontal="17.5dp"
     android:paddingVertical="15dp"
     android:text="text"
     android:textColor="@color/Neutral_500"
-    android:textSize="12sp" />
+    android:textSize="12sp"
+    android:textColorHint="@color/Neutral_300"/>

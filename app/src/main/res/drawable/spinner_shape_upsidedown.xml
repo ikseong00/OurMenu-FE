@@ -12,9 +12,11 @@
                 </shape>
             </item>
             <item
-                android:drawable="@drawable/ic_polygon_down"
+                android:drawable="@drawable/ic_polygon_up"
                 android:gravity="center_vertical|end"
-                android:right="17.5dp" />
+                android:right="17.5dp"/>
+
         </layer-list>
+
     </item>
 </selector>
