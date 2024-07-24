@@ -35,6 +35,9 @@ class LoginFragment : Fragment() {
         }
 
         binding.cbLoginShowPassword.setOnCheckedChangeListener { _, isChecked ->
+            // 비밀번호가 보여도 font설정에 제대로 되도록 설정
+            val currentTypeface = binding.etLoginPassword.typeface
+
             if (isChecked) {
                 // 비밀번호 보이게 하기
                 binding.etLoginPassword.inputType =
@@ -43,6 +46,9 @@ class LoginFragment : Fragment() {
                 // 비밀번호 숨기기
                 binding.etLoginPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
+
+            binding.etLoginPassword.typeface = currentTypeface
+
             // 커서를 text 제일 뒤로 옮기기
             binding.etLoginPassword.setSelection(binding.etLoginPassword.text.length)
         }
