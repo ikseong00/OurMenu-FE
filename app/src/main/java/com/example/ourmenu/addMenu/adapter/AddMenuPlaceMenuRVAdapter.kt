@@ -38,7 +38,7 @@ class AddMenuPlaceMenuRVAdapter(
             binding.tvAddMenuBsPrice.text = item.price
 
             if (adapterPosition == selectedPosition) {
-                binding.ivAddMenuBsAddBtn.setImageResource(R.drawable.ic_add_menu_filled)
+                binding.ivAddMenuBsAddBtn.setImageResource(R.drawable.ic_add_menu_checked)
             } else {
                 binding.ivAddMenuBsAddBtn.setImageResource(R.drawable.ic_add_menu_stroked)
             }
