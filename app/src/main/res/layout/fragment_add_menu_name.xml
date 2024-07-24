@@ -17,13 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_add_menu_name_menuimage"
-                android:layout_width="228dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_add_menu_name_menuimage"
+                android:layout_width="0dp"
                 android:layout_height="176dp"
                 android:background="@color/Neutral_300"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"/>
 
             <TextView
                 android:id="@+id/tv_add_menu_name_name"
@@ -35,7 +36,7 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_add_menu_name_menuimage" />
+                app:layout_constraintTop_toBottomOf="@id/rv_add_menu_name_menuimage" />
 
             <TextView
                 android:id="@+id/tv_add_menu_name_name_must"
@@ -47,7 +48,7 @@
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_name"
-                app:layout_constraintTop_toBottomOf="@id/iv_add_menu_name_menuimage" />
+                app:layout_constraintTop_toBottomOf="@id/rv_add_menu_name_menuimage" />
 
             <FrameLayout
                 android:id="@+id/fl_add_menu_name_name"
