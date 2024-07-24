@@ -215,6 +215,7 @@
                         android:id="@+id/cl_add_menu_bs_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -279,6 +280,7 @@
                         android:id="@+id/cl_add_menu_bs_imgs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="12dp"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_info">
@@ -330,6 +332,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@color/Neutral_300"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info" />
@@ -340,10 +343,7 @@
                     android:layout_height="0dp"
                     android:paddingBottom="84dp"
                     app:layout_constraintTop_toBottomOf="@id/cl_add_menu_bs_place_info"
-                    tools:listitem="@layout/item_add_menu_place_menu">
-
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    tools:listitem="@layout/item_add_menu_place_menu" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_add_menu_btn_container"
@@ -358,6 +358,7 @@
                         android:id="@+id/btn_add_menu_next"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:layout_marginHorizontal="20dp"
                         android:background="@drawable/button_shape_big"
                         android:elevation="8dp"
                         android:fontFamily="@font/pretendard_700"

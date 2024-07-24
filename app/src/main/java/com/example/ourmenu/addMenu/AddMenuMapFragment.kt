@@ -141,10 +141,17 @@ class AddMenuMapFragment : Fragment() {
 
     private fun initMenuRV() {
         menuAdapter =
-            AddMenuPlaceMenuRVAdapter(placeMenuItems) { selectedPosition ->
-                // 아이템이 선택되었을 때 버튼을 활성화
-                binding.btnAddMenuNext.isEnabled = true
-            }
+            AddMenuPlaceMenuRVAdapter(
+                placeMenuItems,
+                onItemSelected = { selectedPosition ->
+                    // 아이템이 선택되었을 때 버튼을 활성화
+                    binding.btnAddMenuNext.isEnabled = true
+                },
+                onButtonClicked = {
+//                    TODO: 메뉴 추가 fragment로 넘어가도록
+                },
+            )
+
         binding.rvAddMenuPlaceMenu.layoutManager = LinearLayoutManager(context)
         binding.rvAddMenuPlaceMenu.adapter = menuAdapter
 
