@@ -2,6 +2,7 @@ package com.example.ourmenu.account
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,19 @@ class LoginFragment : Fragment() {
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
             activity?.finish()
+        }
+
+        binding.cbLoginShowPassword.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // 비밀번호 보이게 하기
+                binding.etLoginPassword.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                // 비밀번호 숨기기
+                binding.etLoginPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            // 커서를 text 제일 뒤로 옮기기
+            binding.etLoginPassword.setSelection(binding.etLoginPassword.text.length)
         }
 
         return binding.root
