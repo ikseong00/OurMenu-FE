@@ -16,6 +16,9 @@
             android:exported="false"/>
 
         <activity
+            android:name=".menu.MenuFolderActivity"
+            android:exported="false" />
+        <activity
             android:name=".menuinfo.MenuInfoActivity"
             android:exported="false" />
         <activity
