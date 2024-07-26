@@ -3,15 +3,18 @@ package com.example.ourmenu.menu
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.FragmentMenuBinding
+import com.example.ourmenu.databinding.ItemMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuRVAdapter
 import com.example.ourmenu.menu.callback.ItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
@@ -87,9 +90,18 @@ class MenuFragment : Fragment() {
             )
         }
 
-        val itemTouchHelperCallback = ItemTouchHelperCallback().apply {
-            setClamp(128F)
+        val clamp : Float
+        // TODO Util 로 뺴기
+        fun dpToPx(dp: Int): Int {
+            val density = resources.displayMetrics.density
+            return (dp * density).toInt()
         }
+        clamp = dpToPx(120).toFloat()
+
+        val itemTouchHelperCallback = ItemTouchHelperCallback().apply {
+            setClamp(clamp)
+        }
+
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvMenuMenuFolder)
         // 리사이클러 뷰 설정
