@@ -137,6 +137,12 @@ class AddMenuMapFragment : Fragment() {
             }
         }
 
+        binding.btnAddMenuNext.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .addToBackStack("AddMenuMap")
+                .replace(R.id.cl_add_menu_main,AddMenuNameFragment())
+                .commit()
+        }
         return binding.root
     }
 

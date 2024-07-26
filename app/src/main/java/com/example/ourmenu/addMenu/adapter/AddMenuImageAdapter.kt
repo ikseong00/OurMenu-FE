@@ -17,7 +17,7 @@ class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerVie
             binding.sivAddMenuUnionBg.visibility = View.INVISIBLE
         }
         fun nullBind(item : AddMenuImageData){
-            binding.root.setOnClickListener{
+            binding.flAddMenuMenuImage.setOnClickListener{
                 imageListener.onImageClick(binding.sivAddMenuImage)
             }
         }
