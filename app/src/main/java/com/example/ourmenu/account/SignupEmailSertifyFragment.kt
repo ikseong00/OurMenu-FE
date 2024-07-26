@@ -29,20 +29,20 @@ class SignupEmailSertifyFragment : Fragment() {
                 .commit()
         }
 
-        binding.etCode1.addTextChangedListener{
-            binding.etCode2.requestFocus()
+        binding.etSignupCode1.addTextChangedListener{
+            binding.etSignupCode2.requestFocus()
         }
-        binding.etCode2.addTextChangedListener {
-            binding.etCode3.requestFocus()
+        binding.etSignupCode2.addTextChangedListener {
+            binding.etSignupCode3.requestFocus()
         }
-        binding.etCode3.addTextChangedListener{
-            binding.etCode4.requestFocus()
+        binding.etSignupCode3.addTextChangedListener{
+            binding.etSignupCode4.requestFocus()
         }
-        binding.etCode4.addTextChangedListener{
-            binding.etCode5.requestFocus()
+        binding.etSignupCode4.addTextChangedListener{
+            binding.etSignupCode5.requestFocus()
         }
-        binding.etCode5.addTextChangedListener{
-            binding.etCode6.requestFocus()
+        binding.etSignupCode5.addTextChangedListener{
+            binding.etSignupCode6.requestFocus()
         }
         return binding.root
     }
