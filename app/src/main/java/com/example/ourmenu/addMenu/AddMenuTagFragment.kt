@@ -1,4 +1,4 @@
-package com.example.ourmenu
+package com.example.ourmenu.addMenu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

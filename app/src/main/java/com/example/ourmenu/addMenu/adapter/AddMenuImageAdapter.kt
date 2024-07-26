@@ -1,4 +1,4 @@
-package com.example.ourmenu
+package com.example.ourmenu.addMenu.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.AddMenuImageData
-import com.example.ourmenu.databinding.AddMenuNameMenuImageDefaultBinding
+import com.example.ourmenu.databinding.ItemAddMenuNameMenuImageBinding
 
 class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerView.Adapter<AddMenuImageAdapter.ViewHolder>(){
-    inner class ViewHolder(val binding: AddMenuNameMenuImageDefaultBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemAddMenuNameMenuImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun defaultBind(item: AddMenuImageData) {
             binding.sivAddMenuImage.setImageURI(item.imageUri)
             binding.ivAddMenuUnion.visibility = View.INVISIBLE
@@ -23,12 +23,12 @@ class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerVie
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddMenuImageAdapter.ViewHolder {
-        val defaultBinding = AddMenuNameMenuImageDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val defaultBinding = ItemAddMenuNameMenuImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(defaultBinding)
     }
 
-    override fun onBindViewHolder(holder: AddMenuImageAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == 0){
             holder.nullBind(items[position])
         }else{
