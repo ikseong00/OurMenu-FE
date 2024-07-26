@@ -13,6 +13,7 @@
         android:scaleType="fitCenter"
         android:background="@color/Neutral_300"/>
     <FrameLayout
+        android:id="@+id/fl_add_menu_first"
         android:layout_width="40dp"
         android:layout_height="24dp"
         android:layout_margin="4dp">

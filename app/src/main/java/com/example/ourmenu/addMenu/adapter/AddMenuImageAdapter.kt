@@ -8,13 +8,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.AddMenuImageData
 import com.example.ourmenu.databinding.ItemAddMenuNameMenuImageBinding
 
-class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerView.Adapter<AddMenuImageAdapter.ViewHolder>(){
+class AddMenuImageAdapter(val items: ArrayList<AddMenuImageData>) :
+    RecyclerView.Adapter<AddMenuImageAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemAddMenuNameMenuImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun defaultBind(item: AddMenuImageData) {
-            binding.sivAddMenuImage.setImageURI(item.imageUri)
-        }
-        fun nullBind(item : AddMenuImageData){
+            if (item.imageUri != null) {
+                binding.sivAddMenuImage.setImageURI(item.imageUri)
+            }
+            binding.flAddMenuMenuImage.clipToOutline = true
             binding.sivAddMenuImage.clipToOutline = true
+            binding.flAddMenuFirst.visibility = View.INVISIBLE
+            binding.ivAddMenuItemDelete.setOnClickListener {
+                imageListener.onImageClick(item)
+            }
+
+        }
+
+        fun firstBind(item: AddMenuImageData) {
+            if (item.imageUri != null) {
+                binding.sivAddMenuImage.setImageURI(item.imageUri)
+            }
+            binding.flAddMenuMenuImage.clipToOutline = true
+            binding.sivAddMenuImage.clipToOutline = true
+            binding.ivAddMenuItemDelete.setOnClickListener {
+                imageListener.onImageClick(item)
+            }
         }
     }
 
@@ -24,9 +42,9 @@ class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position == 0){
-            holder.nullBind(items[position])
-        }else{
+        if (position == 0) {
+            holder.firstBind(items[position])
+        } else {
             holder.defaultBind(items[position])
         }
     }
@@ -36,7 +54,7 @@ class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerVie
     }
 
     public interface OnImageClickListener : View.OnClickListener {
-        public fun onImageClick(imageView : ImageView)
+        public fun onImageClick(addMenuImageData: AddMenuImageData)
     }
 
     lateinit var imageListener: OnImageClickListener

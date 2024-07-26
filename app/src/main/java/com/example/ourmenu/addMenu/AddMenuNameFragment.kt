@@ -26,16 +26,17 @@ import kotlinx.coroutines.launch
 class AddMenuNameFragment : Fragment() {
 
     lateinit var binding: FragmentAddMenuNameBinding
-    lateinit var imageUri:Uri
-    lateinit var imageResult:ActivityResultLauncher<Intent>
-    lateinit var imagePermission:ActivityResultLauncher<String>
+    lateinit var imageUri: Uri
+    lateinit var imageResult: ActivityResultLauncher<Intent>
+    lateinit var imagePermission: ActivityResultLauncher<String>
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
-    private fun openGallery(){
+
+    private fun openGallery() {
         val gallery = Intent()
         gallery.setAction(Intent.ACTION_PICK)
-        gallery.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI,"image/*")
+        gallery.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*")
         imageResult.launch(gallery)
     }
 
@@ -77,29 +78,20 @@ class AddMenuNameFragment : Fragment() {
                 .commit()
         }
 
-        var addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null,"initial"))
+        var addMenuImageItemList = arrayListOf<AddMenuImageData>()
         var addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
 
-        //맨 뒤에 있는 이미지 누르면 갤러리 호출하도록 리스너 설정
         binding.flAddMenuAddImage.setOnClickListener {
             openGallery()
-            addMenuImageItemList.add(AddMenuImageData(imageUri,"menuImage"))
+            addMenuImageItemList.add(AddMenuImageData(imageUri, "menuImage"))
+            var count = binding.tvAddMenuImageCount.text.toString().toInt()+1
+            binding.tvAddMenuImageCount.text = count.toString()
         }
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {
-            override fun onImageClick(imageView: ImageView) {
-                lifecycleScope.launch { openGallery() }
-                addMenuImageItemList.add(AddMenuImageData(imageUri,"menuImage"))
-//                if (ContextCompat.checkSelfPermission(
-//                        requireActivity(),
-//                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-//                    ) == PackageManager.PERMISSION_GRANTED
-//                ) {
-//                    openGallery()
-//                    addMenuImageItemList.add(AddMenuImageData(imageUri,"menuImage"))
-//                } else {
-//                    //권한 허용되지 않은 상태이면 권한 요청 후 갤러리 불러오기
-//                    imagePermission.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-//                }
+            override fun onImageClick(addMenuImageData: AddMenuImageData) {
+                addMenuImageItemList.remove(addMenuImageData)
+                var count = binding.tvAddMenuImageCount.text.toString().toInt()-1
+                binding.tvAddMenuImageCount.text = count.toString()
             }
 
             override fun onClick(v: View?) {
