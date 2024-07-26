@@ -24,7 +24,7 @@ class PostMenuFolderGetDetailFragment : Fragment() {
 
 
 
-        
+
         return binding.root
     }
 }

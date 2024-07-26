@@ -129,5 +129,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_pmf_image" />
 
+    <Button
+        android:id="@+id/btn_pmf_add_menu"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_shape_big"
+        android:elevation="13dp"
+        android:padding="2dp"
+        android:fontFamily="@font/pretendard_700"
+        android:text="확인"
+        android:textColor="@color/Neutral_White"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
