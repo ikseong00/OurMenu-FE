@@ -20,7 +20,7 @@ class MenuInfoMapFragment : Fragment() {
     ): View? {
         binding = FragmentMenuInfoMapBinding.inflate(inflater, container, false)
 
-        bottomSheetBehavior = BottomSheetBehavior.from(binding.clMapBottomSheet)
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.clMenuInfoMapBottomSheet)
 
         bottomSheetBehavior.addBottomSheetCallback(
             object : BottomSheetBehavior.BottomSheetCallback() {
@@ -40,17 +40,21 @@ class MenuInfoMapFragment : Fragment() {
             },
         )
 
+        binding.ivMenuInfoMapBack.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         return binding.root
     }
 
     private fun adjustButtonPosition() {
-        val buttonHeight = binding.clMapGotoMapBtn.height
-        val bottomSheetHeight = binding.clMapBottomSheet.height
-        val bottomSheetTop = binding.clMapBottomSheet.top
+        val buttonHeight = binding.clMenuInfoMapGotoMapBtn.height
+        val bottomSheetHeight = binding.clMenuInfoMapBottomSheet.height
+        val bottomSheetTop = binding.clMenuInfoMapBottomSheet.top
         val parentHeight = binding.root.height
 
         val newButtonY = bottomSheetTop - buttonHeight - 42
 
-        binding.clMapGotoMapBtn.y = newButtonY.toFloat()
+        binding.clMenuInfoMapGotoMapBtn.y = newButtonY.toFloat()
     }
 }
