@@ -11,7 +11,7 @@ import com.example.ourmenu.databinding.AddMenuNameMenuImageDefaultBinding
 class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerView.Adapter<AddMenuImageAdapter.ViewHolder>(){
     inner class ViewHolder(val binding: AddMenuNameMenuImageDefaultBinding) : RecyclerView.ViewHolder(binding.root) {
         fun defaultBind(item: AddMenuImageData) {
-            binding.sivAddMenuImage.setImageResource(R.drawable.ic_google)
+            binding.sivAddMenuImage.setImageURI(item.imageUri)
             binding.ivAddMenuUnion.visibility = View.INVISIBLE
             binding.tvAddMenuRequired.visibility = View.INVISIBLE
             binding.sivAddMenuUnionBg.visibility = View.INVISIBLE

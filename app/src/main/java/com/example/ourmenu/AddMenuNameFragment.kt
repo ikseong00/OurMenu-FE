@@ -40,10 +40,13 @@ class AddMenuNameFragment : Fragment() {
                 .commit()
         }
 
-        var addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData("", "initial"))
+        var addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null,"initial"))
         var addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
+
+        //맨 뒤에 있는 이미지 누르면 갤러리 호출하도록 리스너 설정
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {
             override fun onImageClick(imageView: ImageView) {
+                // 권한 허용된 상태이면 바로 갤러리 불러오기
                 if (ContextCompat.checkSelfPermission(
                         requireContext(),
                         android.Manifest.permission.READ_MEDIA_IMAGES
@@ -51,14 +54,16 @@ class AddMenuNameFragment : Fragment() {
                 ) {
                     val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
                     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                        //갤러리 제대로 불러왔으면 해당 데이터로 새로운 아이템 추가
                         if (result.resultCode == RESULT_OK) {
                             val data: Intent? = result.data
                             data?.data?.let {
-                                imageView.setImageURI(it)
+                                addMenuImageItemList.add(AddMenuImageData(it,"menuImage"))
                             }
                         }
                     }.launch(gallery)
                 } else {
+                    //권한 허용되지 않은 상태이면 권한 요청 후 갤러리 불러오기
                     registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                         if (isGranted) {
                             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -66,7 +71,7 @@ class AddMenuNameFragment : Fragment() {
                                 if (result.resultCode == RESULT_OK) {
                                     val data: Intent? = result.data
                                     data?.data?.let {
-                                        imageView.setImageURI(it)
+                                        addMenuImageItemList.add(AddMenuImageData(it,"menuImage"))
                                     }
                                 }
                             }.launch(gallery)

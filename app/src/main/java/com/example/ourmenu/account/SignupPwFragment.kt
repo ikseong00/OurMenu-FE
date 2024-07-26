@@ -23,6 +23,11 @@ class SignupPwFragment : Fragment() {
     ): View? {
         binding = FragmentSignupPwBinding.inflate(inflater, container, false)
         binding.btnSignupPw.setOnClickListener {
+            if (binding.etSignupPasswordEnter.text.length >= 8 && binding.etSignupPasswordEnter.text.matches(Regex("[0-9||a-z|A-Z| ]*"))) {
+
+            } else {
+
+            }
             parentFragmentManager.beginTransaction()
                 .addToBackStack("SignupPw")
                 .replace(R.id.cl_mainscreen, SignupNameFragment())
