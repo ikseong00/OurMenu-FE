@@ -22,6 +22,9 @@
             android:name=".menuinfo.MenuInfoActivity"
             android:exported="false" />
         <activity
+            android:name=".addMenu.AddMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".account.AccountActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
