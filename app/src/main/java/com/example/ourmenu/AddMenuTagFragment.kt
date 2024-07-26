@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ourmenu.databinding.FragmentMenuAddTagBinding
+import com.example.ourmenu.databinding.FragmentAddMenuTagBinding
 
-class MenuAddTagFragment : Fragment() {
+class AddMenuTagFragment : Fragment() {
 
-    lateinit var binding : FragmentMenuAddTagBinding
+    lateinit var binding : FragmentAddMenuTagBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -18,7 +18,7 @@ class MenuAddTagFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMenuAddTagBinding.inflate(inflater,container,false)
+        binding = FragmentAddMenuTagBinding.inflate(inflater,container,false)
         return binding.root
     }
 

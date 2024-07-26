@@ -43,7 +43,7 @@ class SignupEmailFragment : Fragment() {
         val adapter = SpinnerAdapter<String>(requireContext(), this)
         adapter.initListener()
         adapter.setDropDownViewResource(R.layout.spinner_item_background)
-        binding.spnEmail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spnSignupEmail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 1 || position == 0) {
                     adflag = false
@@ -59,7 +59,7 @@ class SignupEmailFragment : Fragment() {
             }
 
         }
-        binding.spnEmail.adapter = adapter
+        binding.spnSignupEmail.adapter = adapter
         bindingEdit.tvSpinnerItemBackgroundEdit.setOnClickListener {
             bindingEdit.tvSpinnerItemBackgroundEdit.isFocusedByDefault = true
             bindingEdit.flSpinnerItemBackgroundEdit.isFocusableInTouchMode = true
@@ -73,7 +73,7 @@ class SignupEmailFragment : Fragment() {
                 .replace(R.id.cl_mainscreen, SignupEmailSertifyFragment())
                 .commit()
         }
-        binding.etEmailId.addTextChangedListener(object : TextWatcher {
+        binding.etSignupEmailId.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
