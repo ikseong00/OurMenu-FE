@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.MenuFolderFragment">
+    tools:context=".menu.menufolder.MenuFolderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_menu_folder_blur"

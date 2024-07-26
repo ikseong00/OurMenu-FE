@@ -1,10 +1,7 @@
-package com.example.ourmenu.menu
+package com.example.ourmenu.menu.menufolder
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.ActivityMenuFolderBinding
 
