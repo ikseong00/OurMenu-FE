@@ -15,7 +15,6 @@ class AddMenuImageAdapter(val items: ArrayList<AddMenuImageData>) :
             if (item.imageUri != null) {
                 binding.sivAddMenuImage.setImageURI(item.imageUri)
             }
-            binding.flAddMenuMenuImage.clipToOutline = true
             binding.sivAddMenuImage.clipToOutline = true
             binding.flAddMenuFirst.visibility = View.INVISIBLE
             binding.ivAddMenuItemDelete.setOnClickListener {
@@ -28,7 +27,6 @@ class AddMenuImageAdapter(val items: ArrayList<AddMenuImageData>) :
             if (item.imageUri != null) {
                 binding.sivAddMenuImage.setImageURI(item.imageUri)
             }
-            binding.flAddMenuMenuImage.clipToOutline = true
             binding.sivAddMenuImage.clipToOutline = true
             binding.ivAddMenuItemDelete.setOnClickListener {
                 imageListener.onImageClick(item)

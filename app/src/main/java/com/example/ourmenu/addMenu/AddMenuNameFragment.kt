@@ -74,22 +74,27 @@ class AddMenuNameFragment : Fragment() {
         binding.btnAddMenuNameNext.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .addToBackStack("MenuAddNameFragment")
-                .replace(R.id.cl_add_menu_main, AddMenuTagFragment()) //id 변경해야됨
+                .replace(R.id.cl_add_menu_main, AddMenuTagFragment())
                 .commit()
         }
 
-        var addMenuImageItemList = arrayListOf<AddMenuImageData>()
+        var addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null,"name"))
         var addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
 
         binding.flAddMenuAddImage.setOnClickListener {
             openGallery()
             addMenuImageItemList.add(AddMenuImageData(imageUri, "menuImage"))
+            addMenuImageAdapter.notifyDataSetChanged();
             var count = binding.tvAddMenuImageCount.text.toString().toInt()+1
             binding.tvAddMenuImageCount.text = count.toString()
         }
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {
             override fun onImageClick(addMenuImageData: AddMenuImageData) {
                 addMenuImageItemList.remove(addMenuImageData)
+                // List 반영
+                addMenuImageAdapter.notifyDataSetChanged();
+                //addMenuImageAdapter.notifyItemRemoved(addMenuImageData);
+
                 var count = binding.tvAddMenuImageCount.text.toString().toInt()-1
                 binding.tvAddMenuImageCount.text = count.toString()
             }
