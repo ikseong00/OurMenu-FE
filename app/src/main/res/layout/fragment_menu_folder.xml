@@ -155,6 +155,7 @@
 
 
         <!--    메뉴판 수정하기 버튼을 누르면 visible   -->
+        <!--   확인 버튼    -->
         <Button
             android:id="@+id/btn_menu_folder_edit_ok"
             android:layout_width="match_parent"
