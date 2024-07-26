@@ -113,7 +113,6 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_menu_folder_main_image">
 
@@ -124,10 +123,11 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_menu_folder_menu_list"
                     android:layout_width="match_parent"
+                    android:paddingTop="16dp"
+                    android:clipToPadding="true"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="true"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="-16dp"
                     tools:listitem="@layout/item_menu_folder_detail_menu" />
 
                 <Button
