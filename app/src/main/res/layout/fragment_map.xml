@@ -80,15 +80,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_map_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="244dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_bg"
-        android:orientation="vertical"
         android:paddingHorizontal="20dp"
         android:paddingVertical="12dp"
         app:behavior_hideable="false"
         app:behavior_peekHeight="100dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <!--        id가 너무 길어져서 이 아래부터 bottom sheet는 bs로 통일-->
         <ImageView
