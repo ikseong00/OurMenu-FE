@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/iv_item_menu_info_image"
     android:layout_width="match_parent"
-    android:layout_height="132dp"
+    android:layout_height="match_parent"
     android:paddingBottom="8dp"
     android:scaleType="fitXY"
     android:src="@drawable/sample_menu_image"

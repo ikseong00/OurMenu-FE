@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/cl_menu_info_map_container"
     tools:context=".menuinfo.MenuInfoMapFragment">
 
     <!--    TODO: 지도 화면 추가 -->
