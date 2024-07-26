@@ -1,26 +1,18 @@
 package com.example.ourmenu.addMenu
 
-import android.app.Activity
 import android.app.Activity.RESULT_OK
-import android.app.ActivityOptions
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Gallery
 import android.widget.ImageView
+import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +21,7 @@ import com.example.ourmenu.addMenu.adapter.AddMenuImageAdapter
 import com.example.ourmenu.data.AddMenuImageData
 import com.example.ourmenu.databinding.FragmentAddMenuNameBinding
 import kotlinx.coroutines.launch
+
 
 class AddMenuNameFragment : Fragment() {
 
@@ -41,10 +34,20 @@ class AddMenuNameFragment : Fragment() {
     }
     private fun openGallery(){
         val gallery = Intent()
-        gallery.setAction(Intent.ACTION_GET_CONTENT)
+        gallery.setAction(Intent.ACTION_PICK)
         gallery.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI,"image/*")
         imageResult.launch(gallery)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            data?.data?.let {
+                imageUri = it
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         imageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -78,6 +81,10 @@ class AddMenuNameFragment : Fragment() {
         var addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
 
         //맨 뒤에 있는 이미지 누르면 갤러리 호출하도록 리스너 설정
+        binding.flAddMenuAddImage.setOnClickListener {
+            openGallery()
+            addMenuImageItemList.add(AddMenuImageData(imageUri,"menuImage"))
+        }
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {
             override fun onImageClick(imageView: ImageView) {
                 lifecycleScope.launch { openGallery() }
@@ -107,4 +114,5 @@ class AddMenuNameFragment : Fragment() {
 
         return binding.root
     }
+
 }

@@ -12,14 +12,9 @@ class AddMenuImageAdapter(val items : ArrayList<AddMenuImageData>) : RecyclerVie
     inner class ViewHolder(val binding: ItemAddMenuNameMenuImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun defaultBind(item: AddMenuImageData) {
             binding.sivAddMenuImage.setImageURI(item.imageUri)
-            binding.ivAddMenuUnion.visibility = View.INVISIBLE
-            binding.tvAddMenuRequired.visibility = View.INVISIBLE
-            binding.sivAddMenuUnionBg.visibility = View.INVISIBLE
         }
         fun nullBind(item : AddMenuImageData){
-            binding.flAddMenuMenuImage.setOnClickListener{
-                imageListener.onImageClick(binding.sivAddMenuImage)
-            }
+            binding.sivAddMenuImage.clipToOutline = true
         }
     }
 
