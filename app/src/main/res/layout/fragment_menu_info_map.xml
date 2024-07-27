@@ -5,7 +5,7 @@
     android:id="@+id/cl_menu_info_map_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuinfo.MenuInfoMapFragment">
+    tools:context=".menu.menuInfo.MenuInfoMapFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

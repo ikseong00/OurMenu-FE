@@ -1,4 +1,4 @@
-package com.example.ourmenu.menuinfo
+package com.example.ourmenu.menu.menuInfo
 
 import android.os.Bundle
 import android.view.LayoutInflater

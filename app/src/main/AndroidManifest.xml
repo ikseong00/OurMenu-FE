@@ -30,7 +30,7 @@
             android:name=".menu.menuFolder.MenuFolderDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".menuinfo.MenuInfoActivity"
+            android:name=".menu.menuInfo.MenuInfoActivity"
             android:exported="false" />
         <activity
             android:name=".addMenu.AddMenuActivity"

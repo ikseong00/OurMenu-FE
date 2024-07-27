@@ -5,7 +5,7 @@
     android:id="@+id/cl_menu_info_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuinfo.MenuInfoFragment">
+    tools:context=".menu.menuInfo.MenuInfoFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2
