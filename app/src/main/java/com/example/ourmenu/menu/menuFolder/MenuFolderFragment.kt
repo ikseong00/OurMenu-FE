@@ -14,7 +14,7 @@ import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.data.MenuFolderResponse
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuRVAdapter
-import com.example.ourmenu.menu.callback.ItemTouchHelperCallback
+import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
@@ -119,22 +119,22 @@ class MenuFolderFragment : Fragment() {
         }
         clamp = dpToPx(120).toFloat()
 
-        val itemTouchHelperCallback =
-            ItemTouchHelperCallback().apply {
+        val swipeItemTouchHelperCallback =
+            SwipeItemTouchHelperCallback().apply {
                 setClamp(clamp)
             }
 
-        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        val itemTouchHelper = ItemTouchHelper(swipeItemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvMenuMenuFolder)
         // 리사이클러 뷰 설정
         with(binding.rvMenuMenuFolder) {
             adapter =
-                MenuRVAdapter(dummyItems, requireContext(), itemTouchHelperCallback).apply {
+                MenuRVAdapter(dummyItems, requireContext(), swipeItemTouchHelperCallback).apply {
                     setOnItemClickListener(itemClickListener)
                 }
             // 다른 뷰를 건들면 기존 뷰의 swipe 가 초기화 됨
             setOnTouchListener { _, _ ->
-                itemTouchHelperCallback.removePreviousClamp(this)
+                swipeItemTouchHelperCallback.removePreviousClamp(this)
                 false
             }
         }
