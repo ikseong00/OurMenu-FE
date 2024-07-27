@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_menu_info_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menuinfo.MenuInfoFragment">
@@ -11,6 +12,16 @@
         android:id="@+id/vp_menu_info_menu_image"
         android:layout_width="match_parent"
         android:layout_height="292dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_menu_info_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator

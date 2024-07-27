@@ -111,6 +111,7 @@ class AddMenuMapFragment : Fragment() {
         binding.etAddMenuSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.vAddMenuSearchBg.visibility = View.VISIBLE
+                binding.fcvAddMenuMap.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
                 binding.clAddMenuRecentSearch.visibility = View.VISIBLE
                 resultAdapter.updateItems(recentPlaceItems)
@@ -120,6 +121,7 @@ class AddMenuMapFragment : Fragment() {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             } else {
                 binding.vAddMenuSearchBg.visibility = View.GONE
+                binding.fcvAddMenuMap.visibility = View.VISIBLE
                 binding.rvAddMenuSearchResults.visibility = View.GONE
                 binding.clAddMenuRecentSearch.visibility = View.GONE
             }
@@ -266,6 +268,7 @@ class AddMenuMapFragment : Fragment() {
         ) {
             // 검색 화면이 보일 때 -> 지도 화면으로 전환
             binding.vAddMenuSearchBg.visibility = View.GONE
+            binding.fcvAddMenuMap.visibility = View.VISIBLE
             binding.rvAddMenuSearchResults.visibility = View.GONE
             binding.clAddMenuRecentSearch.visibility = View.GONE
             binding.etAddMenuSearch.clearFocus()
@@ -292,7 +295,8 @@ class AddMenuMapFragment : Fragment() {
                 binding.clAddMenuNoResult.visibility = View.GONE
 
                 // 검색 결과 화면 표시
-//                binding.vAddMenuSearchBg.visibility = View.VISIBLE
+                binding.vAddMenuSearchBg.visibility = View.VISIBLE
+                binding.fcvAddMenuMap.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
                 binding.clAddMenuRecentSearch.visibility = View.GONE
             }

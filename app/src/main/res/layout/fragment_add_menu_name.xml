@@ -18,61 +18,72 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="88dp">
 
-            <FrameLayout
-                android:id="@+id/fl_add_menu_add_image"
-                android:layout_width="88dp"
-                android:layout_height="72dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_add_menu_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+                <FrameLayout
+                    android:id="@+id/fl_add_menu_add_image"
+                    android:layout_width="88dp"
+                    android:layout_height="72dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/Neutral_300"
-                    app:shapeAppearance="@style/corner_rd_12" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/Neutral_300"
+                        app:shapeAppearance="@style/corner_rd_12" />
 
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_gravity="center_horizontal|top"
-                    android:layout_marginTop="9dp"
-                    android:src="@drawable/ic_camera_enhance" />
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="9dp"
+                        android:src="@drawable/ic_camera_enhance" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="9dp">
-
-                    <TextView
-                        android:id="@+id/tv_add_menu_image_count"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="14dp"
-                        android:fontFamily="@font/pretendard_600"
-                        android:text="0"
-                        android:textColor="@color/Neutral_500"
-                        android:textSize="12sp" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="9dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="14dp"
-                        android:fontFamily="@font/pretendard_600"
-                        android:text="/5"
-                        android:textColor="@color/Neutral_500"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_add_menu_image_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="14dp"
+                            android:fontFamily="@font/pretendard_600"
+                            android:text="0"
+                            android:textColor="@color/Neutral_500"
+                            android:textSize="12sp" />
 
-            </FrameLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="14dp"
+                            android:fontFamily="@font/pretendard_600"
+                            android:text="/5"
+                            android:textColor="@color/Neutral_500"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_add_menu_name_menu_image"
-                android:layout_width="0dp"
-                android:layout_height="72dp"
-                android:layout_marginLeft="8dp"
-                android:background="@color/Neutral_300"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@id/fl_add_menu_add_image"
-                app:layout_constraintTop_toTopOf="parent" />
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_add_menu_name_menu_image"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@null"
+                    android:orientation="horizontal"
+                    android:paddingRight="8dp"
+                    app:layout_constraintStart_toEndOf="@id/fl_add_menu_add_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/tv_add_menu_name_name"
@@ -84,7 +95,7 @@
                 android:textColor="@color/Neutral_900"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_add_menu_name_menu_image" />
+                app:layout_constraintTop_toBottomOf="@id/cl_add_menu_image" />
 
             <TextView
                 android:id="@+id/tv_add_menu_name_name_must"
@@ -96,7 +107,7 @@
                 android:textColor="@color/Primary_500_main"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_add_menu_name_name"
-                app:layout_constraintTop_toBottomOf="@id/rv_add_menu_name_menu_image" />
+                app:layout_constraintTop_toBottomOf="@id/cl_add_menu_image" />
 
             <FrameLayout
                 android:id="@+id/fl_add_menu_name_name"

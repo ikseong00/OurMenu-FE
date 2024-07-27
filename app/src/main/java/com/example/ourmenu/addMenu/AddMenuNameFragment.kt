@@ -26,18 +26,15 @@ import kotlinx.coroutines.launch
 class AddMenuNameFragment : Fragment() {
 
     lateinit var binding: FragmentAddMenuNameBinding
-    lateinit var imageUri: Uri
-    lateinit var imageResult: ActivityResultLauncher<Intent>
+    var imageUri: Uri? = null
+    lateinit var imageResult: ActivityResultLauncher<String>
     lateinit var imagePermission: ActivityResultLauncher<String>
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
 
     private fun openGallery() {
-        val gallery = Intent()
-        gallery.setAction(Intent.ACTION_PICK)
-        gallery.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*")
-        imageResult.launch(gallery)
+        imageResult.launch("image/*")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -51,13 +48,8 @@ class AddMenuNameFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data: Intent? = result.data
-                data?.data?.let {
-                    imageUri = it
-                }
-            }
+        imageResult = registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            imageUri = result
         }
         imagePermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
