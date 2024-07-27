@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginBottom="106dp"
         android:background="@drawable/button_shape_goto_map_orange"
         android:elevation="6dp"
         android:paddingHorizontal="16dp"
@@ -80,13 +80,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_menu_info_map_bottom_sheet"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_bg"
         android:paddingHorizontal="20dp"
         android:paddingVertical="12dp"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="100dp"
+        app:behavior_peekHeight="80dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <!--        id가 너무 길어져서 이 아래부터 bottom sheet는 bs로 통일-->
@@ -189,9 +189,10 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/siv_menu_info_map_bs_img1"
-                android:layout_width="104dp"
+                android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:src="@drawable/menu_sample"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/siv_menu_info_map_bs_img2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -200,9 +201,10 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/siv_menu_info_map_bs_img2"
-                android:layout_width="104dp"
+                android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="4dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/menu_sample"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/siv_menu_info_map_bs_img3"
@@ -212,9 +214,10 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/siv_menu_info_map_bs_img3"
-                android:layout_width="104dp"
+                android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="4dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/menu_sample"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
