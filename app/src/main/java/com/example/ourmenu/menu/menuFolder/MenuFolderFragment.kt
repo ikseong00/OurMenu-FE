@@ -1,4 +1,4 @@
-package com.example.ourmenu.menu
+package com.example.ourmenu.menu.menuFolder
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -24,7 +24,7 @@ import retrofit2.Response
 
 // import com.example.ourmenu.menu.listener.ItemTouchHelperCallback
 
-class MenuFragment : Fragment() {
+class MenuFolderFragment : Fragment() {
     lateinit var binding: FragmentMenuBinding
     lateinit var itemClickListener: MenuItemClickListener
 
@@ -83,13 +83,13 @@ class MenuFragment : Fragment() {
         itemClickListener =
             object : MenuItemClickListener {
                 override fun onMenuClick() {
-                    val intent = Intent(context, MenuFolderActivity::class.java)
+                    val intent = Intent(context, MenuFolderDetailActivity::class.java)
                     startActivity(intent)
                 }
 
                 override fun onEditClick() {
                     // MenuFolderFragment 에서 editClick() 메소드 실행
-                    val intent = Intent(context, MenuFolderActivity::class.java)
+                    val intent = Intent(context, MenuFolderDetailActivity::class.java)
                     intent.putExtra("isEdit", true)
                     startActivity(intent)
                 }
