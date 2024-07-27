@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentMenuInfoBinding
 import com.example.ourmenu.menu.adapter.MenuInfoVPAdapter
 
@@ -18,9 +19,32 @@ class MenuInfoFragment : Fragment() {
     ): View? {
         binding = FragmentMenuInfoBinding.inflate(inflater, container, false)
 
+        // 뷰페이져 어댑터
         initViewPager2Adapter()
+        // 온클릭 리스너
+        initOnClickListener()
 
         return binding.root
+    }
+
+
+    private fun initOnClickListener() {
+
+        // 닫기 버튼 클릭
+        binding.ivMenuInfoClose.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        // 지도보기 버튼 클릭
+        binding.clMenuInfoGotoMapBtn.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .addToBackStack("MenuInfoFragment")
+                // TODO goto MenuInfoMapFragment??
+                // .replace(R.id.menu_info_frm, )
+                .commit()
+        }
+
+
     }
 
     private fun initViewPager2Adapter() {
