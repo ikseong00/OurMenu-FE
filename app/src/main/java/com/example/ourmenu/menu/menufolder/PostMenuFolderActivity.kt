@@ -1,4 +1,4 @@
-package com.example.ourmenu.newfolder
+package com.example.ourmenu.menu.menufolder
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

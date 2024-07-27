@@ -1,22 +1,22 @@
-package com.example.ourmenu.newfolder
+package com.example.ourmenu.menu.menufolder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.ourmenu.R
-import com.example.ourmenu.databinding.FragmentPostMenuFolderGetBinding
+import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 
-class PostMenuFolderGetFragment : Fragment() {
+class PostMenuFolderFragment : Fragment() {
 
-    lateinit var binding: FragmentPostMenuFolderGetBinding
+    lateinit var binding: FragmentPostMenuFolderBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPostMenuFolderGetBinding.inflate(layoutInflater)
+        binding = FragmentPostMenuFolderBinding.inflate(layoutInflater)
+
 
 
 
