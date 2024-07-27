@@ -195,7 +195,7 @@
                         android:layout_width="134dp"
                         android:layout_height="32dp"
                         android:layout_marginEnd="5dp"
-                        android:background="@drawable/button_bg_8dp_white"
+                        android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -217,7 +217,7 @@
                         android:layout_width="134dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/button_bg_8dp_white"
+                        android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

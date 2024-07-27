@@ -27,10 +27,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".menu.MenuFolderActivity"
+            android:name=".menu.menuFolder.MenuFolderDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".menuinfo.MenuInfoActivity"
+            android:name=".menu.menuInfo.MenuInfoActivity"
             android:exported="false" />
         <activity
             android:name=".addMenu.AddMenuActivity"

@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/iv_circle_orange"
-            android:src="@drawable/ic_circle_orange_filled"
+            android:src="@drawable/ic_circle_orange"
             android:layout_marginVertical="20dp" />
         <ImageView
             android:id="@+id/iv_back"

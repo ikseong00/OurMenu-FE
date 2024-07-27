@@ -14,7 +14,7 @@ import com.example.ourmenu.databinding.FragmentHomeBinding
 import com.example.ourmenu.home.adapter.HomeMenuMainRVAdapter
 import com.example.ourmenu.home.adapter.HomeMenuSubRVAdapter
 import com.example.ourmenu.home.iteminterface.HomeItemClickListener
-import com.example.ourmenu.menuinfo.MenuInfoActivity
+import com.example.ourmenu.menu.menuInfo.MenuInfoActivity
 import kotlin.math.max
 
 class HomeFragment : Fragment() {

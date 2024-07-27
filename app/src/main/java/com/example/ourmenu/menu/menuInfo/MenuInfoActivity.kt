@@ -1,16 +1,11 @@
-package com.example.ourmenu.menuinfo
+package com.example.ourmenu.menu.menuInfo
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.ActivityMenuInfoBinding
 
 class MenuInfoActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityMenuInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +19,5 @@ class MenuInfoActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.menu_info_frm, MenuInfoFragment())
             .commitAllowingStateLoss()
-
-
     }
 }
