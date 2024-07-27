@@ -61,10 +61,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- TODO: 지도 들어가는 부분 -->
-    <View
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/Primary_100" />-->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_add_menu_map"
+        android:name="com.naver.maps.map.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/Primary_100" />
+        android:layout_height="match_parent" />
 
 
     <View
