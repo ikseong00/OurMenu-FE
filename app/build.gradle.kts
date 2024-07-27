@@ -51,4 +51,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    implementation("com.naver.maps:map-sdk:3.19.0")
 }
