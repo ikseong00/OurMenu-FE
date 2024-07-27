@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
+import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
 import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
 
 class MenuFolderDetailFragment : Fragment() {
-    lateinit var binding: FragmentMenuFolderBinding
+    lateinit var binding: FragmentMenuFolderDetailBinding
 
     @RequiresApi(Build.VERSION_CODES.S) // 이거 있어야 setRenderEffect 가능
     override fun onCreateView(
@@ -24,7 +25,7 @@ class MenuFolderDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentMenuFolderBinding.inflate(layoutInflater)
+        binding = FragmentMenuFolderDetailBinding.inflate(layoutInflater)
 
         initItemClickListener()
         initVertOnClickListener()

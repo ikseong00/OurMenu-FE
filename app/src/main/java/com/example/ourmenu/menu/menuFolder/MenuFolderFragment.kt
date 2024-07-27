@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.data.MenuFolderResponse
-import com.example.ourmenu.databinding.FragmentMenuBinding
+import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuRVAdapter
 import com.example.ourmenu.menu.callback.ItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
@@ -25,7 +25,7 @@ import retrofit2.Response
 // import com.example.ourmenu.menu.listener.ItemTouchHelperCallback
 
 class MenuFolderFragment : Fragment() {
-    lateinit var binding: FragmentMenuBinding
+    lateinit var binding: FragmentMenuFolderBinding
     lateinit var itemClickListener: MenuItemClickListener
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class MenuFolderFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
+        binding = FragmentMenuFolderBinding.inflate(inflater, container, false)
 
         val retrofit = RetrofitObject.retrofit
         val service = retrofit.create(MenuFolderService::class.java)
