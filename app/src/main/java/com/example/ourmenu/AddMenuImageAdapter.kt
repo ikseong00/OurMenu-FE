@@ -15,7 +15,7 @@ class AddMenuImageAdapter(
         val binding: AddMenuNameMenuImageDefaultBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun defaultBind(item: AddMenuImageData) {
-            binding.sivAddMenuImage.setImageResource(R.drawable.sample_icon)
+//            binding.sivAddMenuImage.setImageResource(R.drawable.ic_google)
             binding.ivAddMenuUnion.visibility = View.INVISIBLE
             binding.tvAddMenuRequired.visibility = View.INVISIBLE
             binding.sivAddMenuUnionBg.visibility = View.INVISIBLE
