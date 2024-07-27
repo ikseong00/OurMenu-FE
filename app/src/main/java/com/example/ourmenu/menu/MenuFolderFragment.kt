@@ -31,6 +31,11 @@ class MenuFolderFragment : Fragment() {
         initItemClickListener()
         initVertOnClickListener()
         initRV()
+        // 수정화면이면 함수 사용, 아니면 그냥 실행
+
+        arguments?.getBoolean("isEdit")?.let {
+            editClicked()
+        }
 
 
         return binding.root
@@ -40,6 +45,7 @@ class MenuFolderFragment : Fragment() {
     private fun initItemClickListener() {
         // TODO 뒤로가기 설정
         binding.ivMenuFolderArrowLeft.setOnClickListener {
+            requireActivity().finish()
         }
     }
 
@@ -53,6 +59,37 @@ class MenuFolderFragment : Fragment() {
 
         binding.rvMenuFolderMenuList.adapter = MenuFolderRVAdapter(dummyItems)
         binding.rvMenuFolderMenuList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun editClicked() {
+
+        // blur 효과 제거
+        binding.clMenuFolderBlur.setRenderEffect(null)
+        // 메뉴판 수정하기, 삭제하기, 취소 gone
+        binding.clMenuFolderVert.visibility = View.GONE
+
+        // 상단 이미지 blur 효과 적용
+        binding.ivMenuFolderMainImage.setRenderEffect(
+            RenderEffect.createBlurEffect(2f, 2f, Shader.TileMode.CLAMP)
+        )
+        // vert 버튼 gone
+        binding.ivMenuFolderVert.visibility = View.GONE
+
+        // 카메라 , textView visible
+        binding.llMenuFolderEdit.visibility = View.VISIBLE
+
+        // edittext enabled, drawable 적용
+        with(binding.etMenuFolderMainName) {
+            isEnabled = true
+            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pen, 0, 0, 0)
+        }
+
+        // 메뉴 추가하기 버튼 gone
+        binding.btnMenuFolderAddMenu.visibility = View.GONE
+
+        // 확인 버튼 visible
+        binding.btnMenuFolderEditOk.visibility = View.VISIBLE
     }
 
     @RequiresApi(Build.VERSION_CODES.S) // 이거 있어야 setRenderEffect 가능
@@ -75,32 +112,7 @@ class MenuFolderFragment : Fragment() {
         * 카메라 layout visible
         * edittext 설정 */
         binding.btnMenuFolderEdit.setOnClickListener {
-            // blur 효과 제거
-            binding.clMenuFolderBlur.setRenderEffect(null)
-            // 메뉴판 수정하기, 삭제하기, 취소 gone
-            binding.clMenuFolderVert.visibility = View.GONE
-
-            // 상단 이미지 blur 효과 적용
-            binding.ivMenuFolderMainImage.setRenderEffect(
-                RenderEffect.createBlurEffect(2f, 2f, Shader.TileMode.CLAMP)
-            )
-            // vert 버튼 gone
-            binding.ivMenuFolderVert.visibility = View.GONE
-
-            // 카메라 , textView visible
-            binding.llMenuFolderEdit.visibility = View.VISIBLE
-
-            // edittext enabled, drawable 적용
-            with(binding.etMenuFolderMainName) {
-                isEnabled = true
-                setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pen, 0, 0, 0)
-            }
-
-            // 메뉴 추가하기 버튼 gone
-            binding.btnMenuFolderAddMenu.visibility = View.GONE
-
-            // 확인 버튼 visible
-            binding.btnMenuFolderEditOk.visibility = View.VISIBLE
+            editClicked()
         }
 
         /* 삭제하기 클릭

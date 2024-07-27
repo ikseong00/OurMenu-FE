@@ -6,7 +6,6 @@ import com.example.ourmenu.community.CommunityFragment
 import com.example.ourmenu.databinding.ActivityMainBinding
 import com.example.ourmenu.home.HomeFragment
 import com.example.ourmenu.map.MapFragment
-import com.example.ourmenu.menu.MenuFolderFragment
 import com.example.ourmenu.menu.MenuFragment
 import com.example.ourmenu.mypage.MypageFragment
 
@@ -31,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBottomNavigation() {
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager
+            .beginTransaction()
             .replace(R.id.main_frm, HomeFragment())
             .commitAllowingStateLoss()
         binding.mainBottomNav.selectedItemId = R.id.home_fragment

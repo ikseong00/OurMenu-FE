@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-  
+
     <!-- TODO: 지도 들어가는 부분 -->
     <View
         android:layout_width="match_parent"
@@ -287,7 +287,7 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/siv_add_menu_bs_img1"
-                            android:layout_width="104dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/menu_sample"
@@ -299,7 +299,7 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/siv_add_menu_bs_img2"
-                            android:layout_width="104dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="4dp"
                             android:scaleType="centerCrop"
@@ -312,7 +312,7 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/siv_add_menu_bs_img3"
-                            android:layout_width="104dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="4dp"
                             android:scaleType="centerCrop"
