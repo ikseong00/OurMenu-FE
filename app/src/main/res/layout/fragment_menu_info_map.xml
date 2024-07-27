@@ -2,17 +2,22 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_menu_info_map_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/cl_menu_info_map_container"
     tools:context=".menuinfo.MenuInfoMapFragment">
 
-    <!--    TODO: 지도 화면 추가 -->
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/Primary_100" />
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fc_mim_map"
+            android:name="com.naver.maps.map.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_menu_info_map_topbar"
@@ -191,8 +196,8 @@
                 android:id="@+id/siv_menu_info_map_bs_img1"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:src="@drawable/menu_sample"
                 android:scaleType="centerCrop"
+                android:src="@drawable/menu_sample"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/siv_menu_info_map_bs_img2"
                 app:layout_constraintStart_toStartOf="parent"
