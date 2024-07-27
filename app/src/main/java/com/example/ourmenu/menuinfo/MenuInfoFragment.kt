@@ -1,10 +1,10 @@
 package com.example.ourmenu.menuinfo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentMenuInfoBinding
@@ -14,8 +14,9 @@ class MenuInfoFragment : Fragment() {
     lateinit var binding: FragmentMenuInfoBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMenuInfoBinding.inflate(inflater, container, false)
 
@@ -27,9 +28,7 @@ class MenuInfoFragment : Fragment() {
         return binding.root
     }
 
-
     private fun initOnClickListener() {
-
         // 닫기 버튼 클릭
         binding.ivMenuInfoClose.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -37,21 +36,19 @@ class MenuInfoFragment : Fragment() {
 
         // 지도보기 버튼 클릭
         binding.clMenuInfoGotoMapBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction()
+            parentFragmentManager
+                .beginTransaction()
                 .addToBackStack("MenuInfoFragment")
-                // TODO goto MenuInfoMapFragment??
-                // .replace(R.id.menu_info_frm, )
+                .replace(R.id.cl_menu_info_container, MenuInfoMapFragment())
                 .commit()
         }
-
-
     }
 
     private fun initViewPager2Adapter() {
         val dummyItems = ArrayList<String>()
         for (i in 1..6) {
             dummyItems.add(
-                "1"
+                "1",
             )
 
             binding.vpMenuInfoMenuImage.adapter = MenuInfoVPAdapter(dummyItems)
