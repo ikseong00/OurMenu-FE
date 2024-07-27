@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".addMenu.AddMenuMapFragment">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_add_menu_map"
+        android:name="com.naver.maps.map.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/v_add_menu_search_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Neutral_White"
+        android:visibility="gone" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_add_menu_logo_topbar"
         android:layout_width="match_parent"
@@ -59,26 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- TODO: 지도 들어가는 부분 -->
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@color/Primary_100" />-->
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fcv_add_menu_map"
-        android:name="com.naver.maps.map.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-    <View
-        android:id="@+id/v_add_menu_search_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/Neutral_White"
-        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_add_menu_no_result"
