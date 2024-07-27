@@ -1,4 +1,4 @@
-package com.example.ourmenu.service
+package com.example.ourmenu.retrofit.service
 
 import com.example.ourmenu.data.MenuFolderResponse
 import retrofit2.Call

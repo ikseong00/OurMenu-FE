@@ -17,7 +17,7 @@ import com.example.ourmenu.menu.adapter.MenuRVAdapter
 import com.example.ourmenu.menu.callback.ItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.retrofit.RetrofitObject
-import com.example.ourmenu.service.MenuFolderService
+import com.example.ourmenu.retrofit.service.MenuFolderService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
