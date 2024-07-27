@@ -1,6 +1,8 @@
 package com.example.ourmenu.data
 
+import android.net.Uri
+
 data class AddMenuImageData(
-    val imageurl : String,
+    val imageUri : Uri?,
     val name : String
 )
