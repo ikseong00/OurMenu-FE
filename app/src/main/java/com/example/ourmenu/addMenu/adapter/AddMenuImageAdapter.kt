@@ -3,7 +3,6 @@ package com.example.ourmenu.addMenu.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.AddMenuImageData
 import com.example.ourmenu.databinding.ItemAddMenuNameMenuImageBinding
@@ -65,10 +64,19 @@ class AddMenuImageAdapter(val items: ArrayList<AddMenuImageData>) :
     }
 
     // 드래그 앤 드롭시 교환하는 함수
-    fun onItemMove(from: Int, to: Int) {
+    fun onItemMove(fromHolder:RecyclerView.ViewHolder,toHolder: RecyclerView.ViewHolder, from: Int, to: Int) {
         val item: AddMenuImageData = items[from]
         items.removeAt(from)
         items.add(to, item)
         notifyItemMoved(from, to)
+        fromHolder as ViewHolder
+        toHolder as ViewHolder
+        if(from==0){
+            fromHolder.binding.flAddMenuFirst.visibility = View.INVISIBLE
+            toHolder.binding.flAddMenuFirst.visibility = View.VISIBLE
+        }else if(to == 0){
+            fromHolder.binding.flAddMenuFirst.visibility = View.VISIBLE
+            toHolder.binding.flAddMenuFirst.visibility = View.INVISIBLE
+        }
     }
 }
