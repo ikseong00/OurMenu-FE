@@ -1,7 +1,6 @@
 package com.example.ourmenu.menu.callback
 
 import android.graphics.Canvas
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE
@@ -13,7 +12,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 
-class ItemTouchHelperCallback : ItemTouchHelper.Callback() {
+class SwipeItemTouchHelperCallback : ItemTouchHelper.Callback() {
 
     // swipe_view 를 swipe 했을 때 <삭제> 화면이 보이도록 고정하기 위한 변수들
     private var currentPosition: Int? = null    // 현재 선택된 recycler view의 position

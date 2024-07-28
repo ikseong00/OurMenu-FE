@@ -1,18 +1,17 @@
 package com.example.ourmenu.menu.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.ItemMenuFolderBinding
-import com.example.ourmenu.menu.callback.ItemTouchHelperCallback
+import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 
 class MenuRVAdapter(
     val items: ArrayList<HomeMenuData>, val context: Context,
-    val itemTouchHelperCallback: ItemTouchHelperCallback
+    val swipeItemTouchHelperCallback: SwipeItemTouchHelperCallback
 ) : RecyclerView.Adapter<MenuRVAdapter.ViewHolder>() {
 
     private lateinit var itemClickListener: MenuItemClickListener
@@ -28,7 +27,7 @@ class MenuRVAdapter(
 
 
             binding.clItemMenuFolderEdit.setOnClickListener {
-                if (itemTouchHelperCallback.isEditable()) {
+                if (swipeItemTouchHelperCallback.isEditable()) {
 
                     // TODO 이벤트리스너 작성 ( 인터페이스로 )
                     // TODO API 설정
@@ -37,7 +36,7 @@ class MenuRVAdapter(
             }
 
             binding.clItemMenuFolderDelete.setOnClickListener {
-                if (itemTouchHelperCallback.isEditable()) {
+                if (swipeItemTouchHelperCallback.isEditable()) {
                     itemClickListener.onDeleteClick()
                     // TODO API 설정
                 }
