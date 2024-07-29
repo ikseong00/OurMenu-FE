@@ -43,7 +43,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboard"/>
         <activity
             android:name=".landing.LandingActivity"
             android:exported="true">
