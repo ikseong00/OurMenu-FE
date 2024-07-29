@@ -65,8 +65,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="21"
-            android:paddingHorizontal="6dp"
+            android:layout_marginHorizontal="6dp"
             android:text="\@"
+            android:gravity="center"
             android:textColor="@color/Neutral_500"
             android:textSize="14sp" />
 
