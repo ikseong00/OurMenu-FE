@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_signup_email_sertify"
+    android:id="@+id/cl_signup_email_certify"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_signup_email_sended"
+        android:id="@+id/tv_signup_email_sent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_signup_required"
+        android:id="@+id/tv_signup_certify_sub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -28,7 +28,7 @@
         android:textColor="@color/Neutral_500"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_email_sended" />
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_email_sent" />
 
     <LinearLayout
         android:id="@+id/ll_signup_email_code_enter"
@@ -38,7 +38,7 @@
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_required">
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_certify_sub">
 
         <EditText
             android:id="@+id/et_signup_code_1"
@@ -47,6 +47,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
@@ -58,6 +60,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
@@ -69,6 +73,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
@@ -80,6 +86,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
@@ -91,6 +99,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
@@ -102,10 +112,11 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/edittext_bg_default"
             android:fontFamily="@font/pretendard_600"
+            android:maxWidth="37dp"
+            android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
             android:textSize="16sp" />
-
 
     </LinearLayout>
 

@@ -60,17 +60,17 @@ class SignupPwFragment : Fragment() {
         }
         binding.btnSignupPw.setOnClickListener {
             if (binding.etSignupPasswordEnter.text.length >= 8 && binding.etSignupPasswordEnter.text.matches(Regex("[a-z|A-Z]+[0-9]+"))){
-                if(binding.etSignupPasswordEnter.text.toString() == binding.etSignupPasswordEnterRepeat.text.toString()){
+                if(binding.etSignupPasswordEnter.text.toString() == binding.etSignupPasswordEnterCheck.text.toString()){
                     parentFragmentManager.beginTransaction()
                         .addToBackStack("SignupPw")
-                        .replace(R.id.cl_mainscreen, SignupNameFragment())
+                        .replace(R.id.cl_mainscreen, SignupNicknameFragment())
                         .commit()
                     toast.createToastCorrect(requireContext(),"계정 생성 완료!")?.show()
 
                 }else{
                     toast.createToast(requireContext(),"비밀번호가 일치하지 않아요.")?.show()
                     binding.etSignupPasswordEnter.setBackgroundResource(R.drawable.edittext_bg_error)
-                    binding.etSignupPasswordEnterRepeat.setBackgroundResource(R.drawable.edittext_bg_error)
+                    binding.etSignupPasswordEnterCheck.setBackgroundResource(R.drawable.edittext_bg_error)
                 }
             } else {
                 toast.createToast(requireContext(),"비밀번호 조건을 다시 확인해주세요.")?.show()
@@ -83,12 +83,12 @@ class SignupPwFragment : Fragment() {
             if (flag) {
                 binding.etSignupPasswordEnter.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etSignupPasswordEnter.inputType = InputType.TYPE_CLASS_TEXT
-                binding.etSignupPasswordEnterRepeat.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                binding.etSignupPasswordEnterRepeat.inputType = InputType.TYPE_CLASS_TEXT
+                binding.etSignupPasswordEnterCheck.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding.etSignupPasswordEnterCheck.inputType = InputType.TYPE_CLASS_TEXT
                 flag = false
             } else {
                 binding.etSignupPasswordEnter.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding.etSignupPasswordEnterRepeat.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.etSignupPasswordEnterCheck.transformationMethod = PasswordTransformationMethod.getInstance()
                 flag = true
             }
         }

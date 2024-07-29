@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.MainActivity
 import com.example.ourmenu.R
-import com.example.ourmenu.databinding.FragmentSignupNameBinding
+import com.example.ourmenu.databinding.FragmentSignupNicknameBinding
 import com.example.ourmenu.databinding.ToastErrorBinding
 
-class SignupNameFragment : Fragment() {
-    lateinit var binding: FragmentSignupNameBinding
+class SignupNicknameFragment : Fragment() {
+    lateinit var binding: FragmentSignupNicknameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class SignupNameFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentSignupNameBinding.inflate(inflater, container, false)
-        binding.btnSignupName.setOnClickListener {
+        binding = FragmentSignupNicknameBinding.inflate(inflater, container, false)
+        binding.btnSignupNickname.setOnClickListener {
             if (binding.etSignupNickname.text.length <= 10 && (binding.etSignupNickname.text.isNotEmpty()))
                 {
                     val intent = Intent(activity, MainActivity::class.java)

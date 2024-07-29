@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
-import com.example.ourmenu.databinding.FragmentSignupEmailSertifyBinding
+import com.example.ourmenu.databinding.FragmentSignupEmailCertifyBinding
 
-class SignupEmailSertifyFragment : Fragment() {
-    lateinit var binding: FragmentSignupEmailSertifyBinding
+class SignupEmailCertifyFragment : Fragment() {
+    lateinit var binding: FragmentSignupEmailCertifyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,7 +20,7 @@ class SignupEmailSertifyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentSignupEmailSertifyBinding.inflate(inflater, container, false)
+        binding = FragmentSignupEmailCertifyBinding.inflate(inflater, container, false)
 
         binding.btnSignupEmailSertify.setOnClickListener{
             parentFragmentManager.beginTransaction()
