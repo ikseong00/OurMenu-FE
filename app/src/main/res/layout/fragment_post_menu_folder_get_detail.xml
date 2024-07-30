@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.menuFolder.PostMenuFolderGetDetailFragment">
+    tools:context=".menu.menuFolder.post.PostMenuFolderGetDetailFragment">
 
 
     <ImageView
@@ -53,7 +53,7 @@
         android:maxLength="10"
         android:text="한강 뷰 맛집"
         android:textColor="@color/Neutral_White"
-        android:textCursorDrawable="@drawable/cursor_edittext"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_pmfgd_main_image"
         app:layout_constraintStart_toStartOf="parent" />
@@ -89,10 +89,10 @@
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button_shape_big"
+        android:background="@drawable/btn_bg_big"
         android:elevation="13dp"
-        android:padding="2dp"
         android:fontFamily="@font/pretendard_700"
+        android:padding="2dp"
         android:text="메뉴 추가하기"
         android:textColor="@color/Neutral_White"
         android:textSize="16sp"

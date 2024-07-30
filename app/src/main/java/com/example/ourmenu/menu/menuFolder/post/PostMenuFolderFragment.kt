@@ -1,4 +1,4 @@
-package com.example.ourmenu.menu.menuFolder
+package com.example.ourmenu.menu.menuFolder.post
 
 import android.os.Build
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 class PostMenuFolderFragment : Fragment() {
 
     lateinit var binding: FragmentPostMenuFolderBinding
-    private lateinit var dummyItems: ArrayList<*> // 제네릭으로 * 을 줘야 getSerializable 가능
+//    private lateinit var dummyItems: ArrayList<*> // 제네릭으로 * 을 줘야 getSerializable 가능
 
 
     override fun onCreateView(
@@ -22,8 +22,6 @@ class PostMenuFolderFragment : Fragment() {
         binding = FragmentPostMenuFolderBinding.inflate(layoutInflater)
 
 
-
-        initDummy()
         checkFilled()
         initListener()
 
@@ -34,11 +32,12 @@ class PostMenuFolderFragment : Fragment() {
 
     private fun initDummy() {
         // TODO Util 로 빼기
-        dummyItems = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val dummyItems = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getSerializable("data", ArrayList::class.java)!!
         } else {
             arguments?.getSerializable("data") as ArrayList<*>
         }
+
     }
 
     private fun checkFilled() {
@@ -66,6 +65,7 @@ class PostMenuFolderFragment : Fragment() {
         binding.btnPmfGetMenu.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.post_menu_folder_frm, PostMenuFolderGetFragment())
+                .addToBackStack("PostMenuFolderFragment")
                 .commitAllowingStateLoss()
         }
 
