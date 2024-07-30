@@ -13,7 +13,7 @@ import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.data.MenuFolderResponse
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
-import com.example.ourmenu.menu.adapter.MenuRVAdapter
+import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.retrofit.RetrofitObject
@@ -129,7 +129,7 @@ class MenuFolderFragment : Fragment() {
         // 리사이클러 뷰 설정
         with(binding.rvMenuMenuFolder) {
             adapter =
-                MenuRVAdapter(dummyItems, requireContext(), swipeItemTouchHelperCallback).apply {
+                MenuFolderRVAdapter(dummyItems, requireContext(), swipeItemTouchHelperCallback).apply {
                     setOnItemClickListener(itemClickListener)
                 }
             // 다른 뷰를 건들면 기존 뷰의 swipe 가 초기화 됨

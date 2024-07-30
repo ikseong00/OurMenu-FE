@@ -23,14 +23,14 @@ class MenuFolderDetailActivity : AppCompatActivity() {
             )
 
         // 수정화면 인지 기본화면 인지 세팅하는 부분
-        val menuFolderFragment = MenuFolderDetailFragment()
+        val menuFolderDetailFragment = MenuFolderDetailFragment()
         val bundle = Bundle()
         bundle.putBoolean("isEdit", isEdit as Boolean)
-        menuFolderFragment.arguments = bundle
+        menuFolderDetailFragment.arguments = bundle
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.menu_folder_frm, menuFolderFragment)
+            .replace(R.id.menu_folder_frm, menuFolderDetailFragment)
             .commitAllowingStateLoss()
     }
 }
