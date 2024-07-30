@@ -16,7 +16,6 @@ import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuRVAdapter
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
-import com.example.ourmenu.menu.menufolder.PostMenuFolderActivity
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
 import retrofit2.Call

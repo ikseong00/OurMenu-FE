@@ -1,4 +1,4 @@
-package com.example.ourmenu.menu.menufolder
+package com.example.ourmenu.menu.menuFolder
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,11 +17,27 @@ class PostMenuFolderFragment : Fragment() {
     ): View? {
         binding = FragmentPostMenuFolderBinding.inflate(layoutInflater)
 
-
+        initListener()
 
 
 
 
         return binding.root
+    }
+
+    private fun initListener() {
+        // 뒤로가기
+        binding.ivPmfBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        // 이미지 추가하기
+        binding.ivPmfCamera.setOnClickListener {
+
+        }
+
+        // TODO 아이콘 추가하기
+        binding.
+
     }
 }

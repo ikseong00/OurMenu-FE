@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.menufolder.PostMenuFolderFragment">
+    tools:context=".menu.menuFolder.PostMenuFolderFragment">
 
 
     <ImageView
@@ -49,46 +49,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/siv_pmf_add_icon"
-        android:layout_width="95dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="112dp"
-        android:background="#33FBFBFD"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/corner_rd_8" />
-
-    <ImageView
-        android:id="@+id/iv_pfm_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/icon_20_icon"
-        app:layout_constraintBottom_toBottomOf="@id/siv_pmf_add_icon"
-        app:layout_constraintStart_toStartOf="@id/siv_pmf_add_icon"
-        app:layout_constraintTop_toTopOf="@id/siv_pmf_add_icon" />
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/pretendard_400"
-        android:text="아이콘 추가"
-        android:textColor="@color/Neutral_White"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/siv_pmf_add_icon"
-        app:layout_constraintEnd_toEndOf="@id/siv_pmf_add_icon"
-        app:layout_constraintTop_toTopOf="@id/siv_pmf_add_icon" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="112dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/siv_pmf_add_icon"
+            android:layout_width="95dp"
+            android:layout_height="24dp"
+            android:background="#33FBFBFD"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/corner_rd_8" />
+
+        <ImageView
+            android:id="@+id/iv_pfm_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/icon_20_icon"
+            app:layout_constraintBottom_toBottomOf="@id/siv_pmf_add_icon"
+            app:layout_constraintStart_toStartOf="@id/siv_pmf_add_icon"
+            app:layout_constraintTop_toTopOf="@id/siv_pmf_add_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/pretendard_400"
+            android:text="아이콘 추가"
+            android:textColor="@color/Neutral_White"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/siv_pmf_add_icon"
+            app:layout_constraintEnd_toEndOf="@id/siv_pmf_add_icon"
+            app:layout_constraintTop_toTopOf="@id/siv_pmf_add_icon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
         android:id="@+id/et_pmf_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="136dp"
         android:background="@null"
         android:drawableStart="@drawable/ic_pen"
         android:drawablePadding="4dp"
@@ -98,7 +107,7 @@
         android:maxLength="10"
         android:text="한강 뷰 맛집"
         android:textColor="@color/Neutral_White"
-        android:textCursorDrawable="@drawable/cursor_edittext"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -137,8 +146,8 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_shape_big"
         android:elevation="13dp"
-        android:padding="2dp"
         android:fontFamily="@font/pretendard_700"
+        android:padding="2dp"
         android:text="확인"
         android:textColor="@color/Neutral_White"
         android:textSize="16sp"
