@@ -11,10 +11,10 @@ import com.example.ourmenu.databinding.FragmentPostMenuFolderGetBinding
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderGetRVAdapter
 
-class PostMenuFolderGetFragment : Fragment() {
+class PostMenuFolderGetFragment(val postMenuFolderFragment: PostMenuFolderFragment) : Fragment() {
 
     lateinit var binding: FragmentPostMenuFolderGetBinding
-    lateinit var dummyItem: ArrayList<DummyMenuData>
+    lateinit var dummyItems: ArrayList<DummyMenuData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,22 +41,23 @@ class PostMenuFolderGetFragment : Fragment() {
     }
 
     private fun initDummy() {
-        dummyItem = ArrayList<DummyMenuData>()
+        dummyItems = ArrayList<DummyMenuData>()
         for (i in 1..5) {
-            dummyItem.add(
+            dummyItems.add(
                 DummyMenuData(title = "title$i", menuCount = i)
             )
         }
     }
 
     private fun initRV() {
-        binding.rvPmfgMenuFolder.adapter = PostMenuFolderGetRVAdapter(dummyItem).apply {
+        binding.rvPmfgMenuFolder.adapter = PostMenuFolderGetRVAdapter(dummyItems).apply {
             setOnItemClickListener(object : MenuItemClickListener {
                 // 메뉴 클릭 리스너 추가
                 override fun onMenuClick() {
-                    val postMenuFolderGetDetailFragment = PostMenuFolderGetDetailFragment()
+                    val postMenuFolderGetDetailFragment = PostMenuFolderGetDetailFragment(postMenuFolderFragment)
 
                     parentFragmentManager.beginTransaction()
+                        .addToBackStack("PostMenuFolderGetFragment")
                         .replace(R.id.post_menu_folder_frm, postMenuFolderGetDetailFragment)
                         .commit()
                 }

@@ -12,8 +12,8 @@ class MenuFolderDetailRVAdapter(val items: ArrayList<HomeMenuData>) : RecyclerVi
     inner class ViewHolder(val binding: ItemMenuFolderDetailMenuBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: HomeMenuData) {
-            binding.tvItemMenuFolderDetailMenuName.text = item.menu
-            binding.tvItemMenuFolderDetailMenuStore.text = item.store
+            binding.tvItemMfdMenuName.text = item.menu
+            binding.tvItemMfdMenuStore.text = item.store
         }
     }
 

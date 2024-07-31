@@ -93,9 +93,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <EditText
         android:id="@+id/et_pmf_title"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="136dp"
@@ -103,11 +104,11 @@
         android:drawableStart="@drawable/ic_pen"
         android:drawablePadding="4dp"
         android:drawableTint="@color/Neutral_White"
-        android:enabled="false"
+        android:hint="asdasd"
         android:fontFamily="@font/pretendard_500"
         android:maxLength="10"
-        android:text="한강 뷰 맛집"
         android:textColor="@color/Neutral_White"
+        android:textColorHint="@color/Neutral_White"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +128,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/iv_pmf_image" />
 
     <Button
