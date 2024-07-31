@@ -37,8 +37,9 @@
             android:exported="false" />
         <activity
             android:name=".addMenu.AddMenuActivity"
-            android:configChanges="screenLayout"
-            android:exported="false" />
+            android:configChanges="keyboard"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
         <activity
             android:name=".account.AccountActivity"
             android:exported="false"

@@ -192,12 +192,13 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/siv_home_good"
-                        android:layout_width="134dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginEnd="165dp"
                         android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="21dp"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -214,9 +215,10 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/siv_home_bad"
-                        android:layout_width="134dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="165dp"
+                        android:layout_marginEnd="21dp"
                         android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintEnd_toEndOf="parent"

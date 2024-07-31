@@ -96,6 +96,7 @@ class PostMenuFolderFragment : Fragment() {
 
     private fun initDummy() {
         // TODO Util 로 빼기
+        // 안드로이드 버전에 따라 쓰는 함수가 다름
         dummyItems.addAll(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 arguments?.getSerializable("checkedItems", getTypeOf<ArrayList<DummyMenuData>>())
@@ -119,7 +120,7 @@ class PostMenuFolderFragment : Fragment() {
             requireActivity().finish()
         }
 
-        // TODO 이미지 추가하기
+        // 이미지 추가하기
         binding.ivPmfCamera.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 galleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
@@ -132,7 +133,7 @@ class PostMenuFolderFragment : Fragment() {
 
         }
 
-        // 메뉴 가져오기
+        // 메뉴 가져오기 화면 이동
         binding.btnPmfGetMenu.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.post_menu_folder_frm, PostMenuFolderGetFragment(this))
