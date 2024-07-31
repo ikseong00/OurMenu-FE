@@ -1,9 +1,15 @@
 package com.example.ourmenu.account
 
 import android.content.Context
+import android.content.res.AssetManager
 import android.content.res.Resources
+import android.graphics.Typeface
+import android.graphics.fonts.FontFamily
+import android.graphics.fonts.FontStyle
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.Gravity
@@ -12,6 +18,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.addTextChangedListener
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupPwBinding
 import com.example.ourmenu.databinding.ToastCorrectBinding
@@ -81,17 +89,46 @@ class SignupPwFragment : Fragment() {
         var flag = true
         binding.cbSignupShowPassword.setOnClickListener {
             if (flag) {
+
                 binding.etSignupPasswordEnter.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etSignupPasswordEnter.inputType = InputType.TYPE_CLASS_TEXT
                 binding.etSignupPasswordEnterCheck.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.etSignupPasswordEnterCheck.inputType = InputType.TYPE_CLASS_TEXT
+                binding.etSignupPasswordEnter.typeface = ResourcesCompat.getFont(requireContext(),R.font.pretendard_600)
+                binding.etSignupPasswordEnterCheck.typeface = ResourcesCompat.getFont(requireContext(),R.font.pretendard_600)
                 flag = false
             } else {
                 binding.etSignupPasswordEnter.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.etSignupPasswordEnterCheck.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.etSignupPasswordEnter.typeface = ResourcesCompat.getFont(requireContext(),R.font.pretendard_600)
+                binding.etSignupPasswordEnterCheck.typeface = ResourcesCompat.getFont(requireContext(),R.font.pretendard_600)
                 flag = true
             }
         }
+
+        binding.etSignupPasswordEnter.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.etSignupPasswordEnter.setBackgroundResource(R.drawable.edittext_bg_default)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+
+        binding.etSignupPasswordEnterCheck.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.etSignupPasswordEnterCheck.setBackgroundResource(R.drawable.edittext_bg_default)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
         return binding.root
     }
 

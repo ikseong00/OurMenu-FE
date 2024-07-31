@@ -40,7 +40,8 @@
         <activity
             android:name=".account.AccountActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="keyboard"/>
         <activity
             android:name=".MainActivity"
             android:exported="false"
