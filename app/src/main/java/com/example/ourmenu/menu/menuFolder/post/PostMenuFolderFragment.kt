@@ -1,18 +1,25 @@
 package com.example.ourmenu.menu.menuFolder.post
 
-import android.content.Context
+import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderRVAdapter
+import java.io.File
 
 
 class PostMenuFolderFragment : Fragment() {
@@ -26,6 +33,41 @@ class PostMenuFolderFragment : Fragment() {
         return T::class.java
     }
 
+    private val TAG = "testTAG"
+    private var imageUri: Uri? = null
+
+    // 갤러리 open
+    private val galleryPermissionLauncher: ActivityResultLauncher<String> =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                Log.d(TAG, "OOOKK")
+
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image/*"
+                )
+                pickImageLauncher.launch(intent)
+            } else {
+                Log.d(TAG, "deny")
+            }
+        }
+
+    private val pickImageLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.d("res", result.resultCode.toString())
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                Log.d(TAG, "kk")
+
+                data?.data?.let {
+                    Log.d(TAG, "OK")
+                    imageUri = it
+                    binding.ivPmfImage.setImageURI(imageUri)
+                }
+            }
+        }
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
@@ -33,6 +75,10 @@ class PostMenuFolderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPostMenuFolderBinding.inflate(layoutInflater)
+
+        imageUri?.let {
+            binding.ivPmfImage.setImageURI(imageUri)
+        }
 
         initDummy()
         checkFilled()
@@ -75,7 +121,10 @@ class PostMenuFolderFragment : Fragment() {
 
         // TODO 이미지 추가하기
         binding.ivPmfCamera.setOnClickListener {
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                galleryPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            else
+                galleryPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
 
         // TODO 아이콘 추가하기
