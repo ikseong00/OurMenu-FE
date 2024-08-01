@@ -8,6 +8,7 @@ import com.example.ourmenu.home.HomeFragment
 import com.example.ourmenu.map.MapFragment
 import com.example.ourmenu.menu.menuFolder.MenuFolderFragment
 import com.example.ourmenu.mypage.MypageFragment
+import com.example.ourmenu.retrofit.NetworkModule
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        NetworkModule.initialize(this)
 
         initBottomNavigation()
 
