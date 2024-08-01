@@ -59,7 +59,8 @@
             android:paddingLeft="28dp"
             android:textColor="@color/Neutral_700"
             android:textColorHint="@color/Neutral_500"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textCursorDrawable="@color/Primary_500_main"/>
 
         <TextView
             android:layout_width="0dp"

@@ -43,6 +43,7 @@ class SignupPwFragment : Fragment() {
                 val binding: ToastErrorBinding =
                     ToastErrorBinding.inflate(inflater,container,false)
                 binding.tvToastError.text = message
+                binding.root.elevation = 8F
 
                 return Toast(context).apply {
                     setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())
@@ -56,6 +57,7 @@ class SignupPwFragment : Fragment() {
                 val binding: ToastCorrectBinding =
                     ToastCorrectBinding.inflate(inflater,container,false)
                 binding.tvToastCorrect.text = message
+                binding.root.elevation = 8F
 
                 return Toast(context).apply {
                     setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())

@@ -19,15 +19,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_signup_certify_sub"
+        android:id="@+id/tv_signup_certify_minute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
-        android:text="아래 인증 코드를 입력해주세요."
-        android:textColor="@color/Neutral_500"
+        android:fontFamily="@font/bold"
+        android:text="5분 안에 "
+        android:textColor="@color/Primary_500_main"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_email_sent" />
+
+    <TextView
+        android:id="@+id/tv_signup_certify_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/pretendard_600"
+        android:text="인증 코드를 입력해주세요."
+        android:textColor="@color/Neutral_500"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/tv_signup_certify_minute"
         app:layout_constraintTop_toBottomOf="@id/tv_signup_email_sent" />
 
     <LinearLayout
@@ -51,6 +64,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
         <EditText
@@ -64,6 +78,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
         <EditText
@@ -77,6 +92,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
         <EditText
@@ -90,6 +106,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
         <EditText
@@ -103,6 +120,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
         <EditText
@@ -116,6 +134,7 @@
             android:maxLines="1"
             android:padding="15dp"
             android:textColor="@color/Neutral_700"
+            android:textCursorDrawable="@color/Primary_500_main"
             android:textSize="16sp" />
 
     </LinearLayout>

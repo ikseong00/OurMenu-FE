@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +48,7 @@ class SignupNicknameFragment : Fragment() {
                             val binding: ToastErrorBinding =
                                 ToastErrorBinding.inflate(inflater, container, false)
                             binding.tvToastError.text = message
+                            binding.root.elevation = 8F
 
                             return Toast(context).apply {
                                 setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())
@@ -59,6 +62,17 @@ class SignupNicknameFragment : Fragment() {
                 toast.createToast(requireContext(), "최대 10자까지 가능해요!")?.show()
             }
         }
+        binding.etSignupNickname.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.etSignupNickname.setBackgroundResource(R.drawable.edittext_bg_default)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
         return binding.root
     }
 }
