@@ -1,18 +1,10 @@
 package com.example.ourmenu.menu.callback
 
-import android.graphics.Canvas
-import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE
-import androidx.recyclerview.widget.ItemTouchHelper.DOWN
 import androidx.recyclerview.widget.ItemTouchHelper.LEFT
 import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
-import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuImageAdapter
-import kotlin.math.max
-import kotlin.math.min
 
 
 class DragItemTouchHelperCallback(val addMenuImageAdapter: AddMenuImageAdapter) : ItemTouchHelper.Callback() {
@@ -30,7 +22,7 @@ class DragItemTouchHelperCallback(val addMenuImageAdapter: AddMenuImageAdapter) 
         target: RecyclerView.ViewHolder
     ): Boolean {
         // 어댑터의 함수 실행
-        addMenuImageAdapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+        addMenuImageAdapter.onItemMove(viewHolder,target,viewHolder.adapterPosition,target.adapterPosition)
 
         return true
     }
