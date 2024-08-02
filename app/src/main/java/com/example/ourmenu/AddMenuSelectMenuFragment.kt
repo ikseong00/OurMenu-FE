@@ -57,7 +57,11 @@ class AddMenuSelectMenuFragment : Fragment() {
                     binding.btnAmsmNext.isEnabled = true
                 },
                 onButtonClicked = {
-                    //                    TODO: 메뉴 추가 fragment로 넘어가도록
+                    parentFragmentManager
+                        .beginTransaction()
+                        .addToBackStack("AddMenuSelectMenu")
+                        .replace(R.id.cl_add_menu_main, AddMenuNameFragment())
+                        .commit()
                 },
             )
 
@@ -117,6 +121,5 @@ class AddMenuSelectMenuFragment : Fragment() {
                     placeMenuItems,
                 ),
             )
-//        recentPlaceItems = ArrayList(placeItems.filter { it.recentSearch })
     }
 }

@@ -137,8 +137,24 @@ class AddMenuMapFragment : Fragment() {
             }
         }
 
+        // 검색 결과 없을 때 버튼 이벤트 처리
+        binding.btnAddMenuNoResult.setOnClickListener {
+            binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
+
+            // 키보드 숨기기
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
+
+            parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("AddMenuMap")
+                .replace(R.id.cl_add_menu_main, AddMenuNameFragment())
+                .commit()
+        }
+
         binding.btnAddMenuNext.setOnClickListener {
             binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
+
             parentFragmentManager
                 .beginTransaction()
                 .addToBackStack("AddMenuMap")
