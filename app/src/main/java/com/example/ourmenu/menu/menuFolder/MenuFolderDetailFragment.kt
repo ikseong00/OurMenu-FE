@@ -12,9 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.data.HomeMenuData
-import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
-import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
+import com.example.ourmenu.menu.adapter.MenuFolderDetailRVAdapter
 
 class MenuFolderDetailFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderDetailBinding
@@ -54,7 +53,7 @@ class MenuFolderDetailFragment : Fragment() {
             )
         }
 
-        binding.rvMenuFolderMenuList.adapter = MenuFolderRVAdapter(dummyItems)
+        binding.rvMenuFolderMenuList.adapter = MenuFolderDetailRVAdapter(dummyItems)
         binding.rvMenuFolderMenuList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
