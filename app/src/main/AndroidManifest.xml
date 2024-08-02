@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <meta-data
+        android:name="google_analytics_adid_collection_enabled"
+        android:value="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,16 +24,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OurMenu"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".menu.menuFolder.post.PostMenuFolderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.menuFolder.MenuFolderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.menuInfo.MenuInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".addMenu.AddMenuActivity"
+            android:configChanges="keyboard"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"/>
         <activity
             android:name=".account.AccountActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".landing.LandingActivity"
             android:exported="true">
@@ -31,7 +57,9 @@
             </intent-filter>
         </activity>
 
-
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="y3m8g2tsct" />
     </application>
 
 </manifest>

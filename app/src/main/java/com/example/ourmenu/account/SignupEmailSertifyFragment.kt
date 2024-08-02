@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupEmailSertifyBinding
@@ -28,6 +29,21 @@ class SignupEmailSertifyFragment : Fragment() {
                 .commit()
         }
 
+        binding.etSignupCode1.addTextChangedListener{
+            binding.etSignupCode2.requestFocus()
+        }
+        binding.etSignupCode2.addTextChangedListener {
+            binding.etSignupCode3.requestFocus()
+        }
+        binding.etSignupCode3.addTextChangedListener{
+            binding.etSignupCode4.requestFocus()
+        }
+        binding.etSignupCode4.addTextChangedListener{
+            binding.etSignupCode5.requestFocus()
+        }
+        binding.etSignupCode5.addTextChangedListener{
+            binding.etSignupCode6.requestFocus()
+        }
         return binding.root
     }
 }

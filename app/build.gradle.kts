@@ -46,9 +46,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.databinding.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.activity:activity:1.2.0-alpha04")
+    implementation("androidx.fragment:fragment:1.3.0-alpha04")
 
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    implementation("com.naver.maps:map-sdk:3.19.0")
+
+    implementation("com.squareup.retrofit2:retrofit:2.6.4")
+    implementation("com.squareup.retrofit2:converter-gson:2.6.4")
+    implementation("com.squareup.retrofit2:converter-scalars:2.6.4")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 }

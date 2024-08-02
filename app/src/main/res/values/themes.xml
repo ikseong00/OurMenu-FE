@@ -43,4 +43,8 @@
         <item name="android:dropDownHeight">700dp</item>
     </style>
 
+    <style name="CustomCursorColor">
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+    </style>
+
 </resources>
