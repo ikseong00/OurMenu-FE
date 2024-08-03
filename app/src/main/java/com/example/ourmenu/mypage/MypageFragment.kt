@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.databinding.FragmentMypageBinding
 import com.example.ourmenu.databinding.MypageCurrentPasswordDialogBinding
+import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageKebabBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
@@ -28,7 +29,43 @@ class MypageFragment : Fragment() {
             showCustomDialog()
         }
 
+        binding.ivMypageEditProfileImg.setOnClickListener {
+            showImageOptionsDialog()
+        }
+
         return binding.root
+    }
+
+    private fun showImageOptionsDialog() {
+        val dialogBinding = MypageImgBottomSheetDialogBinding.inflate(LayoutInflater.from(context))
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        bottomSheetDialog.setContentView(dialogBinding.root)
+
+        // Edit profile 이미지 클릭 시 다른 이미지 표시
+        binding.ivMypageEditProfileBorder.visibility = View.VISIBLE
+        binding.ivMypageEditProfileImgOrange.visibility = View.VISIBLE
+
+        dialogBinding.btnMypageImgDialogAlbum.setOnClickListener {
+            // TODO: 앨범에서 사진 선택 로직
+        }
+
+        dialogBinding.btnMypageImgDialogDefault.setOnClickListener {
+            // TODO: 기본 이미지 적용 로직
+        }
+
+        dialogBinding.btnMypageImgDialogCancel.setOnClickListener {
+            // 취소 버튼 클릭 처리
+            // Edit profile 이미지 클릭 시 다른 이미지 표시
+            binding.ivMypageEditProfileBorder.visibility = View.GONE
+            binding.ivMypageEditProfileImgOrange.visibility = View.GONE
+
+            bottomSheetDialog.dismiss()
+        }
+
+        // 흐린 배경 제거
+        bottomSheetDialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+
+        bottomSheetDialog.show()
     }
 
     private fun showCustomDialog() {
@@ -38,18 +75,18 @@ class MypageFragment : Fragment() {
 
         dialogBinding.btnMypageKebabDialogNickname.setOnClickListener {
             bottomSheetDialog.dismiss()
-            // 닉네임 변경하기 다이얼로그 표시
+            // TODO: 닉네임 변경하기 다이얼로그 표시
             showNicknameDialog()
         }
 
         dialogBinding.btnMypageKebabDialogPassword.setOnClickListener {
             bottomSheetDialog.dismiss()
-            // 비밀번호 변경하기 다이얼로그 표시
+            // TODO: 비밀번호 변경하기 다이얼로그 표시
             showCurrentPasswordDialog()
         }
 
         dialogBinding.btnMypageKebabDialogLogout.setOnClickListener {
-            // 로그아웃 버튼 클릭 처리
+            // TODO: 로그아웃 버튼 클릭 처리
             bottomSheetDialog.dismiss()
         }
 
@@ -89,7 +126,7 @@ class MypageFragment : Fragment() {
         }
 
         dialogBinding.btnMypageNicknameConfirm.setOnClickListener {
-            // 확인 버튼 클릭 처리
+            // TODO: 확인 버튼 클릭 처리
             val newNickname = dialogBinding.etMypageNickname.text.toString()
             // 닉네임 변경 로직 추가
             nicknameDialog.dismiss()
@@ -143,7 +180,7 @@ class MypageFragment : Fragment() {
         }
 
         dialogBinding.btnMypageCpwConfirm.setOnClickListener {
-            // 확인 버튼 클릭 처리
+            // TODO: 확인 버튼 클릭 처리
             val currentPassword = dialogBinding.etMypageCpw.text.toString()
             // 현재 비밀번호 확인 로직 추가
             currentPasswordDialog.dismiss()
@@ -204,7 +241,7 @@ class MypageFragment : Fragment() {
         }
 
         dialogBinding.btnMypageNpwConfirm.setOnClickListener {
-            // 확인 버튼 클릭 처리
+            // TODO: 확인 버튼 클릭 처리
             val newPassword = dialogBinding.etMypageNpw.text.toString()
             val confirmPassword = dialogBinding.etMypageNpwCheck.text.toString()
             // 비밀번호 변경 로직 추가
