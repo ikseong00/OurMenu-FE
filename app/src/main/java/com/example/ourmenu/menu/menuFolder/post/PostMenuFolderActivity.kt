@@ -22,5 +22,9 @@ class PostMenuFolderActivity : AppCompatActivity() {
             .commitAllowingStateLoss()
 
 
+
+    }
+    fun abc(){
+
     }
 }

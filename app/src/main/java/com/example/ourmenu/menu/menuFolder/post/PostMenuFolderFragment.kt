@@ -40,6 +40,7 @@ class PostMenuFolderFragment : Fragment() {
     private val galleryPermissionLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
+                Log.d(TAG, "OOOKK")
 
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.setDataAndType(
@@ -48,6 +49,7 @@ class PostMenuFolderFragment : Fragment() {
                 )
                 pickImageLauncher.launch(intent)
             } else {
+                Log.d(TAG, "deny")
             }
         }
 
@@ -56,8 +58,10 @@ class PostMenuFolderFragment : Fragment() {
             Log.d("res", result.resultCode.toString())
             if (result.resultCode == RESULT_OK) {
                 val data: Intent? = result.data
+                Log.d(TAG, "kk")
 
                 data?.data?.let {
+                    Log.d(TAG, "OK")
                     imageUri = it
                     binding.ivPmfImage.setImageURI(imageUri)
                 }

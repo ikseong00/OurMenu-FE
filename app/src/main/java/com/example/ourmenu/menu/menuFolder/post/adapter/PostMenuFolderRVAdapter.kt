@@ -22,7 +22,7 @@ class PostMenuFolderRVAdapter(private val items: ArrayList<DummyMenuData>) :
             binding.tvItemMfdMenuStore.text = item.store
             binding.tvItemMfdMenuPlace.text = item.address
             // 안보이게
-            binding.ivItemMfdExtraButton.visibility = View.GONE
+            binding.ivItemMfdExtraButton.visibility = View.INVISIBLE
 
 
         }
