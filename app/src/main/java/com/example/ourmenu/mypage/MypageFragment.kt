@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.databinding.FragmentMypageBinding
 import com.example.ourmenu.databinding.MypageCurrentPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
@@ -26,6 +27,11 @@ class MypageFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+        binding.ivMypageAddBtn.setOnClickListener {
+            val intent = Intent(requireContext(), AddMenuActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.ivMypageKebab.setOnClickListener {
             showCustomDialog()
@@ -88,12 +94,9 @@ class MypageFragment : Fragment() {
         }
 
         dialogBinding.btnMypageKebabDialogLogout.setOnClickListener {
-            // TODO: 로그아웃 버튼 클릭 처리
             bottomSheetDialog.dismiss()
 
-            // LandingActivity로 이동
             val intent = Intent(requireContext(), LandingActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
 
