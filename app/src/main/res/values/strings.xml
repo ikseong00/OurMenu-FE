@@ -16,4 +16,7 @@
     <string name="place_type">음식점</string>
     <string name="distance">19km</string>
     <string name="time">매일 10:00 - 21:00</string>
+
+    <string name="user_name">김시진</string>
+    <string name="user_email">sj8394@naver.com</string>
 </resources>
