@@ -65,7 +65,6 @@
     </LinearLayout>
 
     <!--  TODO filter 추가   -->
-    <!-- TODO 리사이클러뷰로 할지 논의   -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_mfda_filter"
         android:layout_width="match_parent"
@@ -83,8 +82,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_mfda_filter" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_mfda_add_menu"
+        app:layout_constraintTop_toBottomOf="@id/cl_mfda_filter"
+        tools:listitem="@layout/item_menu_folder_detail_menu" />
+
+    <Button
+        android:id="@+id/btn_mfda_add_menu"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_bg_12_n100"
+        android:fontFamily="@font/pretendard_600"
+        android:letterSpacing="-0.01"
+        android:text="메뉴 추가하기"
+        android:textColor="@color/Neutral_500"
+        android:textSize="14sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
