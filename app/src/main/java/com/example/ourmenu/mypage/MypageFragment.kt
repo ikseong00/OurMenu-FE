@@ -2,12 +2,16 @@ package com.example.ourmenu.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.databinding.FragmentMypageBinding
 import com.example.ourmenu.databinding.MypageCurrentPasswordDialogBinding
@@ -250,15 +254,67 @@ class MypageFragment : Fragment() {
             newPasswordDialog.dismiss()
         }
 
+        // edittext 모두 채워졌는지 확인
+        val textWatcher =
+            object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {}
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int,
+                ) {
+                    val newPassword = dialogBinding.etMypageNpw.text.toString()
+                    val checkNewPassword = dialogBinding.etMypageNpwCheck.text.toString()
+                    dialogBinding.btnMypageNpwConfirm.isEnabled =
+                        newPassword.isNotEmpty() &&
+                        checkNewPassword.isNotEmpty()
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            }
+
+        dialogBinding.etMypageNpw.addTextChangedListener(textWatcher)
+        dialogBinding.etMypageNpwCheck.addTextChangedListener(textWatcher)
+
+        // 초기 상태 설정
+        dialogBinding.btnMypageNpwConfirm.isEnabled = false
+
         dialogBinding.btnMypageNpwConfirm.setOnClickListener {
-            // TODO: 확인 버튼 클릭 처리
             val newPassword = dialogBinding.etMypageNpw.text.toString()
-            val confirmPassword = dialogBinding.etMypageNpwCheck.text.toString()
+            val checkNewPassword = dialogBinding.etMypageNpwCheck.text.toString()
+
+            if (!isValidPassword(newPassword)) {
+                // 비밀번호 조건이 맞지 않는 경우
+                Toast.makeText(requireContext(), "비밀번호 조건을 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
+                dialogBinding.etMypageNpw.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
+                return@setOnClickListener
+            }
+
+            if (newPassword != checkNewPassword) {
+                // 비밀번호가 일치하지 않는 경우
+                Toast.makeText(requireContext(), "비밀번호가 일치하지 않아요.", Toast.LENGTH_SHORT).show()
+                dialogBinding.etMypageNpwCheck.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
+                return@setOnClickListener
+            }
+
             // 비밀번호 변경 로직 추가
             newPasswordDialog.dismiss()
         }
 
         newPasswordDialog.show()
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        // 영문, 숫자 포함 8자 이상인지 확인
+        val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+        return password.matches(Regex(passwordPattern))
     }
 
     private fun dpToPx(dp: Int): Int {
