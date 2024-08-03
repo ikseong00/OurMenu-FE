@@ -63,12 +63,36 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_mypage_edit_profile_img"
+            android:id="@+id/iv_mypage_edit_profile_border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit_profile_img"
+            android:src="@drawable/ic_edit_profile_img_border"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/iv_mypage_profile_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_mypage_profile_img"
+            app:layout_constraintStart_toStartOf="@id/iv_mypage_profile_img"
+            app:layout_constraintTop_toTopOf="@id/iv_mypage_profile_img" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_mypage_edit_profile_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_profile_img" />
+
+            <ImageView
+                android:id="@+id/iv_mypage_edit_profile_img_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit_profile_img_orange"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
