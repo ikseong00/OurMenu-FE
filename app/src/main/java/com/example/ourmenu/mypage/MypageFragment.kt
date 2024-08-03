@@ -1,5 +1,6 @@
 package com.example.ourmenu.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageKebabBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
+import com.example.ourmenu.landing.LandingActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MypageFragment : Fragment() {
@@ -88,6 +90,11 @@ class MypageFragment : Fragment() {
         dialogBinding.btnMypageKebabDialogLogout.setOnClickListener {
             // TODO: 로그아웃 버튼 클릭 처리
             bottomSheetDialog.dismiss()
+
+            // LandingActivity로 이동
+            val intent = Intent(requireContext(), LandingActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
 
         dialogBinding.btnMypageKebabDialogCancel.setOnClickListener {
