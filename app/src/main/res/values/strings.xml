@@ -19,4 +19,10 @@
 
     <string name="user_name">김시진</string>
     <string name="user_email">sj8394@naver.com</string>
+
+    <string name="title">제목이여요</string>
+    <string name="content">내용이예요내용이예요내용이예요내용이예요내용이예요내용이예요내용이예요</string>
+    <string name="view_count">112</string>
+    <string name="post_time">1h ago</string>
+    <string name="menu_count">18</string>
 </resources>
