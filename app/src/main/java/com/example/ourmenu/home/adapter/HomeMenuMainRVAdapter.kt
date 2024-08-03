@@ -33,6 +33,8 @@ class HomeMenuMainRVAdapter(val items: ArrayList<HomeMenuData>, val context: Con
             binding.tvItemStoreMain.text = item.store
             // TODO Glide 추가
 
+            binding.sivItemMenuImageMain.layoutParams.width =
+                (context.resources.displayMetrics.widthPixels * 304 / 360).toInt()
 
         }
     }

@@ -37,6 +37,8 @@ class HomeFragment : Fragment() {
         initMainMenuRV()
         initSubMenuRV()
 
+
+
         binding.ivHomeTitleAdd.setOnClickListener {
             val intent = Intent(requireContext(), AddMenuActivity::class.java)
             startActivity(intent)
@@ -126,7 +128,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
-            },
-        )
+            }
+        })
     }
 }
