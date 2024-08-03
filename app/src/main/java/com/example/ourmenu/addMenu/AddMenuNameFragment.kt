@@ -14,12 +14,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuImageAdapter
 import com.example.ourmenu.data.AddMenuImageData
 import com.example.ourmenu.databinding.FragmentAddMenuNameBinding
+import com.example.ourmenu.menu.callback.DragItemTouchHelperCallback
 import kotlinx.coroutines.launch
 
 
@@ -29,6 +31,10 @@ class AddMenuNameFragment : Fragment() {
     var imageUri: Uri? = null
     lateinit var imageResult: ActivityResultLauncher<String>
     lateinit var imagePermission: ActivityResultLauncher<String>
+    lateinit var addMenuImageAdapter: AddMenuImageAdapter
+    lateinit var addMenuImageItemList: ArrayList<AddMenuImageData>
+
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
@@ -70,16 +76,34 @@ class AddMenuNameFragment : Fragment() {
                 .commit()
         }
 
-        var addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null,"name"))
-        var addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
+        initRV()
+        initDragAndDrop()
 
         binding.flAddMenuAddImage.setOnClickListener {
             openGallery()
             addMenuImageItemList.add(AddMenuImageData(imageUri, "menuImage"))
             addMenuImageAdapter.notifyDataSetChanged();
-            var count = binding.tvAddMenuImageCount.text.toString().toInt()+1
+            var count = binding.tvAddMenuImageCount.text.toString().toInt() + 1
             binding.tvAddMenuImageCount.text = count.toString()
         }
+
+
+
+        return binding.root
+    }
+
+    private fun initDragAndDrop() {
+
+        val dragItemTouchHelperCallback = DragItemTouchHelperCallback(addMenuImageAdapter)
+        val itemTouchHelper = ItemTouchHelper(dragItemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(binding.rvAddMenuNameMenuImage)
+    }
+
+    private fun initRV() {
+
+        addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null, "name"))
+        addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
+
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {
             override fun onImageClick(addMenuImageData: AddMenuImageData) {
                 addMenuImageItemList.remove(addMenuImageData)
@@ -87,7 +111,7 @@ class AddMenuNameFragment : Fragment() {
                 addMenuImageAdapter.notifyDataSetChanged();
                 //addMenuImageAdapter.notifyItemRemoved(addMenuImageData);
 
-                var count = binding.tvAddMenuImageCount.text.toString().toInt()-1
+                var count = binding.tvAddMenuImageCount.text.toString().toInt() - 1
                 binding.tvAddMenuImageCount.text = count.toString()
             }
 
@@ -95,13 +119,13 @@ class AddMenuNameFragment : Fragment() {
             }
 
         }
+
         binding.rvAddMenuNameMenuImage.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.HORIZONTAL, false
         )
         binding.rvAddMenuNameMenuImage.adapter = addMenuImageAdapter
 
-        return binding.root
     }
 
 }
