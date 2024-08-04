@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
@@ -22,9 +20,12 @@ import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageKebabBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
-import com.example.ourmenu.databinding.ToastMessageBgBinding
 import com.example.ourmenu.landing.LandingActivity
 import com.example.ourmenu.mypage.adapter.MypageRVAdapter
+import com.example.ourmenu.util.Utils.dpToPx
+import com.example.ourmenu.util.Utils.hideKeyboard
+import com.example.ourmenu.util.Utils.isValidPassword
+import com.example.ourmenu.util.Utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MypageFragment : Fragment() {
@@ -137,7 +138,7 @@ class MypageFragment : Fragment() {
         dialogBinding.btnMypageKebabDialogLogout.setOnClickListener {
             bottomSheetDialog.dismiss()
 
-            showToast(R.drawable.ic_complete, "로그아웃 되었어요!")
+            showToast(requireContext(), R.drawable.ic_complete, "로그아웃 되었어요!")
 
             val intent = Intent(requireContext(), LandingActivity::class.java)
             startActivity(intent)
@@ -167,7 +168,7 @@ class MypageFragment : Fragment() {
             window?.setBackgroundDrawableResource(android.R.color.transparent)
 
             val params = window?.attributes
-            params?.width = dpToPx(288)
+            params?.width = dpToPx(requireContext(), 288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
             window?.attributes = params
         }
@@ -178,9 +179,12 @@ class MypageFragment : Fragment() {
         }
 
         dialogBinding.btnMypageNicknameConfirm.setOnClickListener {
-            // TODO: 확인 버튼 클릭 처리
             val newNickname = dialogBinding.etMypageNickname.text.toString()
-            // 닉네임 변경 로직 추가
+
+            // 오류가 뜰 때 키보드를 숨기기 위한 코드
+            hideKeyboard(requireContext(), dialogBinding.root)
+
+            // TODO: 닉네임 변경 로직 추가
             nicknameDialog.dismiss()
         }
 
@@ -201,7 +205,7 @@ class MypageFragment : Fragment() {
 
             // dp를 px로 변환하여 너비를 288dp로 고정
             val params = window?.attributes
-            params?.width = dpToPx(288)
+            params?.width = dpToPx(requireContext(), 288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
             window?.attributes = params
         }
@@ -234,6 +238,10 @@ class MypageFragment : Fragment() {
         dialogBinding.btnMypageCpwConfirm.setOnClickListener {
             // TODO: 확인 버튼 클릭 처리
             val currentPassword = dialogBinding.etMypageCpw.text.toString()
+
+            // 오류가 뜰 때 키보드를 숨기기 위한 코드
+            hideKeyboard(requireContext(), dialogBinding.root)
+
             // 현재 비밀번호 확인 로직 추가
             currentPasswordDialog.dismiss()
             showNewPasswordDialog()
@@ -256,7 +264,7 @@ class MypageFragment : Fragment() {
 
             // dp를 px로 변환하여 너비를 288dp로 고정
             val params = window?.attributes
-            params?.width = dpToPx(288)
+            params?.width = dpToPx(requireContext(), 288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
             window?.attributes = params
         }
@@ -329,16 +337,19 @@ class MypageFragment : Fragment() {
             val newPassword = dialogBinding.etMypageNpw.text.toString()
             val checkNewPassword = dialogBinding.etMypageNpwCheck.text.toString()
 
+            // 오류가 뜰 때 키보드를 숨기기 위한 코드
+            hideKeyboard(requireContext(), dialogBinding.root)
+
             if (!isValidPassword(newPassword)) {
                 // 비밀번호 조건이 맞지 않는 경우
-                showToast(R.drawable.ic_error, "비밀번호 조건을 다시 확인해주세요.")
+                showToast(requireContext(), R.drawable.ic_error, "비밀번호 조건을 다시 확인해주세요.")
                 dialogBinding.etMypageNpw.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
 
             if (newPassword != checkNewPassword) {
                 // 비밀번호가 일치하지 않는 경우
-                showToast(R.drawable.ic_error, "비밀번호가 일치하지 않아요.")
+                showToast(requireContext(), R.drawable.ic_error, "비밀번호가 일치하지 않아요.")
                 dialogBinding.etMypageNpwCheck.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
@@ -348,37 +359,5 @@ class MypageFragment : Fragment() {
         }
 
         newPasswordDialog.show()
-    }
-
-    //    TODO: 아래 함수들 util로 분리하기
-    private fun isValidPassword(password: String): Boolean {
-        // 영문, 숫자 포함 8자 이상인지 확인
-        val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
-        return password.matches(Regex(passwordPattern))
-    }
-
-    private fun showToast(
-        icon: Int,
-        message: String,
-    ) {
-        val layoutInflater = LayoutInflater.from(requireContext())
-        val toastBinding: ToastMessageBgBinding = ToastMessageBgBinding.inflate(layoutInflater)
-
-        toastBinding.ivToastMessage.setImageResource(icon)
-        toastBinding.tvToastMessage.text = message
-
-        val toast = Toast(requireContext())
-        toast.view = toastBinding.root
-        toast.duration = Toast.LENGTH_SHORT
-
-        // Toast 메시지를 화면 상단으로부터 128dp 떨어진 위치에 표시
-        toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, dpToPx(78))
-
-        toast.show()
-    }
-
-    private fun dpToPx(dp: Int): Int {
-        val density = resources.displayMetrics.density
-        return (dp * density).toInt()
     }
 }
