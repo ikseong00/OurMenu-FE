@@ -23,6 +23,7 @@ class CommunityFragment : Fragment() {
 
         binding.ivCommunityWrite.setOnClickListener {
             val intent = Intent(context, CommunityWritePostActivity::class.java)
+            intent.putExtra("flag", "write")
             startActivity(intent)
 
         }

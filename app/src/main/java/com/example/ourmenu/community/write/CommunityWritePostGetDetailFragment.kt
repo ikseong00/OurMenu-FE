@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.example.ourmenu.R
+import com.example.ourmenu.community.write.adapter.CommunityWritePostGetDetailRVAdapter
 import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.databinding.FragmentCommunityWritePostGetDetailBinding
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderGetDetailRVAdapter
@@ -17,7 +18,7 @@ class CommunityWritePostGetDetailFragment(val writePostFragment: CommunityWriteP
 
     lateinit var binding: FragmentCommunityWritePostGetDetailBinding
     lateinit var dummyItems: ArrayList<DummyMenuData>
-    lateinit var postMenuFolderGetDetailRVAdapter: PostMenuFolderGetDetailRVAdapter
+    lateinit var communityWritePostGetDetailRVAdapter: CommunityWritePostGetDetailRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +42,7 @@ class CommunityWritePostGetDetailFragment(val writePostFragment: CommunityWriteP
     private fun checkButtonEnabled() {
         // 체크된 항목이 없으면 비활성화,
         // 체크된 항목이 있으면 활성화
-        binding.btnCwpgdAddMenu.isEnabled = postMenuFolderGetDetailRVAdapter.checkedItems.isNotEmpty()
+        binding.btnCwpgdAddMenu.isEnabled = communityWritePostGetDetailRVAdapter.checkedItems.isNotEmpty()
     }
 
     private fun initListener() {
@@ -53,7 +54,7 @@ class CommunityWritePostGetDetailFragment(val writePostFragment: CommunityWriteP
 
             val bundle = Bundle().apply {
                 putSerializable(
-                    "checkedItems", postMenuFolderGetDetailRVAdapter.checkedItems
+                    "checkedItems", communityWritePostGetDetailRVAdapter.checkedItems
                 )
             }
 
@@ -66,7 +67,7 @@ class CommunityWritePostGetDetailFragment(val writePostFragment: CommunityWriteP
                 popBackStack("CommunityWritePostFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 popBackStack("CommunityWritePostGetFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 beginTransaction()
-                    .replace(R.id.post_menu_folder_frm, writePostFragment)
+                    .replace(R.id.community_post_frm, writePostFragment)
                     .commit()
             }
         }
@@ -84,12 +85,12 @@ class CommunityWritePostGetDetailFragment(val writePostFragment: CommunityWriteP
     // TODO string.xml 에 저장하고 placeholder 로 사용권장.
     @SuppressLint("SetTextI18n")
     private fun initRV() {
-        postMenuFolderGetDetailRVAdapter = PostMenuFolderGetDetailRVAdapter(dummyItems).apply {
+        communityWritePostGetDetailRVAdapter = CommunityWritePostGetDetailRVAdapter(dummyItems).apply {
             setOnItemClickListener {
                 checkButtonEnabled()
             }
         }
-        binding.rvCwpgdList.adapter = postMenuFolderGetDetailRVAdapter
+        binding.rvCwpgdList.adapter = communityWritePostGetDetailRVAdapter
 
         // 메뉴 갯수 조정
         binding.tvCwpgdNumber.text = "메뉴 ${dummyItems.size}개"

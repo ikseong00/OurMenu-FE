@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.databinding.ItemAddMenuDefaultBinding
 import com.example.ourmenu.databinding.ItemHomeMenuMainBinding
 
 class CommunityWritePostRVAdapter(
-    var items: ArrayList<HomeMenuData>,
+    var items: ArrayList<DummyMenuData>,
     val context: Context,
     val onDefaultClicked: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -23,19 +24,17 @@ class CommunityWritePostRVAdapter(
     inner class DefaultViewHolder(
         private val binding: ItemAddMenuDefaultBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HomeMenuData) {
-            binding.root.setOnClickListener {
+        init {
+            binding.itemAddMenuDefaultContainer.setOnClickListener {
                 onDefaultClicked()
             }
-
-
         }
     }
 
     inner class ImageViewHolder(
         private val binding: ItemHomeMenuMainBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HomeMenuData) {
+        fun bind(item: DummyMenuData) {
 //            binding.sivItemMenuImageMain.setImageResource(item.imageUrl)
             binding.tvItemMenuMain.text = item.menu
             binding.tvItemStoreMain.text = item.store

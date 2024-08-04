@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ourmenu.R
+import com.example.ourmenu.community.write.adapter.CommunityWritePostGetRVAdapter
 import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.databinding.FragmentCommunityWritePostGetBinding
 import com.example.ourmenu.databinding.FragmentPostMenuFolderGetBinding
@@ -51,7 +52,7 @@ class CommunityWritePostGetFragment(val writePostFragment: CommunityWritePostFra
     }
 
     private fun initRV() {
-        binding.rvCwpgMenuFolder.adapter = PostMenuFolderGetRVAdapter(dummyItems).apply {
+        binding.rvCwpgMenuFolder.adapter = CommunityWritePostGetRVAdapter(dummyItems).apply {
             setOnItemClickListener(object : MenuItemClickListener {
                 // 메뉴 클릭 리스너 추가
                 override fun onMenuClick() {
@@ -59,7 +60,7 @@ class CommunityWritePostGetFragment(val writePostFragment: CommunityWritePostFra
 
                     parentFragmentManager.beginTransaction()
                         .addToBackStack("CommunityWritePostGetFragment")
-                        .replace(R.id.post_menu_folder_frm, communityWritePostGetDetailFragment)
+                        .replace(R.id.community_post_frm, communityWritePostGetDetailFragment)
                         .commit()
                 }
 

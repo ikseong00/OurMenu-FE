@@ -51,4 +51,8 @@ object Utils {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    inline fun <reified T> getTypeOf(): Class<T> {
+        return T::class.java
+    }
 }
