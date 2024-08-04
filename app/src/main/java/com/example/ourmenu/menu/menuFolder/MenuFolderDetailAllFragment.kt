@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailAllBinding
 
@@ -25,9 +26,18 @@ class MenuFolderDetailAllFragment : Fragment() {
                 .commit()
         }
 
+        initListener()
+
 
 
 
         return binding.root
+    }
+
+    private fun initListener() {
+
+        binding.btnMfdaAddMenu.setOnClickListener {
+
+        }
     }
 }
