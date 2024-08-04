@@ -45,7 +45,7 @@
         android:paddingLeft="28dp"
         android:textColor="@color/Neutral_700"
         android:textColorHint="@color/Neutral_500"
-        android:textCursorDrawable="@color/Primary_500_main"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_signup_enter_nickname_sub" />

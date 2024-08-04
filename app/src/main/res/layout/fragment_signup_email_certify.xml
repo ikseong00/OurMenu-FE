@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_signup_email_certify"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp">
 
     <TextView
         android:id="@+id/tv_signup_email_sent"
@@ -62,9 +63,11 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
         <EditText
@@ -76,9 +79,11 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
         <EditText
@@ -90,9 +95,11 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
         <EditText
@@ -104,9 +111,11 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
         <EditText
@@ -118,9 +127,11 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
         <EditText
@@ -132,12 +143,65 @@
             android:fontFamily="@font/pretendard_600"
             android:maxWidth="37dp"
             android:maxLines="1"
-            android:padding="15dp"
             android:textColor="@color/Neutral_700"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="14dp"
+            android:layout_gravity="center"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="16sp" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_signup_email_resend"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_signup_email_resend"
+        app:layout_constraintStart_toStartOf="parent">
+        <View
+            android:id="@+id/view_signup_resend_line_left"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/Neutral_300"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_signup_email_resend_check"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/tv_signup_email_resend_check"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:text="메일이 오지 않았나요?"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="12sp"
+            android:textColor="@color/Neutral_500"
+            android:fontFamily="@font/pretendard_600"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view_signup_resend_line_left"
+            app:layout_constraintEnd_toStartOf="@id/view_signup_resend_line_right"/>
+        <View
+            android:id="@+id/view_signup_resend_line_right"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/Neutral_300"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_signup_email_resend_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_signup_email_resend"
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:text="메일 다시 보내기"
+        android:textColor="@color/Primary_500_main"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_signup_email_sertify"
+        android:layout_marginBottom="35dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/pretendard_600"/>
 
     <Button
         android:id="@+id/btn_signup_email_sertify"

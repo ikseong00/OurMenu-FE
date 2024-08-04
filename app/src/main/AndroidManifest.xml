@@ -34,8 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".addMenu.AddMenuActivity"
-            android:configChanges="keyboard"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"/>
         <activity
             android:name=".account.AccountActivity"

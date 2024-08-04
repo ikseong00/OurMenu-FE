@@ -10,7 +10,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.MainActivity
 import com.example.ourmenu.R
@@ -33,6 +35,11 @@ class SignupNicknameFragment : Fragment() {
         binding.btnSignupNickname.setOnClickListener {
             if (binding.etSignupNickname.text.length <= 10 && (binding.etSignupNickname.text.isNotEmpty()))
                 {
+                    val inputManager: InputMethodManager =
+                        requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.hideSoftInputFromWindow(
+                        requireActivity().currentFocus?.windowToken,
+                        InputMethodManager.HIDE_NOT_ALWAYS)
                     val intent = Intent(activity, MainActivity::class.java)
                     startActivity(intent)
                     activity?.finish()

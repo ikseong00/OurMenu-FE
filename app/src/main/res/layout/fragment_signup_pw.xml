@@ -25,7 +25,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/pretendard_600"
-        android:text="영문, 숫자, 특수문자 포함 8자 이상"
+        android:text="영문, 숫자 포함 8자 이상"
         android:textColor="@color/Neutral_500"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             android:paddingLeft="28dp"
             android:textColor="@color/Neutral_700"
             android:textColorHint="@color/Neutral_500"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_signup_pw_sub" />
@@ -83,7 +83,7 @@
             android:paddingLeft="28dp"
             android:textColor="@color/Neutral_700"
             android:textColorHint="@color/Neutral_500"
-            android:textCursorDrawable="@color/Primary_500_main"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="12sp" />
     </FrameLayout>
 

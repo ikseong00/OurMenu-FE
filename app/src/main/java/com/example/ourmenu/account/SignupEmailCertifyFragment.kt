@@ -1,6 +1,8 @@
 package com.example.ourmenu.account
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ class SignupEmailCertifyFragment : Fragment() {
     lateinit var binding: FragmentSignupEmailCertifyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requireActivity().currentFocus?.clearFocus()
     }
 
     override fun onCreateView(
@@ -23,27 +26,83 @@ class SignupEmailCertifyFragment : Fragment() {
         binding = FragmentSignupEmailCertifyBinding.inflate(inflater, container, false)
 
         binding.btnSignupEmailSertify.setOnClickListener{
+            binding.etSignupCode6.clearFocus()
             parentFragmentManager.beginTransaction()
                 .addToBackStack("SignupEmailSertify")
                 .replace(R.id.cl_mainscreen, SignupPwFragment())
                 .commit()
         }
+        binding.etSignupCode1.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-        binding.etSignupCode1.addTextChangedListener{
-            binding.etSignupCode2.requestFocus()
-        }
-        binding.etSignupCode2.addTextChangedListener {
-            binding.etSignupCode3.requestFocus()
-        }
-        binding.etSignupCode3.addTextChangedListener{
-            binding.etSignupCode4.requestFocus()
-        }
-        binding.etSignupCode4.addTextChangedListener{
-            binding.etSignupCode5.requestFocus()
-        }
-        binding.etSignupCode5.addTextChangedListener{
-            binding.etSignupCode6.requestFocus()
-        }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(!binding.etSignupCode1.text.isNullOrEmpty()){
+                    binding.etSignupCode2.requestFocus()
+                }
+            }
+        })
+        binding.etSignupCode2.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(!binding.etSignupCode2.text.isNullOrEmpty()){
+                    binding.etSignupCode3.requestFocus()
+                }
+            }
+        })
+        binding.etSignupCode3.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(!binding.etSignupCode3.text.isNullOrEmpty()){
+                    binding.etSignupCode4.requestFocus()
+                }
+            }
+        })
+        binding.etSignupCode4.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(!binding.etSignupCode4.text.isNullOrEmpty()){
+                    binding.etSignupCode5.requestFocus()
+                }
+            }
+        })
+        binding.etSignupCode5.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(!binding.etSignupCode5.text.isNullOrEmpty()){
+                    binding.etSignupCode6.requestFocus()
+                }
+            }
+        })
         return binding.root
+    }
+
+    override fun onResume() {
+        requireActivity().currentFocus?.clearFocus()
+        binding.etSignupCode6.clearFocus()
+        super.onResume()
     }
 }
