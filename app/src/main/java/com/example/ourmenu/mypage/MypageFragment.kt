@@ -1,6 +1,9 @@
 package com.example.ourmenu.mypage
 
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -156,6 +159,10 @@ class MypageFragment : Fragment() {
     }
 
     private fun showNicknameDialog() {
+        val rootView = (activity?.window?.decorView as? ViewGroup)?.getChildAt(0) as? ViewGroup
+        // 블러 효과 추가
+        rootView?.let { applyBlurEffect(it) }
+
         val dialogBinding = MypageNicknameDialogBinding.inflate(LayoutInflater.from(context))
         val nicknameDialog =
             android.app.AlertDialog
@@ -171,6 +178,11 @@ class MypageFragment : Fragment() {
             params?.width = dpToPx(requireContext(), 288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
             window?.attributes = params
+        }
+
+        // dialog 사라지면 블러효과도 같이 사라짐
+        nicknameDialog.setOnDismissListener {
+            rootView?.let { removeBlurEffect(it) }
         }
 
         dialogBinding.ivMypageCloseNicknameDialog.setOnClickListener {
@@ -197,6 +209,10 @@ class MypageFragment : Fragment() {
     }
 
     private fun showCurrentPasswordDialog() {
+        val rootView = (activity?.window?.decorView as? ViewGroup)?.getChildAt(0) as? ViewGroup
+        // 여기서는 블러 효과 더하는 것만 적용
+        rootView?.let { applyBlurEffect(it) }
+
         val dialogBinding = MypageCurrentPasswordDialogBinding.inflate(LayoutInflater.from(context))
         val currentPasswordDialog =
             android.app.AlertDialog
@@ -256,6 +272,8 @@ class MypageFragment : Fragment() {
     }
 
     private fun showNewPasswordDialog() {
+        val rootView = (activity?.window?.decorView as? ViewGroup)?.getChildAt(0) as? ViewGroup
+
         val dialogBinding = MypageNewPasswordDialogBinding.inflate(LayoutInflater.from(context))
         val newPasswordDialog =
             android.app.AlertDialog
@@ -272,6 +290,11 @@ class MypageFragment : Fragment() {
             params?.width = dpToPx(requireContext(), 288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
             window?.attributes = params
+        }
+
+        // 여기서는 지우는 효과만 적용
+        newPasswordDialog.setOnDismissListener {
+            rootView?.let { removeBlurEffect(it) }
         }
 
         dialogBinding.cbMypageNpwShowPw.setOnCheckedChangeListener { _, isChecked ->
@@ -364,5 +387,17 @@ class MypageFragment : Fragment() {
         }
 
         newPasswordDialog.show()
+    }
+}
+
+private fun applyBlurEffect(viewGroup: ViewGroup) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        viewGroup.setRenderEffect(RenderEffect.createBlurEffect(10f, 10f, Shader.TileMode.CLAMP))
+    }
+}
+
+private fun removeBlurEffect(viewGroup: ViewGroup) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        viewGroup.setRenderEffect(null)
     }
 }
