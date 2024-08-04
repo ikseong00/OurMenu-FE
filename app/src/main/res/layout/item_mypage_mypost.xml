@@ -36,12 +36,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_mypage_post_title" />
 
-        <ImageView
-            android:id="@+id/iv_mypage_post_profile"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/siv_mypage_post_profile"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="28dp"
             android:src="@drawable/ic_profile"
+            app:shapeAppearanceOverlay="@style/circle"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_mypage_post_content" />
 
@@ -54,8 +56,8 @@
             android:text="@string/user_name"
             android:textColor="@color/Neutral_900"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@id/iv_mypage_post_profile"
-            app:layout_constraintTop_toTopOf="@id/iv_mypage_post_profile" />
+            app:layout_constraintStart_toEndOf="@id/siv_mypage_post_profile"
+            app:layout_constraintTop_toTopOf="@id/siv_mypage_post_profile" />
 
         <TextView
             android:id="@+id/tv_mypage_post_time"

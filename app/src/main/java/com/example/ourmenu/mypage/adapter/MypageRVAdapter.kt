@@ -16,7 +16,7 @@ class MypageRVAdapter(
         fun bind(item: MypagePostData) {
             binding.tvMypagePostTitle.text = item.title
             binding.tvMypagePostContent.text = item.content
-            binding.ivMypagePostProfile.setImageResource(item.profileImg)
+            binding.sivMypagePostProfile.setImageResource(item.profileImg)
             binding.tvMypagePostUsername.text = item.username
             binding.tvMypagePostTime.text = item.time
             binding.tvMypagePostViewCount.text = item.viewCount.toString()
