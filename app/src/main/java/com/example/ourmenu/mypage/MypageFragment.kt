@@ -184,6 +184,11 @@ class MypageFragment : Fragment() {
             // 오류가 뜰 때 키보드를 숨기기 위한 코드
             hideKeyboard(requireContext(), dialogBinding.root)
 
+            if (newNickname.length > 10) {
+                showToast(requireContext(), R.drawable.ic_error, "최대 10자까지 가능해요!")
+                return@setOnClickListener
+            }
+
             // TODO: 닉네임 변경 로직 추가
             nicknameDialog.dismiss()
         }
