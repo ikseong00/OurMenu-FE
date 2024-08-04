@@ -38,7 +38,7 @@ object Utils {
         toast.view = toastBinding.root
         toast.duration = Toast.LENGTH_SHORT
 
-        // Toast 메시지를 화면 상단으로부터 78dp 떨어진 위치에 표시
+        // Toast 메시지를 화면 상단으로부터 128dp 떨어진 위치에 표시
         toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, dpToPx(context, 128))
 
         toast.show()
