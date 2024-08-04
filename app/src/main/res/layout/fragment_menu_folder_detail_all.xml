@@ -16,6 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <TextView
         android:id="@+id/tv_mfda_all_menu"
         android:layout_width="wrap_content"
@@ -69,6 +71,7 @@
         android:id="@+id/cl_mfda_filter"
         android:layout_width="match_parent"
         android:layout_height="32dp"
+        android:background="@color/Neutral_500"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"

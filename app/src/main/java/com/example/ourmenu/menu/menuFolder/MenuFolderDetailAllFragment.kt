@@ -19,6 +19,12 @@ class MenuFolderDetailAllFragment : Fragment() {
 
         binding = FragmentMenuFolderDetailAllBinding.inflate(layoutInflater)
 
+        binding.clMfdaFilter.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.menu_folder_frm, MenuFolderDetailAllFilterFragment())
+                .commit()
+        }
+
 
 
 
