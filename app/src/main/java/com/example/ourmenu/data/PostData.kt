@@ -1,6 +1,6 @@
 package com.example.ourmenu.data
 
-data class MypagePostData(
+data class PostData(
     var title: String,
     var content: String,
     var profileImg: Int, // url(string?)로 받아와야함
