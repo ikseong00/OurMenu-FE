@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageKebabBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
+import com.example.ourmenu.databinding.ToastErrorBinding
 import com.example.ourmenu.landing.LandingActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -127,7 +129,6 @@ class MypageFragment : Fragment() {
             val window = nicknameDialog.window
             window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            // TODO: util 함수 dp to px로 수정하기
             val params = window?.attributes
             params?.width = dpToPx(288)
             params?.height = WindowManager.LayoutParams.WRAP_CONTENT
@@ -262,7 +263,8 @@ class MypageFragment : Fragment() {
                     start: Int,
                     count: Int,
                     after: Int,
-                ) {}
+                ) {
+                }
 
                 override fun onTextChanged(
                     s: CharSequence?,
@@ -292,14 +294,14 @@ class MypageFragment : Fragment() {
 
             if (!isValidPassword(newPassword)) {
                 // 비밀번호 조건이 맞지 않는 경우
-                Toast.makeText(requireContext(), "비밀번호 조건을 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
+                showToast("비밀번호 조건을 다시 확인해주세요.")
                 dialogBinding.etMypageNpw.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
 
             if (newPassword != checkNewPassword) {
                 // 비밀번호가 일치하지 않는 경우
-                Toast.makeText(requireContext(), "비밀번호가 일치하지 않아요.", Toast.LENGTH_SHORT).show()
+                showToast("비밀번호가 일치하지 않아요.")
                 dialogBinding.etMypageNpwCheck.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
@@ -311,10 +313,27 @@ class MypageFragment : Fragment() {
         newPasswordDialog.show()
     }
 
+    //    TODO: 아래 함수들 util로 분리하기
     private fun isValidPassword(password: String): Boolean {
         // 영문, 숫자 포함 8자 이상인지 확인
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
         return password.matches(Regex(passwordPattern))
+    }
+
+    private fun showToast(message: String) {
+        val layoutInflater = LayoutInflater.from(requireContext())
+        val toastBinding: ToastErrorBinding = ToastErrorBinding.inflate(layoutInflater)
+
+        toastBinding.tvToastError.text = message
+
+        val toast = Toast(requireContext())
+        toast.view = toastBinding.root
+        toast.duration = Toast.LENGTH_SHORT
+
+        // Toast 메시지를 화면 상단으로부터 128dp 떨어진 위치에 표시
+        toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, dpToPx(78))
+
+        toast.show()
     }
 
     private fun dpToPx(dp: Int): Int {
