@@ -18,7 +18,7 @@ class CommunityPostFragment : Fragment() {
     ): View? {
 
         binding = FragmentCommunityPostBinding.inflate(layoutInflater)
-        
+
 
         return binding.root
     }
