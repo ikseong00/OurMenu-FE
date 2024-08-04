@@ -111,8 +111,12 @@
                 android:id="@+id/tv_community_post_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="32dp"
+                android:fontFamily="@font/pretendard_400"
+                android:letterSpacing="-0.03"
                 android:text="채우기 시각적 입숨은 디자인 들어가는 이용된다. 분야에서 결과물에 이용된다. 이런 타이포그래피, 용도로 사용된다. 텍스트로, 부르며, 출판이나 이용된다. 사용할 디자인 최종 타이포그래피, 지칭하는 출판이나 지칭하는 실제적인 보여줄 모형의 이런 들어가는 때로 시각 지칭하는 차지하는 때"
+                android:textColor="@color/Neutral_900"
+                android:textSize="14sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -143,8 +147,8 @@
         android:stateListAnimator="@null"
         android:text="확인"
         android:textColor="@color/Neutral_White"
-        android:visibility="gone"
         android:textSize="16sp"
+        android:visibility="gone"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
