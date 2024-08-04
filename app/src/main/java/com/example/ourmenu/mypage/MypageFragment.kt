@@ -22,7 +22,7 @@ import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageKebabBottomSheetDialogBinding
 import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
-import com.example.ourmenu.databinding.ToastErrorBinding
+import com.example.ourmenu.databinding.ToastMessageBgBinding
 import com.example.ourmenu.landing.LandingActivity
 import com.example.ourmenu.mypage.adapter.MypageRVAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -73,7 +73,7 @@ class MypageFragment : Fragment() {
             dummyItems.add(
                 MypagePostData(
                     "제목",
-                    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하",
+                    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하",
                     R.drawable.menu_sample2,
                     "베터씨",
                     "1 day ago",
@@ -136,6 +136,8 @@ class MypageFragment : Fragment() {
 
         dialogBinding.btnMypageKebabDialogLogout.setOnClickListener {
             bottomSheetDialog.dismiss()
+
+            showToast(R.drawable.ic_complete, "로그아웃 되었어요!")
 
             val intent = Intent(requireContext(), LandingActivity::class.java)
             startActivity(intent)
@@ -329,14 +331,14 @@ class MypageFragment : Fragment() {
 
             if (!isValidPassword(newPassword)) {
                 // 비밀번호 조건이 맞지 않는 경우
-                showToast("비밀번호 조건을 다시 확인해주세요.")
+                showToast(R.drawable.ic_error, "비밀번호 조건을 다시 확인해주세요.")
                 dialogBinding.etMypageNpw.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
 
             if (newPassword != checkNewPassword) {
                 // 비밀번호가 일치하지 않는 경우
-                showToast("비밀번호가 일치하지 않아요.")
+                showToast(R.drawable.ic_error, "비밀번호가 일치하지 않아요.")
                 dialogBinding.etMypageNpwCheck.setBackgroundResource(R.drawable.edittext_bg_dialog_error)
                 return@setOnClickListener
             }
@@ -355,11 +357,15 @@ class MypageFragment : Fragment() {
         return password.matches(Regex(passwordPattern))
     }
 
-    private fun showToast(message: String) {
+    private fun showToast(
+        icon: Int,
+        message: String,
+    ) {
         val layoutInflater = LayoutInflater.from(requireContext())
-        val toastBinding: ToastErrorBinding = ToastErrorBinding.inflate(layoutInflater)
+        val toastBinding: ToastMessageBgBinding = ToastMessageBgBinding.inflate(layoutInflater)
 
-        toastBinding.tvToastError.text = message
+        toastBinding.ivToastMessage.setImageResource(icon)
+        toastBinding.tvToastMessage.text = message
 
         val toast = Toast(requireContext())
         toast.view = toastBinding.root
