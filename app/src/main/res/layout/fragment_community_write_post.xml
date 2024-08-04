@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".community.CommunityPostWriteFragment">
+    tools:context=".community.CommunityWritePostFragment">
 
     <ImageView
-        android:id="@+id/iv_community_post_back"
+        android:id="@+id/iv_cwp_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_community_post_title"
+        android:id="@+id/tv_cwp_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -32,34 +32,34 @@
 
 
     <View
-        android:id="@+id/v_community_post_line"
+        android:id="@+id/v_cwp_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:background="@color/Neutral_300"
-        app:layout_constraintTop_toBottomOf="@id/tv_community_post_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_cwp_title" />
 
     <ScrollView
-        android:id="@+id/sv_community_post_content"
+        android:id="@+id/sv_cwp_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_community_post_ok"
-        app:layout_constraintTop_toBottomOf="@id/v_community_post_line">
+        app:layout_constraintBottom_toTopOf="@id/btn_cwp_ok"
+        app:layout_constraintTop_toBottomOf="@id/v_cwp_line">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
             <EditText
-                android:id="@+id/tv_community_post_content"
+                android:id="@+id/tv_cwp_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
                 android:hint="글을 써보세요."
                 android:textColorHint="@color/Neutral_500"
-                android:background="null"
+                android:background="@null"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -70,8 +70,8 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_community_post_content"
-                tools:listitem="@layout/item_community_post_menu" />
+                app:layout_constraintTop_toBottomOf="@id/tv_cwp_content"
+                tools:listitem="@layout/item_home_menu_main" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,7 +79,7 @@
 
 
     <Button
-        android:id="@+id/btn_community_post_ok"
+        android:id="@+id/btn_cwp_ok"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="20dp"
@@ -99,14 +99,14 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_community_post_kebab"
+        android:id="@+id/cl_cwp_kebab"
         android:layout_width="match_parent"
         android:layout_height="168dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <!--   수정하기   -->
         <Button
-            android:id="@+id/btn_community_post_edit"
+            android:id="@+id/btn_cwp_edit"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
@@ -121,7 +121,7 @@
 
         <!--  삭제하기   -->
         <Button
-            android:id="@+id/btn_community_post_delete"
+            android:id="@+id/btn_cwp_delete"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
@@ -132,11 +132,11 @@
             android:textColor="@color/Primary_500_main"
             android:textSize="16sp"
             app:backgroundTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/btn_community_post_edit" />
+            app:layout_constraintTop_toBottomOf="@id/btn_cwp_edit" />
 
         <!--   취소   -->
         <Button
-            android:id="@+id/btn_community_post_cancel"
+            android:id="@+id/btn_cwp_cancel"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginHorizontal="8dp"
@@ -148,7 +148,7 @@
             android:textColor="@color/Neutral_500"
             android:textSize="16sp"
             app:backgroundTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/btn_community_post_delete" />
+            app:layout_constraintTop_toBottomOf="@id/btn_cwp_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
