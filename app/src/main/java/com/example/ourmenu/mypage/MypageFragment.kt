@@ -12,8 +12,10 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.AddMenuActivity
+import com.example.ourmenu.data.MypagePostData
 import com.example.ourmenu.databinding.FragmentMypageBinding
 import com.example.ourmenu.databinding.MypageCurrentPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageImgBottomSheetDialogBinding
@@ -22,10 +24,12 @@ import com.example.ourmenu.databinding.MypageNewPasswordDialogBinding
 import com.example.ourmenu.databinding.MypageNicknameDialogBinding
 import com.example.ourmenu.databinding.ToastErrorBinding
 import com.example.ourmenu.landing.LandingActivity
+import com.example.ourmenu.mypage.adapter.MypageRVAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MypageFragment : Fragment() {
     lateinit var binding: FragmentMypageBinding
+    lateinit var dummyItems: ArrayList<MypagePostData>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +37,9 @@ class MypageFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+        initDummyData()
+        initMyPostRV()
 
         binding.ivMypageAddBtn.setOnClickListener {
             val intent = Intent(requireContext(), AddMenuActivity::class.java)
@@ -48,6 +55,34 @@ class MypageFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun initMyPostRV() {
+        val adapter =
+            MypageRVAdapter(dummyItems) {
+                // TODO: 해당 게시물로 이동하기
+            }
+
+        binding.rvPmfMenu.adapter = adapter
+        binding.rvPmfMenu.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun initDummyData() {
+        dummyItems = ArrayList<MypagePostData>()
+        for (i in 1..6) {
+            dummyItems.add(
+                MypagePostData(
+                    "제목",
+                    "가나다라마바사아자차카타파하가나다라마바사아자차카타파하",
+                    R.drawable.menu_sample2,
+                    "베터씨",
+                    "1 day ago",
+                    999,
+                    R.drawable.menu_sample3,
+                    9,
+                ),
+            )
+        }
     }
 
     private fun showImageOptionsDialog() {
