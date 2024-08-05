@@ -108,11 +108,12 @@ class MypageFragment : Fragment() {
 
         dialogBinding.btnMypageImgDialogCancel.setOnClickListener {
             // 취소 버튼 클릭 처리
-            // Edit profile 이미지 클릭 시 다른 이미지 표시
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.setOnDismissListener {
             binding.ivMypageEditProfileBorder.visibility = View.GONE
             binding.ivMypageEditProfileImgOrange.visibility = View.GONE
-
-            bottomSheetDialog.dismiss()
         }
 
         // 흐린 배경 제거
