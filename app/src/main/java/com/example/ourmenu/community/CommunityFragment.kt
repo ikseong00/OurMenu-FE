@@ -2,16 +2,24 @@ package com.example.ourmenu.community
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
+import com.example.ourmenu.community.adapter.CommunityFilterSpinnerAdapter
 import com.example.ourmenu.community.write.CommunityWritePostActivity
 import com.example.ourmenu.data.PostData
 import com.example.ourmenu.databinding.FragmentCommunityBinding
 import com.example.ourmenu.mypage.adapter.MypageRVAdapter
+import com.example.ourmenu.util.Utils.viewGone
+import com.example.ourmenu.util.Utils.viewVisible
 
 class CommunityFragment : Fragment() {
 
@@ -26,12 +34,29 @@ class CommunityFragment : Fragment() {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
 
         initDummyData()
+        initSpinner()
         initListener()
         initRV()
 
 
 
         return binding.root
+    }
+
+    private fun initSpinner() {
+        val adapter =
+            CommunityFilterSpinnerAdapter<String>(requireContext(), arrayListOf("최신순", "조회순"))
+        adapter.setDropDownViewResource(R.layout.spinner_item_background)
+        binding.spnCommunityFilter.adapter = adapter
+        binding.spnCommunityFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                adapter.isNewest = position == 0
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
     }
 
     private fun initDummyData() {
@@ -53,11 +78,40 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.ivCommunityWrite.setOnClickListener {
-            val intent = Intent(context, CommunityWritePostActivity::class.java)
-            intent.putExtra("flag", "write")
-            startActivity(intent)
-        }
+//        // 정렬 필터 클릭
+//        binding.btnCommunityFilter.setOnClickListener {
+//            binding.llCommunityFilterList.viewVisible()
+//            binding.llCommunityFilterList.translationY = binding.llCommunityFilterList.height.toFloat()
+//            binding.llCommunityFilterList.animate()
+//                .translationY(0f)
+//                .setListener(null)
+//                .duration = 300
+//
+//        }
+//
+//        // 조회순
+//        binding.btnCommunityMostViewed.setOnClickListener {
+//            binding.btnCommunityFilter.text = binding.btnCommunityMostViewed.text
+//            // TODO 정렬
+//            binding.llCommunityFilterList.viewGone()
+//        }
+//        // 최신순
+//        binding.btnCommunityNewest.setOnClickListener {
+//            binding.btnCommunityFilter.text = binding.btnCommunityNewest.text
+//            // TODO 정렬
+//            binding.llCommunityFilterList.viewGone()
+//        }
+//
+//        // 필터 다이어로그 GONE
+//        binding.root.setOnClickListener {
+//            binding.llCommunityFilterList.viewGone()
+//        }
+//
+//        binding.ivCommunityWrite.setOnClickListener {
+//            val intent = Intent(context, CommunityWritePostActivity::class.java)
+//            intent.putExtra("flag", "write")
+//            startActivity(intent)
+//        }
     }
 
     private fun initRV() {
