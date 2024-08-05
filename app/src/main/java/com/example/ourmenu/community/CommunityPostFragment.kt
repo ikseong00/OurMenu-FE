@@ -110,6 +110,7 @@ class CommunityPostFragment(val isMine: Boolean) : Fragment() {
         }
     }
 
+    // 저장하기
     private fun showSaveDialog() {
         TODO("Not yet implemented")
     }

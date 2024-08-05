@@ -72,4 +72,16 @@ object Utils {
         }
     }
 
+    fun View.viewGone() {
+        this.visibility = View.GONE
+    }
+
+    fun View.viewVisible() {
+        this.visibility = View.VISIBLE
+    }
+
+    fun View.viewInvisible() {
+        this.visibility = View.INVISIBLE
+    }
+
 }
