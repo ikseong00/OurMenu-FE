@@ -112,6 +112,7 @@ class AddMenuMapFragment : Fragment() {
                 binding.fcvAddMenuMap.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
                 binding.clAddMenuRecentSearch.visibility = View.VISIBLE
+                binding.btnAddMenuNoResult.visibility = View.VISIBLE
                 resultAdapter.updateItems(recentPlaceItems)
                 binding.etAddMenuSearch.text.clear() // 입력 필드 비우기
 
@@ -122,6 +123,7 @@ class AddMenuMapFragment : Fragment() {
                 binding.fcvAddMenuMap.visibility = View.VISIBLE
                 binding.rvAddMenuSearchResults.visibility = View.GONE
                 binding.clAddMenuRecentSearch.visibility = View.GONE
+                binding.btnAddMenuNoResult.visibility = View.GONE
             }
         }
 
