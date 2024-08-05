@@ -78,7 +78,7 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initListener() {
-        
+
     }
 
     private fun initRV() {

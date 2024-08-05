@@ -48,7 +48,38 @@
         app:layout_constraintTop_toBottomOf="@id/tv_csd_title" />
 
     <Button
-        android:id="@+id/btn_mypage_nickname_confirm"
+        android:id="@+id/btn_csd_et_confirm"
+        android:layout_width="44dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/btn_bg_big"
+        android:fontFamily="@font/pretendard_700"
+        android:padding="0dp"
+        android:stateListAnimator="@null"
+        android:text="@string/confirm"
+        android:textColor="@color/Neutral_White"
+        android:textSize="12sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@id/et_csd_search_field"
+        app:layout_constraintEnd_toEndOf="@id/et_csd_search_field"
+        app:layout_constraintTop_toTopOf="@id/et_csd_search_field" />
+
+    <Spinner
+        android:id="@+id/spn_community_save"
+        style="@style/Spinner.Email"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@drawable/btn_top_corner_default"
+        android:dropDownWidth="match_parent"
+        android:dropDownVerticalOffset="8dp"
+        android:popupBackground="@drawable/btn_bg_8_n100"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/et_csd_search_field"
+        app:layout_constraintEnd_toEndOf="@id/et_csd_search_field"
+        app:layout_constraintStart_toStartOf="@id/et_csd_search_field" />
+
+    <Button
+        android:id="@+id/btn_csd_save_confirm"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="13dp"
