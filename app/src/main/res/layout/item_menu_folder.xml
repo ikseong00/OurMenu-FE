@@ -91,16 +91,48 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_item_menu_folder_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_item_folder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/sample_menu_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/corner_rd_12" />
+        android:layout_marginStart="20dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_item_menu_folder_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/sample_menu_image"
+            app:shapeAppearanceOverlay="@style/corner_rd_12" />
+
+        <TextView
+            android:id="@+id/tv_item_menu_folder_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="67dp"
+            android:fontFamily="@font/pretendard_500"
+            android:text="한강뷰 맛집"
+            android:textColor="@color/Neutral_White"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_menu_folder_menu_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-4dp"
+            android:fontFamily="@font/pretendard_500"
+            android:text="메뉴 0개"
+            android:textColor="@color/Neutral_White"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_menu_folder_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

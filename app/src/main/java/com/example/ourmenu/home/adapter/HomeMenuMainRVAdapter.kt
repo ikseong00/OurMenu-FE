@@ -1,6 +1,7 @@
 package com.example.ourmenu.home.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,20 +33,9 @@ class HomeMenuMainRVAdapter(val items: ArrayList<HomeMenuData>, val context: Con
             binding.tvItemStoreMain.text = item.store
             // TODO Glide 추가
 
+            binding.sivItemMenuImageMain.layoutParams.width =
+                (context.resources.displayMetrics.widthPixels * 304 / 360).toInt()
 
-            // 화면 자석 효과
-            if (adapterPosition == 0 || adapterPosition == items.size - 1) {
-                binding.layoutItemHomeMenuMain.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-
-                val displayMetrics = context.resources.displayMetrics
-                val screenWidth = displayMetrics.widthPixels
-                var mLayoutParam: RecyclerView.LayoutParams =
-                    binding.layoutItemHomeMenuMain.layoutParams as RecyclerView.LayoutParams
-                if (adapterPosition == 0)
-                    mLayoutParam.leftMargin = (screenWidth - binding.layoutItemHomeMenuMain.measuredWidthAndState) / 2
-                else
-                    mLayoutParam.rightMargin = (screenWidth - binding.layoutItemHomeMenuMain.measuredWidthAndState) / 2
-            }
         }
     }
 
@@ -54,10 +44,10 @@ class HomeMenuMainRVAdapter(val items: ArrayList<HomeMenuData>, val context: Con
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = 2000
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position % items.size])
     }
 
 

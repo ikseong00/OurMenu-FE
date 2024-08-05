@@ -18,27 +18,25 @@
             android:layout_height="wrap_content">
 
 
-
-
             <ImageView
                 android:id="@+id/iv_home_title_logo"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/ic_logo_ourmenu"
+                app:layout_constraintBottom_toBottomOf="@id/iv_home_title_add"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/iv_home_title_add"
-                app:layout_constraintBottom_toBottomOf="@id/iv_home_title_add"/>
+                app:layout_constraintTop_toTopOf="@id/iv_home_title_add" />
 
 
             <ImageView
                 android:id="@+id/iv_home_title_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_title_add"
-                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -192,9 +190,10 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/siv_home_good"
-                        android:layout_width="134dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginEnd="165dp"
                         android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintStart_toStartOf="parent"
@@ -214,9 +213,10 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/siv_home_bad"
-                        android:layout_width="134dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="165dp"
+                        android:layout_marginEnd="21dp"
                         android:background="@drawable/btn_bg_8_white"
                         app:backgroundTint="@null"
                         app:layout_constraintEnd_toEndOf="parent"
