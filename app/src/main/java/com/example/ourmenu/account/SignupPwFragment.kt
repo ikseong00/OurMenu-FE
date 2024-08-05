@@ -22,8 +22,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupPwBinding
-import com.example.ourmenu.databinding.ToastCorrectBinding
-import com.example.ourmenu.databinding.ToastErrorBinding
+import com.example.ourmenu.util.Utils.showToast
 
 class SignupPwFragment : Fragment() {
     lateinit var binding: FragmentSignupPwBinding
@@ -36,38 +35,6 @@ class SignupPwFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupPwBinding.inflate(inflater, container, false)
-        var toast = object {
-
-            fun createToast(context: Context, message: String): Toast? {
-                val inflater = LayoutInflater.from(context)
-                val binding: ToastErrorBinding =
-                    ToastErrorBinding.inflate(inflater,container,false)
-                binding.tvToastError.text = message
-                binding.root.elevation = 8F
-
-                return Toast(context).apply {
-                    setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())
-                    duration = Toast.LENGTH_LONG
-                    view = binding.root
-                }
-            }
-
-            fun createToastCorrect(context: Context, message: String): Toast? {
-                val inflater = LayoutInflater.from(context)
-                val binding: ToastCorrectBinding =
-                    ToastCorrectBinding.inflate(inflater,container,false)
-                binding.tvToastCorrect.text = message
-                binding.root.elevation = 8F
-
-                return Toast(context).apply {
-                    setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())
-                    duration = Toast.LENGTH_LONG
-                    view = binding.root
-                }
-            }
-
-            private fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
-        }
         binding.btnSignupPw.setOnClickListener {
             if (binding.etSignupPasswordEnter.text.length >= 8 && binding.etSignupPasswordEnter.text.matches(Regex("[a-z|A-Z]+[0-9]+"))){
                 if(binding.etSignupPasswordEnter.text.toString() == binding.etSignupPasswordEnterCheck.text.toString()){
@@ -75,15 +42,14 @@ class SignupPwFragment : Fragment() {
                         .addToBackStack("SignupPw")
                         .replace(R.id.cl_mainscreen, SignupNicknameFragment())
                         .commit()
-                    toast.createToastCorrect(requireContext(),"계정 생성 완료!")?.show()
-
+                    showToast(requireContext(), R.drawable.ic_complete, "최대 10자까지 가능해요!")
                 }else{
-                    toast.createToast(requireContext(),"비밀번호가 일치하지 않아요.")?.show()
+                    showToast(requireContext(), R.drawable.ic_error, "최대 10자까지 가능해요!")
                     binding.etSignupPasswordEnter.setBackgroundResource(R.drawable.edittext_bg_error)
                     binding.etSignupPasswordEnterCheck.setBackgroundResource(R.drawable.edittext_bg_error)
                 }
             } else {
-                toast.createToast(requireContext(),"비밀번호 조건을 다시 확인해주세요.")?.show()
+                showToast(requireContext(), R.drawable.ic_error, "최대 10자까지 가능해요!")
                 binding.etSignupPasswordEnter.setBackgroundResource(R.drawable.edittext_bg_error)
 
             }

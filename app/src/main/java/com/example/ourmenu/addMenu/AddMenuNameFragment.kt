@@ -106,7 +106,7 @@ class AddMenuNameFragment : Fragment() {
 
     private fun initRV() {
 
-        addMenuImageItemList = arrayListOf<AddMenuImageData>(AddMenuImageData(null, "name"))
+        addMenuImageItemList = arrayListOf<AddMenuImageData>()
         addMenuImageAdapter = AddMenuImageAdapter(addMenuImageItemList)
 
         addMenuImageAdapter.imageListener = object : AddMenuImageAdapter.OnImageClickListener {

@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 import com.example.ourmenu.MainActivity
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentSignupNicknameBinding
-import com.example.ourmenu.databinding.ToastErrorBinding
+import com.example.ourmenu.util.Utils.showToast
 
 class SignupNicknameFragment : Fragment() {
     lateinit var binding: FragmentSignupNicknameBinding
@@ -45,28 +45,7 @@ class SignupNicknameFragment : Fragment() {
                     activity?.finish()
                 } else {
                 binding.etSignupNickname.setBackgroundResource(R.drawable.edittext_bg_error)
-                var toast =
-                    object {
-                        fun createToast(
-                            context: Context,
-                            message: String,
-                        ): Toast? {
-                            val inflater = LayoutInflater.from(context)
-                            val binding: ToastErrorBinding =
-                                ToastErrorBinding.inflate(inflater, container, false)
-                            binding.tvToastError.text = message
-                            binding.root.elevation = 8F
-
-                            return Toast(context).apply {
-                                setGravity(Gravity.TOP or Gravity.CENTER, 0, 96.toPx())
-                                duration = Toast.LENGTH_LONG
-                                view = binding.root
-                            }
-                        }
-
-                        private fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
-                    }
-                toast.createToast(requireContext(), "최대 10자까지 가능해요!")?.show()
+                showToast(requireContext(), R.drawable.ic_error, "최대 10자까지 가능해요!")
             }
         }
         binding.etSignupNickname.addTextChangedListener(object : TextWatcher {
