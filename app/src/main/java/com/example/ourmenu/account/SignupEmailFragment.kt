@@ -206,7 +206,12 @@ class SignupEmailFragment : Fragment() {
             closeDropdown()
         }
         binding.tvSignupEmailSelf.setOnClickListener {
-            binding.etSignupEmail.setText(binding.tvSignupEmailSelf.text)
+            binding.etSignupEmail.setHint(binding.tvSignupEmailSelf.text)
+            binding.etSignupEmail.isCursorVisible = true
+            binding.etSignupEmail.requestFocus()
+            val inputManager: InputMethodManager =
+                requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.showSoftInput(binding.etSignupEmail, InputMethodManager.SHOW_IMPLICIT)
             closeDropdown()
         }
     }

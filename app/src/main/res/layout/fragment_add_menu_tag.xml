@@ -17,19 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/tv_add_menu_tag_memo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/pretendard_600"
-        android:text="메모"
-        android:textColor="@color/Neutral_900"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_tag" />
-
     <FrameLayout
         android:id="@+id/fl_add_menu_choose_tag"
         android:layout_width="128dp"
@@ -53,21 +40,66 @@
             android:layout_gravity="center_vertical|end"
             android:textColor="@color/Neutral_White"/>
     </FrameLayout>
+
+    <ListView
+        android:orientation="horizontal"
+        android:id="@+id/lv_add_menu_tag_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fl_add_menu_choose_tag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_add_menu_tag_memo"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        app:flow_horizontalGap="4dp"
+        app:flow_verticalGap="4dp"
+        app:flow_wrapMode="chain"/>
+
+    <TextView
+        android:id="@+id/tv_add_menu_tag_memo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/pretendard_600"
+        android:text="메모"
+        android:textColor="@color/Neutral_900"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_tag" />
+
+
     <EditText
-        android:id="@+id/et_add_menu_tag_memo"
+        android:id="@+id/et_add_menu_tag_memo_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edittext_bg_default"
+        android:fontFamily="@font/pretendard_600"
+        android:gravity="start|center_vertical"
+        android:hint="제목을 입력해주세요."
+        android:textColor="@color/Neutral_700"
+        android:textColorHint="@color/Neutral_500"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        android:paddingVertical="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_memo" />
+
+    <EditText
+        android:id="@+id/et_add_menu_tag_memo_detail"
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/edittext_bg_default"
         android:fontFamily="@font/pretendard_600"
         android:gravity="start|top"
-        android:hint="메모를 입력해주세요."
+        android:hint="본문을 입력해주세요."
         android:textColor="@color/Neutral_700"
         android:textColorHint="@color/Neutral_500"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:backgroundTint="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_menu_tag_memo" />
+        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo_title" />
 
     <TextView
         android:id="@+id/tv_add_menu_tag_icon"
@@ -79,7 +111,7 @@
         android:textColor="@color/Neutral_900"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo" />
+        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo_detail" />
 
     <FrameLayout
         android:id="@+id/fl_add_menu_tag_mappin"
@@ -87,7 +119,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo">
+        app:layout_constraintTop_toBottomOf="@id/et_add_menu_tag_memo_detail">
 
         <ImageView
             android:layout_width="match_parent"

@@ -12,8 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ourmenu.AddMenuSelectMenuFragment
 import com.example.ourmenu.R
-import com.example.ourmenu.addMenu.adapter.AddMenuPlaceMenuRVAdapter
 import com.example.ourmenu.addMenu.adapter.AddMenuSearchResultRVAdapter
 import com.example.ourmenu.data.PlaceInfoData
 import com.example.ourmenu.data.PlaceMenuData
@@ -25,7 +25,6 @@ class AddMenuMapFragment : Fragment() {
     lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     lateinit var resultAdapter: AddMenuSearchResultRVAdapter
-    lateinit var menuAdapter: AddMenuPlaceMenuRVAdapter
 
     private lateinit var placeItems: ArrayList<PlaceInfoData>
     private lateinit var recentPlaceItems: ArrayList<PlaceInfoData>
@@ -48,7 +47,6 @@ class AddMenuMapFragment : Fragment() {
 
         initDummyData()
         initResultRV()
-        initMenuRV()
 
         //  키보드 상태 변화 감지해서 화면 길이 조절하기
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
@@ -139,33 +137,32 @@ class AddMenuMapFragment : Fragment() {
             }
         }
 
-        binding.btnAddMenuNext.setOnClickListener {
-            parentFragmentManager.beginTransaction()
+        // 검색 결과 없을 때 버튼 이벤트 처리
+        binding.btnAddMenuNoResult.setOnClickListener {
+            binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
+
+            // 키보드 숨기기
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
+
+            parentFragmentManager
+                .beginTransaction()
                 .addToBackStack("AddMenuMap")
-                .replace(R.id.cl_add_menu_main,AddMenuNameFragment())
+                .replace(R.id.cl_add_menu_main, AddMenuNameFragment())
                 .commit()
         }
+
+        binding.btnAddMenuNext.setOnClickListener {
+            binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
+
+            parentFragmentManager
+                .beginTransaction()
+                .addToBackStack("AddMenuMap")
+                .replace(R.id.cl_add_menu_main, AddMenuSelectMenuFragment())
+                .commit()
+        }
+
         return binding.root
-    }
-
-    private fun initMenuRV() {
-        menuAdapter =
-            AddMenuPlaceMenuRVAdapter(
-                placeMenuItems,
-                onItemSelected = { selectedPosition ->
-                    // 아이템이 선택되었을 때 버튼을 활성화
-                    binding.btnAddMenuNext.isEnabled = true
-                },
-                onButtonClicked = {
-//                    TODO: 메뉴 추가 fragment로 넘어가도록
-                },
-            )
-
-        binding.rvAddMenuPlaceMenu.layoutManager = LinearLayoutManager(context)
-        binding.rvAddMenuPlaceMenu.adapter = menuAdapter
-
-        // 버튼 초기 상태를 비활성화
-        binding.btnAddMenuNext.isEnabled = false
     }
 
     private fun initResultRV() {
@@ -301,10 +298,5 @@ class AddMenuMapFragment : Fragment() {
                 binding.clAddMenuRecentSearch.visibility = View.GONE
             }
         }
-    }
-
-    private fun dpToPx(dp: Int): Int {
-        val density = resources.displayMetrics.density
-        return (dp * density).toInt()
     }
 }
