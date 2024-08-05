@@ -84,8 +84,6 @@ class HomeFragment : Fragment() {
                 setOnItemClickListener(itemClickListener)
             }
 
-        val homeMenuMainRVAdapter = HomeMenuMainRVAdapter(dummyItems, requireContext())
-        binding.rvHomeMenuMain.adapter = homeMenuMainRVAdapter
 
         // 아이템의 width를 구하기 위해 viewTreeObserver 사용
         binding.rvHomeMenuMain.viewTreeObserver.addOnGlobalLayoutListener(object :

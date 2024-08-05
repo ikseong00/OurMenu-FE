@@ -25,8 +25,14 @@ class CommunityWritePostActivity : AppCompatActivity() {
         val flag = intent.getStringExtra("flag") ?: "post"
         when (flag) {
             "post" -> {
+                val bundle = Bundle()
+                val postData = intent.getSerializableExtra("postData")
+                val isMine = intent.getBooleanExtra("isMine", false)
+                bundle.putSerializable("postData", postData)
+                val communityPostFragment = CommunityPostFragment(isMine)
+                communityPostFragment.arguments = bundle
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.community_post_frm, CommunityPostFragment())
+                    .replace(R.id.community_post_frm, communityPostFragment)
                     .commitAllowingStateLoss()
             }
 

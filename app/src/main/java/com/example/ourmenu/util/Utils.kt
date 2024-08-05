@@ -1,9 +1,13 @@
 package com.example.ourmenu.util
 
 import android.content.Context
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import android.os.Build
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.ourmenu.databinding.ToastMessageBgBinding
@@ -55,4 +59,17 @@ object Utils {
     inline fun <reified T> getTypeOf(): Class<T> {
         return T::class.java
     }
+
+    fun applyBlurEffect(viewGroup: ViewGroup) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            viewGroup.setRenderEffect(RenderEffect.createBlurEffect(10f, 10f, Shader.TileMode.CLAMP))
+        }
+    }
+
+    fun removeBlurEffect(viewGroup: ViewGroup) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            viewGroup.setRenderEffect(null)
+        }
+    }
+
 }
