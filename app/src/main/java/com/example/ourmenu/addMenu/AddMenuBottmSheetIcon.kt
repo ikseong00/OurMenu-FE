@@ -1,22 +1,21 @@
 package com.example.ourmenu.addMenu
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.createBitmap
 import com.example.ourmenu.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.example.ourmenu.addMenu.AddMenuTagFragment
 import com.example.ourmenu.databinding.AddMenuBottomSheetIconBinding
 
+//바텀시트 프래그먼트를 따로 다이얼로그로 구현한 클래스. 바텀시트 여러 개가 include로 사용되지 않아서 이 방법으로 구현함.
+//바텀시트 객체 생성할때 부모 프래그먼트와 마지막으로 선택된 아이템의 위치를 받음.
 class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int) : BottomSheetDialogFragment() {
 
     lateinit var binding: AddMenuBottomSheetIconBinding
-    lateinit var selectList: ArrayList<View>
-    lateinit var currentSelected: View
-    var currentSelectedIcon = 0
+    lateinit var selectList: ArrayList<View> //아이콘 선택되었을시 보이는 회색 동그라미들 모음
+    lateinit var currentSelected: View //최근 선택된 아이콘의 회색 동그라미
+    var currentSelectedIcon = 0 //최근 선택된 아이콘의 src id
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +35,7 @@ class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int
             binding.ivAmbsiHotdogSelected,
             binding.ivAmbsiCoffeeSelected
         )
+        //아이콘프레임 클릭시 선택된 상태가 아니라면 선택된 상태로 변경
         binding.flAmbsiWatermelon.setOnClickListener {
             if (binding.ivAmbsiWatermelonSelected.visibility != View.VISIBLE) {
                 currentSelected.visibility = View.INVISIBLE
@@ -135,11 +135,13 @@ class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int
                 currentSelected.visibility = View.VISIBLE
             }
         }
+        //바텀시트에서 선택된 내용을 fragment로 전달
         binding.btnAmbstConfirm.setOnClickListener {
             fragment.binding.ivAddMenuTagIcon.setImageResource(currentSelectedIcon)
             fragment.bottomSheetIconStart = selected
             this.dialog?.dismiss()
         }
+        //취소시 그냥 화면만 없앰
         binding.btnAmbstReset.setOnClickListener {
             this.dialog?.dismiss()
         }
@@ -149,6 +151,7 @@ class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //화면 사라질때 부모의 블러 제거
         dialog?.setOnDismissListener {
             fragment.clearBlur()
         }
