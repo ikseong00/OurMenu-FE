@@ -12,15 +12,22 @@ import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ourmenu.AddMenuSelectMenuFragment
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuSearchResultRVAdapter
 import com.example.ourmenu.data.PlaceInfoData
 import com.example.ourmenu.data.PlaceMenuData
 import com.example.ourmenu.databinding.FragmentAddMenuMapBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
 
-class AddMenuMapFragment : Fragment() {
+class AddMenuMapFragment :
+    Fragment(),
+    OnMapReadyCallback {
     lateinit var binding: FragmentAddMenuMapBinding
     lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
@@ -32,6 +39,8 @@ class AddMenuMapFragment : Fragment() {
     private lateinit var placeMenuImgItems: ArrayList<Int>
 
     private var isKeyboardVisible = false
+
+    private var naverMap: NaverMap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +56,14 @@ class AddMenuMapFragment : Fragment() {
 
         initDummyData()
         initResultRV()
+
+        // MapFragment 가져오기
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.fcv_add_menu_map) as MapFragment?
+                ?: MapFragment.newInstance().also {
+                    childFragmentManager.beginTransaction().add(R.id.fcv_add_menu_map, it).commit()
+                }
+        mapFragment.getMapAsync(this)
 
         //  키보드 상태 변화 감지해서 화면 길이 조절하기
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
@@ -203,6 +220,8 @@ class AddMenuMapFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "127.0127015",
+                    "37.5705633",
                 ),
                 PlaceInfoData(
                     "아워 떡볶이",
@@ -213,6 +232,8 @@ class AddMenuMapFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "127.0901844",
+                    "37.5537588",
                 ),
                 PlaceInfoData(
                     "쿠잇 분식점",
@@ -223,6 +244,8 @@ class AddMenuMapFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "127.0716909",
+                    "37.5426950",
                 ),
             )
 
@@ -252,6 +275,18 @@ class AddMenuMapFragment : Fragment() {
         // 키보드 숨기기
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
+
+        // 지도에 핀 찍기
+        val mapx = item.mapx.toDouble()
+        val mapy = item.mapy.toDouble()
+        val marker = Marker()
+        marker.position = LatLng(mapy, mapx)
+        marker.map = naverMap
+
+        // 지도의 focus를 해당 위치로 이동
+        naverMap?.moveCamera(CameraUpdate.scrollTo(LatLng(mapy, mapx)))
+
+        // TODO: pin 모양 바꾸기
 
         // 키보드가 사라질 때 Bottom Sheet가 화면의 가장 아래에 위치하도록
         binding.clAddMenuBottomSheet.postDelayed({
@@ -298,5 +333,9 @@ class AddMenuMapFragment : Fragment() {
                 binding.clAddMenuRecentSearch.visibility = View.GONE
             }
         }
+    }
+
+    override fun onMapReady(map: NaverMap) {
+        naverMap = map
     }
 }
