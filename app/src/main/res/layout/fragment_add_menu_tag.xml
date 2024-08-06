@@ -20,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/iv_add_menu_tag_return"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_gravity="center"

@@ -1,12 +1,16 @@
-package com.example.ourmenu.addMenu
+package com.example.ourmenu.addMenu.bottomSheetClass
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import com.example.ourmenu.R
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.example.ourmenu.addMenu.AddMenuTagFragment
 import com.example.ourmenu.databinding.AddMenuBottomSheetIconBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 //바텀시트 프래그먼트를 따로 다이얼로그로 구현한 클래스. 바텀시트 여러 개가 include로 사용되지 않아서 이 방법으로 구현함.
 //바텀시트 객체 생성할때 부모 프래그먼트와 마지막으로 선택된 아이템의 위치를 받음.
@@ -17,11 +21,20 @@ class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int
     lateinit var currentSelected: View //최근 선택된 아이콘의 회색 동그라미
     var currentSelectedIcon = 0 //최근 선택된 아이콘의 src id
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        this.setStyle(STYLE_NORMAL,R.style.CustomBottomSheetDialogTheme)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val behavior = this.view?.let { BottomSheetBehavior.from(it) }
+        behavior?.isFitToContents = false // 내용에 맞게 크기를 조정하지 않도록 설정
         binding = AddMenuBottomSheetIconBinding.inflate(inflater, container, false)
+        binding.root.setBackgroundResource(R.drawable.bottom_sheet_bg)
+        this.dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         selectList = arrayListOf(
             binding.ivAmbsiWatermelonSelected,
             binding.ivAmbsiStrawberrySelected,
@@ -147,7 +160,15 @@ class AddMenuBottomSheetIcon(val fragment: AddMenuTagFragment, var selected: Int
         }
         currentSelected = selectList[selected]
         currentSelected.visibility = View.VISIBLE
+
         return binding.root
+    }
+
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return super.onCreateDialog(savedInstanceState).apply {
+            this.window?.setBackgroundDrawable(null)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

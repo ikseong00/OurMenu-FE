@@ -1,22 +1,21 @@
 package com.example.ourmenu.addMenu
 
 import android.content.Context
-import android.content.DialogInterface
-import android.graphics.PorterDuff
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.os.Build
 import android.os.Bundle
-import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.OnFocusChangeListener
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import com.example.ourmenu.R
+import com.example.ourmenu.addMenu.bottomSheetClass.AddMenuBottomSheetIcon
 import com.example.ourmenu.databinding.FragmentAddMenuTagBinding
 import com.example.ourmenu.databinding.TagCustomBinding
 import com.example.ourmenu.databinding.TagDefaultBinding
@@ -30,10 +29,11 @@ class AddMenuTagFragment : Fragment() {
     lateinit var bottomSheetBehavior: BottomSheetBehavior<ScrollView> //바텀시트 상태 나타내는 변수
     var bottomSheetIcon = AddMenuBottomSheetIcon(this, 0)
     var bottomSheetIconStart = 0 //바텀시트 상태 저장. 다이얼로그로 작성된 바텀시트는 매번 새로 생성되어서 상태를 따로 저장해주어야한다.
+    var bottomSheetTagAdded = ArrayList<View>()
+    var bottomSheetTagRemoved = ArrayList<View>()
+    var bottomSheetTagAddedbs = ArrayList<View>()
+    var bottomSheetTagRemovedbs = ArrayList<View>()
 
-    //아래는 둘다 바텀시드 태그의 상태 저장용
-    var startChip = 0
-    var countChip = 0 //추가된 태그의 개수를 센다.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -54,6 +54,12 @@ class AddMenuTagFragment : Fragment() {
             bottomSheetIcon = AddMenuBottomSheetIcon(this, bottomSheetIconStart)
             bottomSheetIcon.show(parentFragmentManager, bottomSheetIcon.tag)
             setBlur()
+        }
+
+        //뒤로 가기 버튼
+        binding.ivAddMenuTagReturn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+            requireActivity().currentFocus?.clearFocus()
         }
 
         return binding.root
@@ -79,7 +85,7 @@ class AddMenuTagFragment : Fragment() {
         if (binding.clAddMenuTagTag.childCount == 0) {
             binding.clAddMenuTagTag.visibility = View.GONE
         }
-        binding.clAddMenuTagTag.requestLayout()
+        binding.clAddMenuTagTag.requestLayout() //뷰 새로고침
     }
 
     //태그를 바텀시트에서 제거
@@ -88,7 +94,6 @@ class AddMenuTagFragment : Fragment() {
         if (binding.bsAddMenuTag.cgAmbstSelectedTag.childCount == 0) {
             binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.GONE
         }
-        countChip -= 1
         binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
     }
 
@@ -102,14 +107,16 @@ class AddMenuTagFragment : Fragment() {
             removeTagFromSheet(sheetTag.root)
         }
         sheetTag.ivTagDelete.setOnClickListener {
-            removeTagFromRoot(rootTag.root)
+            bottomSheetTagRemoved.add(rootTag.root)
+            bottomSheetTagAdded.remove(rootTag.root)
+            bottomSheetTagAddedbs.remove(sheetTag.root)
+            bottomSheetTagRemovedbs.add(sheetTag.root)
             removeTagFromSheet(sheetTag.root)
         }
-        binding.clAddMenuTagTag.addView(rootTag.root)
-        binding.clAddMenuTagTag.requestLayout()
+        bottomSheetTagAdded.add(rootTag.root)
+        bottomSheetTagAddedbs.add(sheetTag.root)
         binding.bsAddMenuTag.cgAmbstSelectedTag.addView(sheetTag.root)
         binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
-        countChip += 1
     }
 
     //커스텀 태그를 추가
@@ -122,14 +129,60 @@ class AddMenuTagFragment : Fragment() {
             removeTagFromSheet(sheetTag.root)
         }
         sheetTag.ivTagDelete.setOnClickListener {
-            removeTagFromRoot(rootTag.root)
+            bottomSheetTagRemoved.add(rootTag.root)
+            bottomSheetTagAdded.remove(rootTag.root)
+            bottomSheetTagAddedbs.remove(sheetTag.root)
+            bottomSheetTagRemovedbs.add(sheetTag.root)
             removeTagFromSheet(sheetTag.root)
         }
-        binding.clAddMenuTagTag.addView(rootTag.root)
-        binding.clAddMenuTagTag.requestLayout()
+        bottomSheetTagAdded.add(rootTag.root)
+        bottomSheetTagAddedbs.add(sheetTag.root)
         binding.bsAddMenuTag.cgAmbstSelectedTag.addView(sheetTag.root)
         binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
-        countChip += 1
+    }
+
+    //바텀시트 결과 반영(적용하기 이외 작동에는 전부 취소)
+    fun updateBackgroundTag() {
+        for (i in bottomSheetTagAdded) {
+            binding.clAddMenuTagTag.addView(i)
+        }
+        for (i in bottomSheetTagRemoved) {
+            binding.clAddMenuTagTag.removeView(i)
+        }
+        bottomSheetTagAdded.clear()
+        bottomSheetTagRemoved.clear()
+        bottomSheetTagRemovedbs.clear()
+        bottomSheetTagAddedbs.clear()
+        binding.clAddMenuTagTag.requestLayout()
+    }
+
+    //
+    fun resetBSTag() {
+        for (i in bottomSheetTagAddedbs) {
+            binding.bsAddMenuTag.cgAmbstSelectedTag.removeView(i)
+        }
+        if (bottomSheetTagRemoved.size<=binding.clAddMenuTagTag.childCount){
+            for (i in bottomSheetTagRemovedbs) {
+                binding.bsAddMenuTag.cgAmbstSelectedTag.addView(i)
+            }
+        }
+        bottomSheetTagAdded.clear()
+        bottomSheetTagRemoved.clear()
+        bottomSheetTagRemovedbs.clear()
+        bottomSheetTagAddedbs.clear()
+        binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
+    }
+
+    //자식뷰 아무것도 없을때 뷰 자체가 안보이도록 함
+    fun showCG() {
+        if (binding.bsAddMenuTag.cgAmbstSelectedTag.childCount == 0) {
+            binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = GONE
+        } else {
+            binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = VISIBLE
+        }
+        if (binding.clAddMenuTagTag.childCount == 0) {
+            binding.clAddMenuTagTag.visibility = GONE
+        } else binding.clAddMenuTagTag.visibility = VISIBLE
     }
 
     //화면 블러처리
@@ -162,17 +215,17 @@ class AddMenuTagFragment : Fragment() {
         shapeDrawable.setTint(resources.getColor(R.color.Neutral_White))
         binding.bsAddMenuTag.root.background = shapeDrawable
 
-        //태그 직접 입력 창 눌렀을때 입력 버튼 활성화. 2번 눌러야 활성화 되던데 왜그런지 모르겠다.
-        binding.bsAddMenuTag.etAmbstEnterTag.setOnClickListener {
-            binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
-        }
+        //태그 직접 입력 창 눌렀을때 입력 버튼 활성화.
+        binding.bsAddMenuTag.etAmbstEnterTag.onFocusChangeListener = (object : OnFocusChangeListener {
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                if (hasFocus) {
+                    binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
+                } else {
+                    binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
+                }
+            }
 
-        //아래 클릭 리스너도 제대로 작동 안된다. 이유 모르겠음.
-        binding.bsAddMenuTag.root.setOnClickListener {
-            binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
-            requireActivity().currentFocus?.clearFocus()
-            closeKeyboard()
-        }
+        })
 
         //입력 버튼 누르면 커스텀 태그 추가
         binding.bsAddMenuTag.tvAmbstAddTag.setOnClickListener {
@@ -183,37 +236,46 @@ class AddMenuTagFragment : Fragment() {
 
         //리셋 버튼 누르면 태그 전부 사라짐
         binding.bsAddMenuTag.btnAmbstReset.setOnClickListener {
+            for (i: Int in 0..<binding.clAddMenuTagTag.childCount) {
+                bottomSheetTagRemoved.add(binding.clAddMenuTagTag.getChildAt(i))
+            }
             binding.bsAddMenuTag.cgAmbstSelectedTag.removeAllViews()
-            binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout() //뷰 새로고침
-            binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.GONE
+            showCG()
         }
 
         //확인 버튼 누르면 태그 적용된채로 바텀시트 내려감
         binding.bsAddMenuTag.btnAmbstConfirm.setOnClickListener {
-            binding.clAddMenuTagTag.requestLayout()
-            binding.clAddMenuTagTag.visibility = View.VISIBLE
+            updateBackgroundTag()
+            showCG()
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             clearBlur()
         }
 
         //바텀시트가 최대 크기일때는 드래그 안됨(스크롤만됨)
-        //바텀시트가 중간 크기일때는 드래그 됨
+        //바텀시트가 중간 크기일때는 드래그만 됨(스크롤 안됨) 됨
         //바텀시트 가려질시 스크롤 및 기타 초기화
         bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         bottomSheetBehavior.isDraggable = false
+                        //스크롤 풀기
+                        binding.bsAddMenuTag.root.setOnTouchListener(null)
+                        binding.bsAddMenuTag.root.setOnClickListener {
+                            requireActivity().currentFocus?.clearFocus()
+                            closeKeyboard()
+                        }
                     }
 
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         bottomSheetBehavior.isDraggable = true
+                        //스크롤 막기
+                        binding.bsAddMenuTag.root.setOnTouchListener { v, event -> true }
                     }
 
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         binding.bsAddMenuTag.root.scrollTo(0, 0)
-                        startChip = binding.clAddMenuTagTag.childCount
-                        countChip = 0
+                        binding.bsAddMenuTag.etAmbstEnterTag.text.clear()
                     }
                 }
             }
@@ -227,6 +289,7 @@ class AddMenuTagFragment : Fragment() {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                 clearBlur()
+                closeKeyboard()
             } else {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
@@ -234,19 +297,16 @@ class AddMenuTagFragment : Fragment() {
 
         //바탕 클릭 시 바텀시트 들어감
         binding.root.setOnClickListener {
+            resetBSTag()
+            showCG()
             if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_HIDDEN) {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                 clearBlur()
-                binding.bsAddMenuTag.root.scrollTo(0, 0)
-                if (countChip > 0) {
-                    binding.clAddMenuTagTag.removeViewsInLayout(startChip, countChip)
-                    binding.clAddMenuTagTag.requestLayout()
-                }
             }
-            binding.clAddMenuTagTag.removeAllViews()
             closeKeyboard()
             requireActivity().currentFocus?.clearFocus()
         }
+
         //바텀시트에서 선택 가능한 태그 눌렀을때 바텀시트에서 태그 추가
         binding.bsAddMenuTag.flAmbstRice.setOnClickListener {
             addDefaultTag(binding.bsAddMenuTag.tvAmbstRice.text.toString())

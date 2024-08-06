@@ -80,6 +80,11 @@ class AddMenuNameFragment : Fragment() {
                 .replace(R.id.cl_add_menu_main, AddMenuTagFragment())
                 .commit()
         }
+        binding.ivAddMenuNameReturn.setOnClickListener {
+            parentFragmentManager.popBackStack()
+            requireActivity().currentFocus?.clearFocus()
+        }
+
 
         initRV()
         initDragAndDrop()

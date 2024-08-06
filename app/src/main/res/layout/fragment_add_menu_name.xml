@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
+            android:id="@+id/iv_add_menu_name_return"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:src="@drawable/ic_arrow_left"
