@@ -164,7 +164,7 @@
             android:background="@drawable/btn_bg_8_n400"
             android:elevation="6dp"
             android:fontFamily="@font/pretendard_700"
-            android:text="확인"
+            android:text="@string/confirm"
             android:textColor="@color/Neutral_White"
             android:textSize="16sp"
             android:visibility="gone"

@@ -82,6 +82,13 @@ class MenuFolderFragment : Fragment() {
             startActivity(intent)
         }
 
+        // 전체 메뉴판 보기
+        binding.btnMenuAllMenu.setOnClickListener {
+            val intent = Intent(context, MenuFolderDetailActivity::class.java)
+            intent.putExtra("isAll", true)
+            startActivity(intent)
+        }
+
         itemClickListener =
             object : MenuItemClickListener {
                 override fun onMenuClick() {

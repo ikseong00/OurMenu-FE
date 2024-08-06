@@ -159,7 +159,7 @@
         android:elevation="13dp"
         android:fontFamily="@font/pretendard_700"
         android:padding="2dp"
-        android:text="확인"
+        android:text="@string/confirm"
         android:textColor="@color/Neutral_White"
         android:textSize="16sp"
         app:backgroundTint="@null"

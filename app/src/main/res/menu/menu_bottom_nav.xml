@@ -18,7 +18,7 @@
         android:title="메뉴판"/>
     <item
         android:id="@+id/community_fragment"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_community"
         android:title="커뮤니티"/>
     <item
         android:id="@+id/mypage_fragment"

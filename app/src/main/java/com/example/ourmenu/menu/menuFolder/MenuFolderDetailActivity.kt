@@ -15,22 +15,39 @@ class MenuFolderDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        // 메뉴화면에서 수정버튼으로 클릭되면 true, 기본값이면 false
-        val isEdit =
+        // 전체 메뉴판 클릭인지 확인
+        val isAll =
             intent.getBooleanExtra(
-                "isEdit"/* true */,
-                false,
+                "isAll"/* true */,
+                false
             )
 
-        // 수정화면 인지 기본화면 인지 세팅하는 부분
-        val menuFolderFragment = MenuFolderDetailFragment()
-        val bundle = Bundle()
-        bundle.putBoolean("isEdit", isEdit as Boolean)
-        menuFolderFragment.arguments = bundle
+        if (isAll) {
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.menu_folder_frm, menuFolderFragment)
-            .commitAllowingStateLoss()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.menu_folder_frm, MenuFolderDetailAllFragment())
+                .commitAllowingStateLoss()
+
+        } else {
+
+            // 메뉴화면에서 수정버튼으로 클릭되면 true, 기본값이면 false
+            val isEdit =
+                intent.getBooleanExtra(
+                    "isEdit",/* true */
+                    false,
+                )
+
+            // 수정화면 인지 기본화면 인지 세팅하는 부분
+            val menuFolderFragment = MenuFolderDetailFragment()
+            val bundle = Bundle()
+            bundle.putBoolean("isEdit", isEdit as Boolean)
+            menuFolderFragment.arguments = bundle
+
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.menu_folder_frm, menuFolderFragment)
+                .commitAllowingStateLoss()
+        }
     }
 }

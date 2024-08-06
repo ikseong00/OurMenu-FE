@@ -10,10 +10,10 @@ import com.example.ourmenu.databinding.ItemAddMenuPlaceMenuBinding
 
 class AddMenuPlaceMenuRVAdapter(
     var items: ArrayList<PlaceMenuData>,
-    val onItemSelected: (Int) -> Unit,
+    val onItemSelected: (Int?) -> Unit, // toggle되도록 nullable 추가
     val onButtonClicked: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var selectedPosition: Int = RecyclerView.NO_POSITION
+    private var selectedPosition: Int? = null // toggle되도록 nullable 추가
 
     companion object {
         private const val VIEW_TYPE_ITEM = 0
@@ -26,9 +26,16 @@ class AddMenuPlaceMenuRVAdapter(
         init {
             binding.ivAddMenuBsAddBtn.setOnClickListener {
                 val previousPosition = selectedPosition
-                selectedPosition = adapterPosition
-                notifyItemChanged(previousPosition)
-                notifyItemChanged(selectedPosition)
+                selectedPosition =
+                    if (adapterPosition == selectedPosition) {
+                        null // 다시 선택하면 선택 취소되도록
+                    } else {
+                        adapterPosition
+                    }
+
+                previousPosition?.let { notifyItemChanged(it) }
+                selectedPosition?.let { notifyItemChanged(it) }
+
                 onItemSelected(selectedPosition) // 아이템 선택 콜백 호출
             }
         }

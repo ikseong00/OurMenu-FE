@@ -82,23 +82,6 @@ class AddMenuMapFragment : Fragment() {
             },
         )
 
-        // bottom sheet 바깥을 클릭했을 때 bottom sheet 숨기기
-        binding.root.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
-
-                // TODO: 지도에서 focus 사라지도록?
-            }
-        }
-
-        // bottom sheet를 클릭했을 때 위로 올라오도록 설정
-        binding.clAddMenuBottomSheet.setOnClickListener {
-            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
-        }
-
         // 뒤로가기 버튼 클릭 이벤트 처리
         binding.ivAddMenuLogoBack.setOnClickListener {
             binding.etAddMenuSearch.text.clear() // 입력 필드 비우기 추가
@@ -112,6 +95,7 @@ class AddMenuMapFragment : Fragment() {
                 binding.fcvAddMenuMap.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
                 binding.clAddMenuRecentSearch.visibility = View.VISIBLE
+                binding.btnAddMenuNoResult.visibility = View.VISIBLE
                 resultAdapter.updateItems(recentPlaceItems)
                 binding.etAddMenuSearch.text.clear() // 입력 필드 비우기
 
@@ -122,6 +106,7 @@ class AddMenuMapFragment : Fragment() {
                 binding.fcvAddMenuMap.visibility = View.VISIBLE
                 binding.rvAddMenuSearchResults.visibility = View.GONE
                 binding.clAddMenuRecentSearch.visibility = View.GONE
+                binding.btnAddMenuNoResult.visibility = View.GONE
             }
         }
 
