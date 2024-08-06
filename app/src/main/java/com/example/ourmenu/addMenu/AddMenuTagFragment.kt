@@ -3,6 +3,7 @@ package com.example.ourmenu.addMenu
 import android.content.Context
 import android.graphics.RenderEffect
 import android.graphics.Shader
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +14,10 @@ import android.view.View.OnFocusChangeListener
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.ScrollView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.bottomSheetClass.AddMenuBottomSheetIcon
 import com.example.ourmenu.databinding.FragmentAddMenuTagBinding
@@ -97,26 +101,35 @@ class AddMenuTagFragment : Fragment() {
         binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
     }
 
+    fun selected(v1: View, v2: TextView, v3: ImageView) {
+        v3.setColorFilter(resources.getColor(R.color.Neutral_White))
+        v1.setBackgroundResource(R.drawable.btn_bg_12_p500)
+        v2.setTextColor(resources.getColor(R.color.Neutral_White))
+    }
+
+    fun unselected(v1: View, v2: TextView, v3: ImageView) {
+        v3.setColorFilter(resources.getColor(R.color.Neutral_900))
+        v1.setBackgroundResource(R.drawable.tag_selectable)
+        v2.setTextColor(resources.getColor(R.color.Neutral_900))
+    }
+
     //기본 태그를 추가
-    fun addDefaultTag(string: String) {
-        binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.VISIBLE
+    fun addDefaultTag(string: String, v1: View, v2: TextView, v3: ImageView) {
+        selected(v1, v2, v3)
         var rootTag = initDefaultTag(string)
-        var sheetTag = initDefaultTag(string)
         rootTag.ivTagDelete.setOnClickListener {
             removeTagFromRoot(rootTag.root)
-            removeTagFromSheet(sheetTag.root)
+            unselected(v1, v2, v3)
+            v1.setOnClickListener { addDefaultTag(string, v1, v2, v3) }
         }
-        sheetTag.ivTagDelete.setOnClickListener {
+        v1.setOnClickListener {
+            unselected(v1, v2, v3)
+            bottomSheetTagRemovedbs.add(v1)
             bottomSheetTagRemoved.add(rootTag.root)
-            bottomSheetTagAdded.remove(rootTag.root)
-            bottomSheetTagAddedbs.remove(sheetTag.root)
-            bottomSheetTagRemovedbs.add(sheetTag.root)
-            removeTagFromSheet(sheetTag.root)
+            v1.setOnClickListener { addDefaultTag(string, v1, v2, v3) }
         }
+        bottomSheetTagAddedbs.add(v1)
         bottomSheetTagAdded.add(rootTag.root)
-        bottomSheetTagAddedbs.add(sheetTag.root)
-        binding.bsAddMenuTag.cgAmbstSelectedTag.addView(sheetTag.root)
-        binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
     }
 
     //커스텀 태그를 추가
@@ -130,8 +143,6 @@ class AddMenuTagFragment : Fragment() {
         }
         sheetTag.ivTagDelete.setOnClickListener {
             bottomSheetTagRemoved.add(rootTag.root)
-            bottomSheetTagAdded.remove(rootTag.root)
-            bottomSheetTagAddedbs.remove(sheetTag.root)
             bottomSheetTagRemovedbs.add(sheetTag.root)
             removeTagFromSheet(sheetTag.root)
         }
@@ -156,14 +167,27 @@ class AddMenuTagFragment : Fragment() {
         binding.clAddMenuTagTag.requestLayout()
     }
 
-    //
+    //변경 취소시 바텀시트에서의 변경사항 초기화
     fun resetBSTag() {
-        for (i in bottomSheetTagAddedbs) {
-            binding.bsAddMenuTag.cgAmbstSelectedTag.removeView(i)
+        val bstabs = bottomSheetTagAddedbs.clone() as ArrayList<View>
+        val bstrbs = bottomSheetTagRemovedbs.clone() as ArrayList<View>
+        val bsta = bottomSheetTagAdded.clone() as ArrayList<View>
+        val bstr = bottomSheetTagRemoved.clone() as ArrayList<View>
+
+        for (i in bstabs) {
+            if (i is ConstraintLayout) {
+                binding.bsAddMenuTag.cgAmbstSelectedTag.removeView(i)
+            } else {
+                i.performClick()
+            }
         }
-        if (bottomSheetTagRemoved.size<=binding.clAddMenuTagTag.childCount){
-            for (i in bottomSheetTagRemovedbs) {
-                binding.bsAddMenuTag.cgAmbstSelectedTag.addView(i)
+        if (bstr.size<= binding.clAddMenuTagTag.childCount) {
+            for (i in bstrbs) {
+                if (i is ConstraintLayout) {
+                    binding.bsAddMenuTag.cgAmbstSelectedTag.addView(i)
+                } else {
+                    i.performClick()
+                }
             }
         }
         bottomSheetTagAdded.clear()
@@ -276,6 +300,7 @@ class AddMenuTagFragment : Fragment() {
                     BottomSheetBehavior.STATE_HIDDEN -> {
                         binding.bsAddMenuTag.root.scrollTo(0, 0)
                         binding.bsAddMenuTag.etAmbstEnterTag.text.clear()
+                        binding.bsAddMenuTag.etAmbstEnterTag.clearFocus()
                     }
                 }
             }
@@ -309,19 +334,40 @@ class AddMenuTagFragment : Fragment() {
 
         //바텀시트에서 선택 가능한 태그 눌렀을때 바텀시트에서 태그 추가
         binding.bsAddMenuTag.flAmbstRice.setOnClickListener {
-            addDefaultTag(binding.bsAddMenuTag.tvAmbstRice.text.toString())
+            addDefaultTag(
+                binding.bsAddMenuTag.tvAmbstRice.text.toString(),
+                binding.bsAddMenuTag.flAmbstRice,
+                binding.bsAddMenuTag.tvAmbstRice,
+                binding.bsAddMenuTag.ivAmbstRice
+            )
         }
         binding.bsAddMenuTag.flAmbstBread.setOnClickListener {
-            addDefaultTag(binding.bsAddMenuTag.tvAmbstBread.text.toString())
+            addDefaultTag(
+                binding.bsAddMenuTag.tvAmbstBread.text.toString(),
+                binding.bsAddMenuTag.flAmbstBread,
+                binding.bsAddMenuTag.tvAmbstBread,
+                binding.bsAddMenuTag.ivAmbstBread
+            )
         }
         binding.bsAddMenuTag.flAmbstNoodle.setOnClickListener {
-            addDefaultTag(binding.bsAddMenuTag.tvAmbstNoodle.text.toString())
+            addDefaultTag(
+                binding.bsAddMenuTag.tvAmbstNoodle.text.toString(),
+                binding.bsAddMenuTag.flAmbstNoodle,
+                binding.bsAddMenuTag.tvAmbstNoodle,
+                binding.bsAddMenuTag.ivAmbstNoodle
+            )
         }
-        binding.bsAddMenuTag.flAmbstRice.setOnClickListener {
-            addDefaultTag(binding.bsAddMenuTag.tvAmbstRice.text.toString())
+        binding.bsAddMenuTag.flAmbstMeat.setOnClickListener {
+            addDefaultTag(
+                binding.bsAddMenuTag.tvAmbstMeat.text.toString(),
+                binding.bsAddMenuTag.flAmbstMeat,
+                binding.bsAddMenuTag.tvAmbstMeat,
+                binding.bsAddMenuTag.ivAmbstMeat
+            )
         }
         //todo 남은 선택 가능한 태그도 clickListener 설정 필요
     }
+
 
     fun closeKeyboard() {
         val inputManager: InputMethodManager =

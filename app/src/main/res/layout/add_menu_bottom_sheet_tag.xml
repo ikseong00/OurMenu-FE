@@ -63,8 +63,7 @@
                 android:hint="직접 태그를 입력해주세요."
                 android:paddingVertical="10dp"
                 android:textColorHint="@color/Neutral_500"
-                android:textSize="16sp" />
-
+                android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/iv_ambst_keyboard"
                 android:layout_width="wrap_content"
@@ -132,6 +131,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_rice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -158,6 +158,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_bread"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -184,6 +185,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_noodle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -210,6 +212,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_meat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -236,6 +239,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_fish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -262,6 +266,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_cafe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -288,6 +293,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_dessert"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -314,6 +320,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_fastfood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -365,6 +372,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_korean"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -391,6 +399,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_chinese"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -417,6 +426,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_japanese"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -443,6 +453,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_western"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -469,6 +480,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_asian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -519,6 +531,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_spicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -545,6 +558,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_sweet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -571,6 +585,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_cool"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -597,6 +612,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_hot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -623,6 +639,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_eolkeun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -673,6 +690,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_alone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -699,6 +717,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_bmeeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -725,6 +744,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -751,6 +771,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -777,6 +798,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_babyak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -803,6 +825,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/iv_ambst_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
