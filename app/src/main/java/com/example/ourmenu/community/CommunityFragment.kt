@@ -43,6 +43,7 @@ class CommunityFragment : Fragment() {
         return binding.root
     }
 
+
     private fun initSpinner() {
         val adapter =
             CommunityFilterSpinnerAdapter<String>(requireContext(), arrayListOf("최신순", "조회순"))
@@ -78,40 +79,11 @@ class CommunityFragment : Fragment() {
     }
 
     private fun initListener() {
-//        // 정렬 필터 클릭
-//        binding.btnCommunityFilter.setOnClickListener {
-//            binding.llCommunityFilterList.viewVisible()
-//            binding.llCommunityFilterList.translationY = binding.llCommunityFilterList.height.toFloat()
-//            binding.llCommunityFilterList.animate()
-//                .translationY(0f)
-//                .setListener(null)
-//                .duration = 300
-//
-//        }
-//
-//        // 조회순
-//        binding.btnCommunityMostViewed.setOnClickListener {
-//            binding.btnCommunityFilter.text = binding.btnCommunityMostViewed.text
-//            // TODO 정렬
-//            binding.llCommunityFilterList.viewGone()
-//        }
-//        // 최신순
-//        binding.btnCommunityNewest.setOnClickListener {
-//            binding.btnCommunityFilter.text = binding.btnCommunityNewest.text
-//            // TODO 정렬
-//            binding.llCommunityFilterList.viewGone()
-//        }
-//
-//        // 필터 다이어로그 GONE
-//        binding.root.setOnClickListener {
-//            binding.llCommunityFilterList.viewGone()
-//        }
-//
-//        binding.ivCommunityWrite.setOnClickListener {
-//            val intent = Intent(context, CommunityWritePostActivity::class.java)
-//            intent.putExtra("flag", "write")
-//            startActivity(intent)
-//        }
+        binding.ivCommunityWrite.setOnClickListener{
+            val intent = Intent(context, CommunityWritePostActivity::class.java)
+            intent.putExtra("flag", "write")
+            startActivity(intent)
+        }
     }
 
     private fun initRV() {
@@ -119,6 +91,7 @@ class CommunityFragment : Fragment() {
             MypageRVAdapter(dummyItems) {
                 // TODO: 해당 게시물로 이동하기
                 val intent = Intent(context, CommunityWritePostActivity::class.java)
+                intent.putExtra("isMine", true)
                 intent.putExtra("postData", it)
                 intent.putExtra("flag", "post")
                 startActivity(intent)

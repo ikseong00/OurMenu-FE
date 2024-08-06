@@ -20,10 +20,6 @@ class CommunityPostRVAdapter(
         private val binding: ItemCommunityPostMenuBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeMenuData, position: Int) {
-//            binding.sivItemMenuImageMain.setImageResource(item.imageUrl)
-//            binding.tvItemMenuMain.text = item.menu
-//            binding.tvItemStoreMain.text = item.store
-//
             binding.ivItemCpmDelete.setOnClickListener {
                 onDeleteClick(item)
                 removeItem(position)
@@ -32,20 +28,6 @@ class CommunityPostRVAdapter(
                 onSaveClick(item)
             }
 
-
-            // 화면 자석 효과
-            if (adapterPosition == 0 || adapterPosition == items.size) {
-                binding.layoutItemHomeMenuMain.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-
-                val displayMetrics = context.resources.displayMetrics
-                val screenWidth = displayMetrics.widthPixels
-                var mLayoutParam: RecyclerView.LayoutParams =
-                    binding.layoutItemHomeMenuMain.layoutParams as RecyclerView.LayoutParams
-                if (adapterPosition == 0)
-                    mLayoutParam.leftMargin = (screenWidth - binding.layoutItemHomeMenuMain.measuredWidthAndState) / 2
-                else
-                    mLayoutParam.rightMargin = (screenWidth - binding.layoutItemHomeMenuMain.measuredWidthAndState) / 2
-            }
         }
     }
 
@@ -68,13 +50,15 @@ class CommunityPostRVAdapter(
     }
 
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = 2000
 
     override fun onBindViewHolder(
         holder: CommunityPostRVAdapter.ViewHolder,
         position: Int,
     ) {
-        holder.bind(items[position], position)
+        val dividePos = position % items.size
+        holder.bind(items[dividePos], dividePos)
+
     }
 
 

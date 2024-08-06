@@ -69,17 +69,24 @@
 
     <Spinner
         android:id="@+id/spn_community_filter"
+        style="@style/Spinner.Email"
         android:layout_width="88dp"
         android:layout_height="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/btn_top_corner_default"
-        style="@style/Spinner.Email"
         android:dropDownWidth="match_parent"
         android:dropDownVerticalOffset="10dp"
         android:popupBackground="@drawable/btn_bg_8_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_community_topbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="-1dp"
+        android:background="@color/Neutral_300"
+        app:layout_constraintTop_toTopOf="@id/rv_community" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_community"

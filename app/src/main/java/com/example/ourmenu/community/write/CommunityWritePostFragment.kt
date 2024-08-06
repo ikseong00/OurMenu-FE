@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.R
 import com.example.ourmenu.community.write.adapter.CommunityWritePostRVAdapter
@@ -78,29 +79,8 @@ class CommunityWritePostFragment : Fragment() {
 
         binding.rvCommunityPost.adapter = rvAdapter
 
-        binding.rvCommunityPost.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    val firstPos =
-                        (binding.rvCommunityPost.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                    val secondPos =
-                        (binding.rvCommunityPost.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    val selectedPos = max(firstPos, secondPos)
-
-                    if (selectedPos != -1) {
-                        val viewItem =
-                            (binding.rvCommunityPost.layoutManager as LinearLayoutManager)
-                                .findViewByPosition(selectedPos)
-
-                        viewItem?.run {
-                            val itemMargin = (binding.rvCommunityPost.measuredWidth - viewItem.measuredWidth) / 2
-                            binding.rvCommunityPost.smoothScrollBy(this.x.toInt() - itemMargin, 0)
-                        }
-                    }
-                }
-            }
-        })
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvCommunityPost)
     }
 
 }
