@@ -53,8 +53,8 @@ class AddMenuSelectMenuFragment : Fragment() {
             AddMenuPlaceMenuRVAdapter(
                 placeMenuItems,
                 onItemSelected = { selectedPosition ->
-                    // 아이템이 선택되었을 때 버튼을 활성화
-                    binding.btnAmsmNext.isEnabled = true
+                    // 아이템이 선택되었을 때 버튼을 활성화, 선택이 취소되면 비활성화
+                    binding.btnAmsmNext.isEnabled = selectedPosition != null
                 },
                 onButtonClicked = {
                     parentFragmentManager
