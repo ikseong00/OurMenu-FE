@@ -33,19 +33,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_mfda_all_menu"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_mfda_all_menu"
         app:layout_constraintTop_toTopOf="@id/tv_mfda_all_menu">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_400"
-            android:text="메뉴 "
-            android:textColor="@color/Neutral_900"
-            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,6 +55,20 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spn_mfda_filter"
+        style="@style/Spinner.Email"
+        android:layout_width="72dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="20dp"
+        android:background="@null"
+        android:dropDownWidth="match_parent"
+        android:dropDownVerticalOffset="10dp"
+        android:popupBackground="@drawable/btn_bg_8_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
         android:id="@+id/hsv_mfda_filter"
@@ -205,8 +210,8 @@
         android:id="@+id/rv_mfda_menu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/btn_mfda_add_menu"
         app:layout_constraintTop_toBottomOf="@id/hsv_mfda_filter"
         tools:listitem="@layout/item_menu_folder_detail_menu" />
