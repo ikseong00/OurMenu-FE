@@ -1,4 +1,4 @@
-package com.example.ourmenu.mypage.adapter
+package com.example.ourmenu.community.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.PostData
 import com.example.ourmenu.databinding.ItemPostBinding
 
-class MypageRVAdapter(
+class CommunityRVAdapter(
     var items: ArrayList<PostData>,
     val itemClickListener: (PostData) -> Unit,
-) : RecyclerView.Adapter<MypageRVAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CommunityRVAdapter.ViewHolder>() {
     inner class ViewHolder(
         private val binding: ItemPostBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
