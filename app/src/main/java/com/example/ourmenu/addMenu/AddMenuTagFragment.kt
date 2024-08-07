@@ -18,6 +18,8 @@ import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.children
+import androidx.core.view.iterator
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.bottomSheetClass.AddMenuBottomSheetIcon
 import com.example.ourmenu.databinding.FragmentAddMenuTagBinding
@@ -37,6 +39,8 @@ class AddMenuTagFragment : Fragment() {
     var bottomSheetTagRemoved = ArrayList<View>()
     var bottomSheetTagAddedbs = ArrayList<View>()
     var bottomSheetTagRemovedbs = ArrayList<View>()
+    val totalSTagBS = ArrayList<View>()
+    var totalSTag = ArrayList<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +90,7 @@ class AddMenuTagFragment : Fragment() {
     //태그를 바탕에서 제거
     fun removeTagFromRoot(view: View) {
         binding.clAddMenuTagTag.removeView(view)
+        totalSTag.remove(view)
         if (binding.clAddMenuTagTag.childCount == 0) {
             binding.clAddMenuTagTag.visibility = View.GONE
         }
@@ -95,6 +100,7 @@ class AddMenuTagFragment : Fragment() {
     //태그를 바텀시트에서 제거
     fun removeTagFromSheet(view: View) {
         binding.bsAddMenuTag.cgAmbstSelectedTag.removeView(view)
+        totalSTagBS.remove(view)
         if (binding.bsAddMenuTag.cgAmbstSelectedTag.childCount == 0) {
             binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.GONE
         }
@@ -117,6 +123,8 @@ class AddMenuTagFragment : Fragment() {
     fun addDefaultTag(string: String, v1: View, v2: TextView, v3: ImageView) {
         selected(v1, v2, v3)
         var rootTag = initDefaultTag(string)
+        totalSTagBS.add(v1)
+        totalSTag.add(rootTag.root)
         rootTag.ivTagDelete.setOnClickListener {
             removeTagFromRoot(rootTag.root)
             unselected(v1, v2, v3)
@@ -126,6 +134,8 @@ class AddMenuTagFragment : Fragment() {
             unselected(v1, v2, v3)
             bottomSheetTagRemovedbs.add(v1)
             bottomSheetTagRemoved.add(rootTag.root)
+            bottomSheetTagAddedbs.remove(v1)
+            bottomSheetTagAdded.remove(rootTag.root)
             v1.setOnClickListener { addDefaultTag(string, v1, v2, v3) }
         }
         bottomSheetTagAddedbs.add(v1)
@@ -137,6 +147,8 @@ class AddMenuTagFragment : Fragment() {
         binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.VISIBLE
         var rootTag = initCustomTag(string)
         var sheetTag = initCustomTag(string)
+        totalSTagBS.add(sheetTag.root)
+        totalSTag.add(rootTag.root)
         rootTag.ivTagDelete.setOnClickListener {
             removeTagFromRoot(rootTag.root)
             removeTagFromSheet(sheetTag.root)
@@ -144,6 +156,8 @@ class AddMenuTagFragment : Fragment() {
         sheetTag.ivTagDelete.setOnClickListener {
             bottomSheetTagRemoved.add(rootTag.root)
             bottomSheetTagRemovedbs.add(sheetTag.root)
+            bottomSheetTagAddedbs.remove(sheetTag.root)
+            bottomSheetTagAdded.remove(rootTag.root)
             removeTagFromSheet(sheetTag.root)
         }
         bottomSheetTagAdded.add(rootTag.root)
@@ -156,13 +170,17 @@ class AddMenuTagFragment : Fragment() {
     fun updateBackgroundTag() {
         for (i in bottomSheetTagAdded) {
             binding.clAddMenuTagTag.addView(i)
+            totalSTag.add(i)
         }
         for (i in bottomSheetTagRemoved) {
             binding.clAddMenuTagTag.removeView(i)
+            totalSTag.remove(i)
         }
-        bottomSheetTagAdded.clear()
+        totalSTagBS += bottomSheetTagAddedbs
+        totalSTagBS -= bottomSheetTagRemovedbs
         bottomSheetTagRemoved.clear()
         bottomSheetTagRemovedbs.clear()
+        bottomSheetTagAdded.clear()
         bottomSheetTagAddedbs.clear()
         binding.clAddMenuTagTag.requestLayout()
     }
@@ -171,7 +189,6 @@ class AddMenuTagFragment : Fragment() {
     fun resetBSTag() {
         val bstabs = bottomSheetTagAddedbs.clone() as ArrayList<View>
         val bstrbs = bottomSheetTagRemovedbs.clone() as ArrayList<View>
-        val bsta = bottomSheetTagAdded.clone() as ArrayList<View>
         val bstr = bottomSheetTagRemoved.clone() as ArrayList<View>
 
         for (i in bstabs) {
@@ -181,7 +198,7 @@ class AddMenuTagFragment : Fragment() {
                 i.performClick()
             }
         }
-        if (bstr.size<= binding.clAddMenuTagTag.childCount) {
+        if (bstr.size <= binding.clAddMenuTagTag.childCount) {
             for (i in bstrbs) {
                 if (i is ConstraintLayout) {
                     binding.bsAddMenuTag.cgAmbstSelectedTag.addView(i)
@@ -190,10 +207,14 @@ class AddMenuTagFragment : Fragment() {
                 }
             }
         }
+        totalSTagBS += bottomSheetTagAddedbs
+        totalSTagBS -= bottomSheetTagRemovedbs
+        totalSTag += bottomSheetTagAdded
+        totalSTag -= bottomSheetTagRemoved
         bottomSheetTagAdded.clear()
+        bottomSheetTagAddedbs.clear()
         bottomSheetTagRemoved.clear()
         bottomSheetTagRemovedbs.clear()
-        bottomSheetTagAddedbs.clear()
         binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
     }
 
@@ -207,6 +228,8 @@ class AddMenuTagFragment : Fragment() {
         if (binding.clAddMenuTagTag.childCount == 0) {
             binding.clAddMenuTagTag.visibility = GONE
         } else binding.clAddMenuTagTag.visibility = VISIBLE
+        binding.clAddMenuTagTag.requestLayout()
+        binding.bsAddMenuTag.cgAmbstSelectedTag.requestLayout()
     }
 
     //화면 블러처리
@@ -260,10 +283,22 @@ class AddMenuTagFragment : Fragment() {
 
         //리셋 버튼 누르면 태그 전부 사라짐
         binding.bsAddMenuTag.btnAmbstReset.setOnClickListener {
-            for (i: Int in 0..<binding.clAddMenuTagTag.childCount) {
-                bottomSheetTagRemoved.add(binding.clAddMenuTagTag.getChildAt(i))
+            resetBSTag()
+            val total = totalSTag.clone() as ArrayList<View>
+            val totalBS = totalSTagBS.clone() as ArrayList<View>
+            for (i in total) {
+                bottomSheetTagRemoved.add(i)
+                bottomSheetTagAdded.remove(i)
             }
-            binding.bsAddMenuTag.cgAmbstSelectedTag.removeAllViews()
+            for (i in totalBS) {
+                if (i is ConstraintLayout) {
+                    removeTagFromSheet(i)
+                    bottomSheetTagRemovedbs.add(i)
+                    bottomSheetTagAddedbs.remove(i)
+                } else {
+                    i.performClick()
+                }
+            }
             showCG()
         }
 
