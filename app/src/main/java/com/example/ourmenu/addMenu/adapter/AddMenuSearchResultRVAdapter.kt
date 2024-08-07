@@ -3,23 +3,33 @@ package com.example.ourmenu.addMenu.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ourmenu.data.PlaceInfoData
+import com.example.ourmenu.data.place.PlaceInfoData2
+import com.example.ourmenu.data.place.PlaceSearchHistoryData
 import com.example.ourmenu.databinding.ItemAddMenuSearchResultBinding
 
 class AddMenuSearchResultRVAdapter(
-    var items: ArrayList<PlaceInfoData>,
-    val itemClickListener: (PlaceInfoData) -> Unit,
+    var items: ArrayList<Any>,
+    val itemClickListener: (Any) -> Unit,
 ) : RecyclerView.Adapter<AddMenuSearchResultRVAdapter.ViewHolder>() {
     inner class ViewHolder(
         private val binding: ItemAddMenuSearchResultBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PlaceInfoData) {
-            binding.tvAddMenuSearchResultPlace.text = item.placeName
-            binding.tvAddMenuSearchResultAddress.text = item.address
-            binding.tvAddMenuSearchResultType.text = item.type
-            binding.tvAddMenuSearchResultDistance.text = item.distance
-
-            binding.root.setOnClickListener { itemClickListener(item) }
+        //        fun bind(item: PlaceInfoData2) {
+//            binding.tvAddMenuSearchResultPlace.text = item.name
+//            binding.tvAddMenuSearchResultAddress.text = item.address
+//
+//            binding.root.setOnClickListener { itemClickListener(item) }
+//        }
+        fun bind(item: Any) {
+            if (item is PlaceSearchHistoryData) {
+                binding.tvAddMenuSearchResultPlace.text = item.storeName
+                binding.tvAddMenuSearchResultAddress.text = item.address
+                binding.root.setOnClickListener { itemClickListener(item) }
+            } else if (item is PlaceInfoData2) {
+                binding.tvAddMenuSearchResultPlace.text = item.name
+                binding.tvAddMenuSearchResultAddress.text = item.address
+                binding.root.setOnClickListener { itemClickListener(item) }
+            }
         }
     }
 
@@ -40,8 +50,15 @@ class AddMenuSearchResultRVAdapter(
         holder.bind(items[position])
     }
 
-    fun updateItems(newItems: ArrayList<PlaceInfoData>) {
-        items = newItems
+    fun updateItemsFromSearchHistory(newItems: ArrayList<PlaceSearchHistoryData>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
+    fun updateItemsFromSearchResults(newItems: ArrayList<PlaceInfoData2>) {
+        items.clear()
+        items.addAll(newItems)
         notifyDataSetChanged()
     }
 }
