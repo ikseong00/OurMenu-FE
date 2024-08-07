@@ -16,9 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuSearchResultRVAdapter
 import com.example.ourmenu.data.place.PlaceInfoData2
-import com.example.ourmenu.data.place.PlaceInfoResponse
-import com.example.ourmenu.data.place.PlaceSearchHistoryData
-import com.example.ourmenu.data.place.PlaceSearchHistoryResponse
+import com.example.ourmenu.data.place.PlaceSearchData
+import com.example.ourmenu.data.place.PlaceSearchResponse
 import com.example.ourmenu.databinding.FragmentAddMenuMapBinding
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.PlaceService
@@ -40,8 +39,8 @@ class AddMenuMapFragment :
 
     lateinit var resultAdapter: AddMenuSearchResultRVAdapter
 
-    private var recentSearchItems: ArrayList<PlaceSearchHistoryData> = ArrayList()
-    private var searchResultItems: ArrayList<PlaceInfoData2> = ArrayList()
+    private var recentSearchItems: ArrayList<PlaceSearchData> = ArrayList()
+    private var searchResultItems: ArrayList<PlaceSearchData> = ArrayList()
 
     private var isKeyboardVisible = false
 
@@ -119,7 +118,7 @@ class AddMenuMapFragment :
                 binding.btnAddMenuNoResult.visibility = View.VISIBLE
 
                 // 최근 검색 기록을 어댑터에 설정
-                resultAdapter.updateItemsFromSearchHistory(recentSearchItems)
+                resultAdapter.updateItemsFromSearch(recentSearchItems)
 
                 binding.etAddMenuSearch.text.clear() // 입력 필드 비우기
 
@@ -179,10 +178,10 @@ class AddMenuMapFragment :
         val call = service.getPlaceInfo("Bearer " + RetrofitObject.TOKEN, title)
 
         call.enqueue(
-            object : retrofit2.Callback<PlaceInfoResponse> {
+            object : retrofit2.Callback<PlaceSearchResponse> {
                 override fun onResponse(
-                    call: Call<PlaceInfoResponse>,
-                    response: retrofit2.Response<PlaceInfoResponse>,
+                    call: Call<PlaceSearchResponse>,
+                    response: retrofit2.Response<PlaceSearchResponse>,
                 ) {
                     if (response.isSuccessful) {
                         val placeInfoResponse = response.body()
@@ -191,7 +190,7 @@ class AddMenuMapFragment :
                             val placeInfo = placeInfoResponse.response
                             if (placeInfo != null) {
                                 searchResultItems = placeInfo
-                                resultAdapter.updateItemsFromSearchResults(searchResultItems)
+                                resultAdapter.updateItemsFromSearch(searchResultItems)
                             }
                         } else {
                             val errorMessage = placeInfoResponse?.errorResponse?.message ?: "error"
@@ -204,7 +203,7 @@ class AddMenuMapFragment :
                 }
 
                 override fun onFailure(
-                    call: Call<PlaceInfoResponse>,
+                    call: Call<PlaceSearchResponse>,
                     t: Throwable,
                 ) {
                     Log.d("오류3", t.message.toString())
@@ -218,16 +217,16 @@ class AddMenuMapFragment :
         val call = service.getPlaceSearchHistory("Bearer " + RetrofitObject.TOKEN)
 
         call.enqueue(
-            object : retrofit2.Callback<PlaceSearchHistoryResponse> {
+            object : retrofit2.Callback<PlaceSearchResponse> {
                 override fun onResponse(
-                    call: Call<PlaceSearchHistoryResponse>,
-                    response: retrofit2.Response<PlaceSearchHistoryResponse>,
+                    call: Call<PlaceSearchResponse>,
+                    response: retrofit2.Response<PlaceSearchResponse>,
                 ) {
                     if (response.isSuccessful) {
                         val searchHistoryResponse = response.body()
                         if (searchHistoryResponse?.isSuccess == true) {
                             recentSearchItems = searchHistoryResponse.response
-                            resultAdapter.updateItemsFromSearchHistory(recentSearchItems)
+                            resultAdapter.updateItemsFromSearch(recentSearchItems)
                         } else {
                             val errorMessage = searchHistoryResponse?.errorResponse?.message ?: "error"
                             Log.d("오류1", errorMessage)
@@ -239,7 +238,7 @@ class AddMenuMapFragment :
                 }
 
                 override fun onFailure(
-                    call: Call<PlaceSearchHistoryResponse>,
+                    call: Call<PlaceSearchResponse>,
                     t: Throwable,
                 ) {
                     Log.d("오류3", t.message.toString())
@@ -251,12 +250,14 @@ class AddMenuMapFragment :
     private fun initResultRV() {
         resultAdapter =
             AddMenuSearchResultRVAdapter(arrayListOf()) { place ->
-                if (place is PlaceSearchHistoryData) {
-                    binding.etAddMenuSearch.setText(place.storeName)
-                } else if (place is PlaceInfoData2) {
-                    showPlaceDetails(place) // 장소 세부 정보를 표시
-                    binding.etAddMenuSearch.setText(place.name) // 검색 결과 item의 placeName으로 input field 설정
-                }
+//                if (place is PlaceSearchHistoryData) {
+//                    binding.etAddMenuSearch.setText(place.storeName)
+//                } else if (place is PlaceInfoData2) {
+//                    showPlaceDetails(place) // 장소 세부 정보를 표시
+//                    binding.etAddMenuSearch.setText(place.name) // 검색 결과 item의 placeName으로 input field 설정
+//                }
+//                showPlaceDetails(place)
+                binding.etAddMenuSearch.setText(place.placeTitle)
                 returnToMap()
             }
         binding.rvAddMenuSearchResults.layoutManager = LinearLayoutManager(context)

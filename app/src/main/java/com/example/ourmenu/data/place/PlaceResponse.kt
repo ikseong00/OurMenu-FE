@@ -2,16 +2,23 @@ package com.example.ourmenu.data.place
 
 import com.example.ourmenu.data.ErrorResponse
 
-// place/search
-data class PlaceInfoResponse(
+// place/search, place/search-history
+data class PlaceSearchResponse(
     val isSuccess: Boolean,
-    val response: ArrayList<PlaceInfoData2>,
+    val response: ArrayList<PlaceSearchData>,
     val errorResponse: ErrorResponse?,
 )
 
 // place/search-history
-data class PlaceSearchHistoryResponse(
+// data class PlaceSearchHistoryResponse(
+//    val isSuccess: Boolean,
+//    val response: ArrayList<PlaceSearchHistoryData>,
+//    val errorResponse: ErrorResponse?,
+// )
+
+// place/{id}
+data class PlaceDetailResponse(
     val isSuccess: Boolean,
-    val response: ArrayList<PlaceSearchHistoryData>,
+    val response: ArrayList<PlaceDetailData>,
     val errorResponse: ErrorResponse?,
 )
