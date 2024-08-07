@@ -6,10 +6,13 @@ import android.graphics.Shader
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.INVISIBLE
 import android.view.View.OnFocusChangeListener
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -25,6 +28,7 @@ import com.example.ourmenu.addMenu.bottomSheetClass.AddMenuBottomSheetIcon
 import com.example.ourmenu.databinding.FragmentAddMenuTagBinding
 import com.example.ourmenu.databinding.TagCustomBinding
 import com.example.ourmenu.databinding.TagDefaultBinding
+import com.example.ourmenu.util.Utils.showToast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -121,12 +125,17 @@ class AddMenuTagFragment : Fragment() {
 
     //기본 태그를 추가
     fun addDefaultTag(string: String, v1: View, v2: TextView, v3: ImageView) {
+        if (isOverTwelve()){
+            showToast(requireContext(),R.drawable.ic_error,"태그는 최대 12개까지 등록할 수 있어요.")
+            return
+        }
         selected(v1, v2, v3)
         var rootTag = initDefaultTag(string)
         totalSTagBS.add(v1)
         totalSTag.add(rootTag.root)
         rootTag.ivTagDelete.setOnClickListener {
             removeTagFromRoot(rootTag.root)
+            removeTagFromSheet(v1)
             unselected(v1, v2, v3)
             v1.setOnClickListener { addDefaultTag(string, v1, v2, v3) }
         }
@@ -144,6 +153,10 @@ class AddMenuTagFragment : Fragment() {
 
     //커스텀 태그를 추가
     fun addCustomTag(string: String) {
+        if (isOverTwelve()){
+            showToast(requireContext(),R.drawable.ic_error,"태그는 최대 12개까지 등록할 수 있어요.")
+            return
+        }
         binding.bsAddMenuTag.cgAmbstSelectedTag.visibility = View.VISIBLE
         var rootTag = initCustomTag(string)
         var sheetTag = initCustomTag(string)
@@ -176,8 +189,7 @@ class AddMenuTagFragment : Fragment() {
             binding.clAddMenuTagTag.removeView(i)
             totalSTag.remove(i)
         }
-        totalSTagBS += bottomSheetTagAddedbs
-        totalSTagBS -= bottomSheetTagRemovedbs
+        totalSTagBS -= bottomSheetTagRemovedbs.clone() as ArrayList<View>
         bottomSheetTagRemoved.clear()
         bottomSheetTagRemovedbs.clear()
         bottomSheetTagAdded.clear()
@@ -187,9 +199,10 @@ class AddMenuTagFragment : Fragment() {
 
     //변경 취소시 바텀시트에서의 변경사항 초기화
     fun resetBSTag() {
-        val bstabs = bottomSheetTagAddedbs.clone() as ArrayList<View>
-        val bstrbs = bottomSheetTagRemovedbs.clone() as ArrayList<View>
-        val bstr = bottomSheetTagRemoved.clone() as ArrayList<View>
+        var bstabs = bottomSheetTagAddedbs.clone() as ArrayList<View>
+        var bstrbs = bottomSheetTagRemovedbs.clone() as ArrayList<View>
+        var bstr = bottomSheetTagRemoved.clone() as ArrayList<View>
+        var bsta = bottomSheetTagAdded.clone() as ArrayList<View>
 
         for (i in bstabs) {
             if (i is ConstraintLayout) {
@@ -207,10 +220,10 @@ class AddMenuTagFragment : Fragment() {
                 }
             }
         }
-        totalSTagBS += bottomSheetTagAddedbs
-        totalSTagBS -= bottomSheetTagRemovedbs
-        totalSTag += bottomSheetTagAdded
-        totalSTag -= bottomSheetTagRemoved
+        totalSTagBS += bstrbs.clone() as ArrayList<View>
+        totalSTag += bstr.clone() as ArrayList<View>
+        totalSTagBS -= bstabs.clone() as ArrayList<View>
+        totalSTag -= bsta.clone() as ArrayList<View>
         bottomSheetTagAdded.clear()
         bottomSheetTagAddedbs.clear()
         bottomSheetTagRemoved.clear()
@@ -266,12 +279,40 @@ class AddMenuTagFragment : Fragment() {
         binding.bsAddMenuTag.etAmbstEnterTag.onFocusChangeListener = (object : OnFocusChangeListener {
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if (hasFocus) {
-                    binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
+                    if (isOverTen()){
+                        binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
+                    }else{
+                        binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
+                    }
                 } else {
                     binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
                 }
             }
 
+        })
+        binding.bsAddMenuTag.etAmbstEnterTag.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s?.length!! > 10 && start<10&&before<=10){
+                    showToast(requireContext(),R.drawable.ic_error,"태그는 10글자가 넘을 수 없어요.")
+                    binding.bsAddMenuTag.etAmbstEnterTag.setBackgroundResource(R.drawable.edittext_bg_error)
+                    binding.bsAddMenuTag.etAmbstEnterTag.setPadding(28,10,28,10)
+                    binding.bsAddMenuTag.btnAmbstConfirm.visibility = INVISIBLE
+                }else if (s?.length!!>10){
+                    binding.bsAddMenuTag.etAmbstEnterTag.setBackgroundResource(R.drawable.edittext_bg_error)
+                    binding.bsAddMenuTag.etAmbstEnterTag.setPadding(28,10,28,10)
+                    binding.bsAddMenuTag.btnAmbstConfirm.visibility = INVISIBLE
+                }else if (count>before-10&&before>10){
+                    binding.bsAddMenuTag.etAmbstEnterTag.setBackgroundResource(R.drawable.edittext_bg_default)
+                    binding.bsAddMenuTag.etAmbstEnterTag.setPadding(28,10,28,10)
+                    binding.bsAddMenuTag.btnAmbstConfirm.visibility = VISIBLE
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {
+
+            }
         })
 
         //입력 버튼 누르면 커스텀 태그 추가
@@ -411,5 +452,17 @@ class AddMenuTagFragment : Fragment() {
             requireActivity().currentFocus?.windowToken,
             InputMethodManager.HIDE_NOT_ALWAYS
         )
+    }
+
+    fun isOverTen(): Boolean {
+        if((binding.bsAddMenuTag.etAmbstEnterTag.textSize) > 10){
+            return true
+        }else return false
+    }
+
+    fun isOverTwelve(): Boolean {
+        if((totalSTagBS - bottomSheetTagRemovedbs.clone() as ArrayList<View>).size >= 12){
+            return true
+        }else return false
     }
 }
