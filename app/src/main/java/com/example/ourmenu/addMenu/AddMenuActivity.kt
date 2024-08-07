@@ -20,11 +20,11 @@ class AddMenuActivity : AppCompatActivity() {
                 .commitNow()
         }
     }
-
 //    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 //        val imm: InputMethodManager =
 //            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 //        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 //        return super.dispatchTouchEvent(ev)
 //    }
+
 }
