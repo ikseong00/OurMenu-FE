@@ -20,6 +20,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.iterator
@@ -70,13 +71,33 @@ class AddMenuTagFragment : Fragment() {
 
         //뒤로 가기 버튼
         binding.ivAddMenuTagReturn.setOnClickListener {
-            parentFragmentManager.popBackStack()
-            requireActivity().currentFocus?.clearFocus()
+            handleBackPress()
         }
+
+        var backPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // 뒤로가기 버튼 클릭 시의 동작을 처리합니다.
+                // 예를 들어, 바텀 시트를 닫거나 다른 작업을 수행할 수 있습니다.
+                handleBackPress()
+            }
+        }
+
+        // 현재 프래그먼트가 활성화되었을 때 뒤로가기 버튼 이벤트를 처리하도록 콜백을 추가합니다.
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
 
         return binding.root
     }
-
+    fun handleBackPress(){
+        if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_HIDDEN){
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            clearBlur()
+            closeKeyboard()
+            false
+        }else{
+            parentFragmentManager.popBackStack()
+            requireActivity().currentFocus?.clearFocus()
+        }
+    }
     //기본 태그 설정
     fun initDefaultTag(string: String): TagDefaultBinding {
         var tag = TagDefaultBinding.inflate(layoutInflater)
@@ -279,11 +300,7 @@ class AddMenuTagFragment : Fragment() {
         binding.bsAddMenuTag.etAmbstEnterTag.onFocusChangeListener = (object : OnFocusChangeListener {
             override fun onFocusChange(v: View?, hasFocus: Boolean) {
                 if (hasFocus) {
-                    if (isOverTen()){
-                        binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
-                    }else{
-                        binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
-                    }
+
                 } else {
                     binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.INVISIBLE
                 }
@@ -292,6 +309,7 @@ class AddMenuTagFragment : Fragment() {
         })
         binding.bsAddMenuTag.etAmbstEnterTag.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                binding.bsAddMenuTag.tvAmbstAddTag.visibility = View.VISIBLE
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -311,7 +329,6 @@ class AddMenuTagFragment : Fragment() {
                 }
             }
             override fun afterTextChanged(s: Editable?) {
-
             }
         })
 
