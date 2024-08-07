@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuSearchResultRVAdapter
-import com.example.ourmenu.data.place.PlaceInfoData2
+import com.example.ourmenu.data.place.PlaceDetailData
+import com.example.ourmenu.data.place.PlaceDetailResponse
 import com.example.ourmenu.data.place.PlaceSearchData
 import com.example.ourmenu.data.place.PlaceSearchResponse
 import com.example.ourmenu.databinding.FragmentAddMenuMapBinding
@@ -30,6 +31,7 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import retrofit2.Call
+import retrofit2.Response
 
 class AddMenuMapFragment :
     Fragment(),
@@ -42,9 +44,12 @@ class AddMenuMapFragment :
     private var recentSearchItems: ArrayList<PlaceSearchData> = ArrayList()
     private var searchResultItems: ArrayList<PlaceSearchData> = ArrayList()
 
+    lateinit var placeDetailItem: PlaceDetailData
+
     private var isKeyboardVisible = false
 
     private var naverMap: NaverMap? = null
+    private var marker: Marker? = null // 마커 관리를 위한 변수
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -111,6 +116,8 @@ class AddMenuMapFragment :
         // 검색바 focus됐을 때
         binding.etAddMenuSearch.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
+                fetchSearchHistoryInfo() // EditText에 포커스가 갈 때 검색 기록을 가져옴
+
                 binding.vAddMenuSearchBg.visibility = View.VISIBLE
                 binding.fcvAddMenuMap.visibility = View.GONE
                 binding.rvAddMenuSearchResults.visibility = View.VISIBLE
@@ -247,17 +254,48 @@ class AddMenuMapFragment :
         )
     }
 
+    private fun fetchPlaceDetail(id: String) {
+        val service = RetrofitObject.retrofit.create(PlaceService::class.java)
+        val call = service.getPlaceInfoDetail("Bearer " + RetrofitObject.TOKEN, id)
+
+        call.enqueue(
+            object : retrofit2.Callback<PlaceDetailResponse> {
+                override fun onResponse(
+                    call: Call<PlaceDetailResponse>,
+                    response: Response<PlaceDetailResponse>,
+                ) {
+                    if (response.isSuccessful) {
+                        val placeDetailResponse = response.body()
+
+                        if (placeDetailResponse?.isSuccess == true) {
+                            placeDetailItem = placeDetailResponse.response
+                            Log.d("성공", placeDetailItem.toString())
+                            showPlaceDetails(placeDetailItem) // 데이터가 성공적으로 받아졌을 때 UI 업데이트
+                        } else {
+                            val errorMessage = placeDetailResponse?.errorResponse?.message ?: "error"
+                            Log.d("오류1", errorMessage)
+                        }
+                    } else {
+                        val errorResponse = response.errorBody()?.string()
+                        Log.d("오류2", errorResponse ?: "error")
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<PlaceDetailResponse>,
+                    t: Throwable,
+                ) {
+                    Log.d("오류3", t.message.toString())
+                }
+            },
+        )
+    }
+
     private fun initResultRV() {
         resultAdapter =
             AddMenuSearchResultRVAdapter(arrayListOf()) { place ->
-//                if (place is PlaceSearchHistoryData) {
-//                    binding.etAddMenuSearch.setText(place.storeName)
-//                } else if (place is PlaceInfoData2) {
-//                    showPlaceDetails(place) // 장소 세부 정보를 표시
-//                    binding.etAddMenuSearch.setText(place.name) // 검색 결과 item의 placeName으로 input field 설정
-//                }
-//                showPlaceDetails(place)
                 binding.etAddMenuSearch.setText(place.placeTitle)
+                fetchPlaceDetail(place.placeId)
                 returnToMap()
             }
         binding.rvAddMenuSearchResults.layoutManager = LinearLayoutManager(context)
@@ -266,22 +304,10 @@ class AddMenuMapFragment :
         fetchSearchHistoryInfo() // 어댑터 초기화 시 검색 기록으로 설정
     }
 
-    private fun returnToMap() {
-        binding.rvAddMenuSearchResults.visibility = View.GONE
-        binding.etAddMenuSearch.clearFocus()
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
-    }
-
-    private fun adjustLayoutForKeyboardDismiss() {
-        binding.root.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-        binding.root.requestLayout()
-    }
-
-    private fun showPlaceDetails(item: PlaceInfoData2) {
-        binding.tvAddMenuBsPlaceName.text = item.name
-        binding.tvAddMenuBsAddress.text = item.address
-        binding.tvAddMenuBsTime.text = item.time
+    private fun showPlaceDetails(item: PlaceDetailData) {
+        binding.tvAddMenuBsPlaceName.text = item.placeTitle
+        binding.tvAddMenuBsAddress.text = item.placeAddress
+        binding.tvAddMenuBsTime.text = item.timeInfo
 //        binding.sivAddMenuBsImg1.setImageResource(item.imgs[0])
 //        binding.sivAddMenuBsImg2.setImageResource(item.imgs[1])
 //        binding.sivAddMenuBsImg3.setImageResource(item.imgs[2])
@@ -302,19 +328,21 @@ class AddMenuMapFragment :
         binding.sivAddMenuBsImg3.visibility = View.GONE
 //        }
 
-//        // 키보드 숨기기
-//        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//        imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
-
         // 지도에 핀 찍기
-        val mapx = item.mapx.toDouble()
-        val mapy = item.mapy.toDouble()
-        val marker = Marker()
-        marker.position = LatLng(mapy, mapx)
-        marker.map = naverMap
+        val mapx = item.latitude.toDouble()
+        val mapy = item.longitude.toDouble()
 
-        // 자체 아이콘으로 pin 설정
-        marker.icon = OverlayImage.fromResource(R.drawable.ic_map_pin_add)
+        // 기존 마커 제거
+        marker?.map = null
+
+        // 새로운 마커 설정
+        marker =
+            Marker().apply {
+                position = LatLng(mapy, mapx)
+                // 자체 아이콘으로 pin 설정
+                icon = OverlayImage.fromResource(R.drawable.ic_map_pin_add)
+                map = naverMap
+            }
 
         // 지도의 focus를 해당 위치로 이동
         naverMap?.moveCamera(CameraUpdate.scrollTo(LatLng(mapy, mapx)))
@@ -323,6 +351,18 @@ class AddMenuMapFragment :
         binding.clAddMenuBottomSheet.postDelayed({
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }, 100)
+    }
+
+    private fun adjustLayoutForKeyboardDismiss() {
+        binding.root.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+        binding.root.requestLayout()
+    }
+
+    private fun returnToMap() {
+        binding.rvAddMenuSearchResults.visibility = View.GONE
+        binding.etAddMenuSearch.clearFocus()
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
     }
 
     private fun handleBackPress() {
@@ -335,8 +375,12 @@ class AddMenuMapFragment :
             binding.rvAddMenuSearchResults.visibility = View.GONE
             binding.clAddMenuRecentSearch.visibility = View.GONE
             binding.etAddMenuSearch.clearFocus()
+
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.etAddMenuSearch.windowToken, 0)
+
+            // 기존 마커 제거
+            marker?.map = null
         } else {
             // 지도 화면이 보일 때 -> 이전 화면으로 돌아가기
             requireActivity().onBackPressed()

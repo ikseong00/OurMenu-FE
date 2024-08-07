@@ -9,16 +9,9 @@ data class PlaceSearchResponse(
     val errorResponse: ErrorResponse?,
 )
 
-// place/search-history
-// data class PlaceSearchHistoryResponse(
-//    val isSuccess: Boolean,
-//    val response: ArrayList<PlaceSearchHistoryData>,
-//    val errorResponse: ErrorResponse?,
-// )
-
 // place/{id}
 data class PlaceDetailResponse(
     val isSuccess: Boolean,
-    val response: ArrayList<PlaceDetailData>,
+    val response: PlaceDetailData,
     val errorResponse: ErrorResponse?,
 )

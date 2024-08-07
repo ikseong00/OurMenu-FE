@@ -1,6 +1,6 @@
 package com.example.ourmenu.retrofit.service
 
-import com.example.ourmenu.data.place.PlaceDetailData
+import com.example.ourmenu.data.place.PlaceDetailResponse
 import com.example.ourmenu.data.place.PlaceSearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -23,5 +23,5 @@ interface PlaceService {
     fun getPlaceInfoDetail(
         @Header("Authorization") token: String,
         @Query("id") id: String,
-    ): Call<PlaceDetailData>
+    ): Call<PlaceDetailResponse>
 }
