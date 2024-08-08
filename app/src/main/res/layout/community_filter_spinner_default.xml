@@ -2,9 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_community_filter"
-    android:layout_width="88dp"
-    android:layout_height="32dp"
-    android:background="@drawable/btn_bg_8_n100">
+    android:layout_width="wrap_content"
+    android:layout_height="32dp">
 
     <TextView
         android:id="@+id/item_cfsd_dropdown_text"
@@ -23,10 +22,10 @@
     <ImageView
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginEnd="14dp"
-        android:src="@drawable/ic_filter"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_chevron_down"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_cfsd_dropdown_text"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/Neutral_700" />
 
