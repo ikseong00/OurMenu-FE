@@ -33,8 +33,6 @@ class PostMenuFolderGetDetailFragment(val postMenuFolderFragment: PostMenuFolder
 
 
 
-
-
         return binding.root
     }
 

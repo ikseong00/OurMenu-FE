@@ -17,8 +17,16 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.ourmenu.R
 import com.example.ourmenu.data.DummyMenuData
+import com.example.ourmenu.data.menuFolder.request.MenuFolderRequest
+import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
+import com.example.ourmenu.data.menuFolder.response.PostMenuFolderResponse
 import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderRVAdapter
+import com.example.ourmenu.retrofit.RetrofitObject
+import com.example.ourmenu.retrofit.service.MenuFolderService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 
 
@@ -26,6 +34,8 @@ class PostMenuFolderFragment : Fragment() {
 
     lateinit var binding: FragmentPostMenuFolderBinding
     var dummyItems = ArrayList<DummyMenuData>()
+    private val retrofit = RetrofitObject.retrofit
+    private val service = retrofit.create(MenuFolderService::class.java)
 
     // Generic 활용하기 위해 선언한 함수
     // TODO Util 로 빼는 방법 고안
@@ -139,9 +149,33 @@ class PostMenuFolderFragment : Fragment() {
         // 확인
         binding.btnPmfOk.setOnClickListener {
             // TODO API 추가하기
+            postMenuFolder()
 
             requireActivity().finish()
         }
 
+    }
+
+    private fun postMenuFolder() {
+        service.postMenuFolder(MenuFolderRequest(",1", "1", "1")).enqueue(
+            object : Callback<PostMenuFolderResponse> {
+                override fun onResponse(
+                    call: Call<PostMenuFolderResponse>,
+                    response: Response<PostMenuFolderResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val result = response.body()
+                        val postedMenuFolder = result?.response
+                        postedMenuFolder?.let {
+                            Log.d("postedMenuFolder", postedMenuFolder.toString())
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<PostMenuFolderResponse>, t: Throwable) {
+                    Log.d("postMenuFolder", t.message.toString())
+                }
+
+            })
     }
 }

@@ -7,3 +7,8 @@ data class MenuFolderResponse(
     val response: ArrayList<MenuFolderData>,
 )
 
+data class PostMenuFolderResponse(
+    val isSuccess: Boolean,
+    val response: MenuFolderData
+)
+

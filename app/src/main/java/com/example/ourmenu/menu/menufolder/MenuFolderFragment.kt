@@ -29,6 +29,8 @@ class MenuFolderFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderBinding
     lateinit var itemClickListener: MenuItemClickListener
     lateinit var menuFolderItems: ArrayList<MenuFolderData>
+    private val retrofit = RetrofitObject.retrofit
+    private val service = retrofit.create(MenuFolderService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +39,18 @@ class MenuFolderFragment : Fragment() {
     ): View? {
         binding = FragmentMenuFolderBinding.inflate(inflater, container, false)
 
-        val retrofit = RetrofitObject.retrofit
-        val service = retrofit.create(MenuFolderService::class.java)
 
+
+        getMenuFolders()
+
+
+        initItemListener()
+        initTouchHelperRV()
+
+        return binding.root
+    }
+
+    private fun getMenuFolders() {
         service.getMenuFolders().enqueue(
             object : Callback<MenuFolderResponse> {
                 override fun onResponse(
@@ -66,11 +77,6 @@ class MenuFolderFragment : Fragment() {
                 }
             })
 
-
-        initItemListener()
-        initTouchHelperRV()
-
-        return binding.root
     }
 
     private fun initItemListener() {
