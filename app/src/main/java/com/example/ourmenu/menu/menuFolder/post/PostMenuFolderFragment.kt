@@ -23,6 +23,7 @@ import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderRVAdapter
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
+import com.example.ourmenu.util.Utils.getTypeOf
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,12 +36,6 @@ class PostMenuFolderFragment : Fragment() {
     var dummyItems = ArrayList<DummyMenuData>()
     private val retrofit = RetrofitObject.retrofit
     private val service = retrofit.create(MenuFolderService::class.java)
-
-    // Generic 활용하기 위해 선언한 함수
-    // TODO Util 로 빼는 방법 고안
-    private inline fun <reified T> getTypeOf(): Class<T> {
-        return T::class.java
-    }
 
     private var imageUri: Uri? = null
 
@@ -158,8 +153,10 @@ class PostMenuFolderFragment : Fragment() {
 
     private fun postMenuFolder() {
 //        val image = imageUri?:
-        service.postMenuFolder(MenuFolderRequest(
-            imageUri, binding.etPmfTitle.text.toString(), "1")
+        service.postMenuFolder(
+            MenuFolderRequest(
+                imageUri, binding.etPmfTitle.text.toString(), "1"
+            )
         ).enqueue(
             object : Callback<MenuFolderResponse> {
                 override fun onResponse(
@@ -172,7 +169,7 @@ class PostMenuFolderFragment : Fragment() {
                         postedMenuFolder?.let {
                             Log.d("postedMenuFolder", postedMenuFolder.toString())
                         }
-                    }else{
+                    } else {
                         val error = response.errorBody().toString()
                         Log.d("err", error)
                     }

@@ -2,8 +2,7 @@ package com.example.ourmenu.retrofit.service
 
 import com.example.ourmenu.data.menuFolder.request.MenuFolderRequest
 import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
-import com.example.ourmenu.data.menuFolder.response.MenuFolderResponseArray
-import com.example.ourmenu.data.menuFolder.response.MenuResponseArray
+import com.example.ourmenu.data.menuFolder.response.MenuFolderArrayResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -14,7 +13,7 @@ import retrofit2.http.Path
 
 interface MenuFolderService {
     @GET("menuFolder")
-    fun getMenuFolders(): Call<MenuFolderResponseArray>
+    fun getMenuFolders(): Call<MenuFolderArrayResponse>
 
     @POST("menuFolder")
     fun postMenuFolder(
@@ -28,5 +27,7 @@ interface MenuFolderService {
     ): Call<MenuFolderResponse>
 
     @DELETE("menuFolder/{menuFolderId}")
-    fun deleteMenuFolder():Call<Boolean>
+    fun deleteMenuFolder(
+        @Path("menuFolderId") menuFolderId: Int
+    ):Call<Boolean>
 }

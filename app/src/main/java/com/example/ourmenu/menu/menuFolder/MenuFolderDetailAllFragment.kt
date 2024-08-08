@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import com.example.ourmenu.R
-import com.example.ourmenu.community.adapter.CommunityFilterSpinnerAdapter
+import com.example.ourmenu.data.menu.data.MenuData
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailAllBinding
 import com.example.ourmenu.menu.adapter.MenuFolderAllFilterSpinnerAdapter
 import com.google.android.material.chip.Chip
@@ -19,6 +18,7 @@ class MenuFolderDetailAllFragment : Fragment() {
 
     lateinit var binding: FragmentMenuFolderDetailAllBinding
     var chipsItem = ArrayList<Chip>()
+    lateinit var dummyItems : ArrayList<MenuData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

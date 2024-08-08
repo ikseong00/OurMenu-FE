@@ -34,7 +34,7 @@
             app:tint="@color/Neutral_White" />
 
         <ImageView
-            android:id="@+id/iv_menu_folder_vert"
+            android:id="@+id/iv_menu_folder_kebab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:orientation="vertical"
+            android:orientation="kebabical"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -180,10 +180,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!--    vert 버튼 클릭시 visible    -->
+    <!--    kebab 버튼 클릭시 visible    -->
     <!--    메뉴판 수정하기, 삭제하기, 취소    -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_menu_folder_vert"
+        android:id="@+id/cl_menu_folder_kebab"
         android:layout_width="match_parent"
         android:layout_height="168dp"
         android:visibility="gone"

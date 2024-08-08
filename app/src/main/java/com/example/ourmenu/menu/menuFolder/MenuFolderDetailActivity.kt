@@ -18,7 +18,9 @@ class MenuFolderDetailActivity : AppCompatActivity() {
         // 전체 메뉴판 클릭인지 확인
         val isAll =
             intent.getBooleanExtra("isAll"/* true */, false)
+        val menuFolderId = intent.getIntExtra("menuFolderId", 0)
 
+        // 전체 메뉴판 프래그먼트
         if (isAll) {
             supportFragmentManager
                 .beginTransaction()
@@ -34,14 +36,15 @@ class MenuFolderDetailActivity : AppCompatActivity() {
                 )
 
             // 수정화면 인지 기본화면 인지 세팅하는 부분
-            val menuFolderFragment = MenuFolderDetailFragment()
+            val menuFolderDetailFragment = MenuFolderDetailFragment()
             val bundle = Bundle()
-            bundle.putBoolean("isEdit", isEdit as Boolean)
-            menuFolderFragment.arguments = bundle
+            bundle.putBoolean("isEdit", isEdit)
+            bundle.putInt("menuFolderId", menuFolderId)
+            menuFolderDetailFragment.arguments = bundle
 
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.menu_folder_frm, menuFolderFragment)
+                .replace(R.id.menu_folder_frm, menuFolderDetailFragment)
                 .commitAllowingStateLoss()
         }
     }

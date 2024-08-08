@@ -12,12 +12,3 @@ data class MenuFolderData(
     val menuFolderTitle: String
 )
 
-
-data class MenuData(
-    val menuId: Int,
-    val menuTitle: String,
-    val placeTitle: String,
-    val placeAddress: String,
-    val menuPrice: Int,
-    val menuImgUrl: String
-)
