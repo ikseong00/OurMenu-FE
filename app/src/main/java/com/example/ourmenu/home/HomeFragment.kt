@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
@@ -85,6 +86,7 @@ class HomeFragment : Fragment() {
             }
 
         // 아이템의 width를 구하기 위해 viewTreeObserver 사용
+        // 시작 위치 조정용
         binding.rvHomeMenuMain.viewTreeObserver.addOnGlobalLayoutListener(object :
             ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -96,36 +98,14 @@ class HomeFragment : Fragment() {
 
                 (binding.rvHomeMenuMain.layoutManager as LinearLayoutManager)
                     .scrollToPositionWithOffset(
-                        1000,
+                        ((1000 / dummyItems.size.toInt()) * dummyItems.size) - 1,
                         offset
                     )
             }
 
         })
 
-
-        binding.rvHomeMenuMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    val firstPos =
-                        (binding.rvHomeMenuMain.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                    val secondPos =
-                        (binding.rvHomeMenuMain.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    val selectedPos = max(firstPos, secondPos)
-
-                    if (selectedPos != -1) {
-                        val viewItem =
-                            (binding.rvHomeMenuMain.layoutManager as LinearLayoutManager)
-                                .findViewByPosition(selectedPos)
-
-                        viewItem?.run {
-                            val itemMargin = (binding.rvHomeMenuMain.measuredWidth - viewItem.measuredWidth) / 2
-                            binding.rvHomeMenuMain.smoothScrollBy(this.x.toInt() - itemMargin, 0)
-                        }
-                    }
-                }
-            }
-        })
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvHomeMenuMain)
     }
 }
