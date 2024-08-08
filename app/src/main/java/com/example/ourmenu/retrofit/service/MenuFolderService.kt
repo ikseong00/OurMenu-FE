@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface MenuFolderService {
-    @GET("menuFolder")
+    @GET("dummy/menuFolder")
     fun getMenuFolders(): Call<MenuFolderResponse>
 }
