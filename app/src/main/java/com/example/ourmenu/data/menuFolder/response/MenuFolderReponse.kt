@@ -1,6 +1,5 @@
 package com.example.ourmenu.data.menuFolder.response
 
-import com.example.ourmenu.data.menuFolder.data.MenuData
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
 
 // /menuFolder GET
