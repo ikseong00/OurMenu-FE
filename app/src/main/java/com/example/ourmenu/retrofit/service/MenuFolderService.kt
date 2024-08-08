@@ -6,6 +6,7 @@ import com.example.ourmenu.data.menuFolder.response.MenuFolderResponseArray
 import com.example.ourmenu.data.menuFolder.response.MenuResponseArray
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -26,6 +27,6 @@ interface MenuFolderService {
         @Body menuFolderRequest: MenuFolderRequest
     ): Call<MenuFolderResponse>
 
-    @GET("menu")
-    fun getMenus(): Call<MenuResponseArray>
+    @DELETE("menuFolder/{menuFolderId}")
+    fun deleteMenuFolder():Call<Boolean>
 }

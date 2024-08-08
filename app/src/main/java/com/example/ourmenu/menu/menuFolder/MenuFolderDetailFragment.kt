@@ -28,6 +28,7 @@ import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
 import com.example.ourmenu.menu.adapter.MenuFolderDetailRVAdapter
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
+import com.example.ourmenu.retrofit.service.MenuService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +37,8 @@ class MenuFolderDetailFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderDetailBinding
     lateinit var menuItems: ArrayList<MenuData>
     private val retrofit = RetrofitObject.retrofit
-    private val service = retrofit.create(MenuFolderService::class.java)
+    private val menuFolderService = retrofit.create(MenuFolderService::class.java)
+    private val menuService = retrofit.create(MenuService::class.java)
 
     private var imageUri: Uri? = null
 
@@ -91,7 +93,7 @@ class MenuFolderDetailFragment : Fragment() {
     }
 
     private fun getMenuItems() {
-        service.getMenus().enqueue(object : Callback<MenuResponseArray> {
+        menuService.getMenus().enqueue(object : Callback<MenuResponseArray> {
             override fun onResponse(call: Call<MenuResponseArray>, response: Response<MenuResponseArray>) {
                 if (response.isSuccessful) {
                     val result = response.body()
@@ -233,9 +235,9 @@ class MenuFolderDetailFragment : Fragment() {
         val requestBody = MenuFolderRequest(
             menuFolderIcon = "",
             menuFolderTitle = binding.etMenuFolderMainName.text.toString(),
-            menuFolderImgUrl = imageUri.toString()
+            menuFolderImgUrl = imageUri
         )
-        service.patchMenuFolder(id!!, requestBody).enqueue(object : Callback<MenuFolderResponse> {
+        menuFolderService.patchMenuFolder(id!!, requestBody).enqueue(object : Callback<MenuFolderResponse> {
             override fun onResponse(call: Call<MenuFolderResponse>, response: Response<MenuFolderResponse>) {
                 if (response.isSuccessful) {
                     val result = response.body()

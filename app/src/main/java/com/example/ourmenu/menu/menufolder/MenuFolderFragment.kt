@@ -64,6 +64,8 @@ class MenuFolderFragment : Fragment() {
                             initTouchHelperRV()
 
                         }
+                    }else{
+                        Log.d("err", response.errorBody().toString())
                     }
 
                 }

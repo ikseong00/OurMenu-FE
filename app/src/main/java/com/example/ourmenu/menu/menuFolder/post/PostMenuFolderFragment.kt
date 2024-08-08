@@ -67,6 +67,7 @@ class PostMenuFolderFragment : Fragment() {
 
                 data?.data?.let {
                     imageUri = it
+                    Log.d("imguri", imageUri.toString())
                     binding.ivPmfImage.setImageURI(imageUri)
                 }
             }
@@ -156,7 +157,10 @@ class PostMenuFolderFragment : Fragment() {
     }
 
     private fun postMenuFolder() {
-        service.postMenuFolder(MenuFolderRequest(",1", "1", "1")).enqueue(
+//        val image = imageUri?:
+        service.postMenuFolder(MenuFolderRequest(
+            imageUri, binding.etPmfTitle.text.toString(), "1")
+        ).enqueue(
             object : Callback<MenuFolderResponse> {
                 override fun onResponse(
                     call: Call<MenuFolderResponse>,
@@ -168,6 +172,9 @@ class PostMenuFolderFragment : Fragment() {
                         postedMenuFolder?.let {
                             Log.d("postedMenuFolder", postedMenuFolder.toString())
                         }
+                    }else{
+                        val error = response.errorBody().toString()
+                        Log.d("err", error)
                     }
                 }
 
