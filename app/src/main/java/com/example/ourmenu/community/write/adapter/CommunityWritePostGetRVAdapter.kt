@@ -17,14 +17,14 @@ class CommunityWritePostGetRVAdapter(private val items: ArrayList<DummyMenuData>
     }
 
     inner class ViewHolder(val binding: ItemMenuFolderBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DummyMenuData) {
+        fun bind(item: DummyMenuData, position: Int) {
             binding.ivItemMenuFolderImage
             binding.tvItemMenuFolderMenuCount.text = item.menuCount.toString()
             binding.tvItemMenuFolderTitle.text = item.title
 
 
             binding.ivItemMenuFolderImage.setOnClickListener {
-                itemClickListener.onMenuClick()
+                itemClickListener.onMenuClick(position)
             }
 
         }
@@ -36,7 +36,7 @@ class CommunityWritePostGetRVAdapter(private val items: ArrayList<DummyMenuData>
     }
 
     override fun onBindViewHolder(holder: CommunityWritePostGetRVAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], position)
     }
 
     override fun getItemCount(): Int = items.size

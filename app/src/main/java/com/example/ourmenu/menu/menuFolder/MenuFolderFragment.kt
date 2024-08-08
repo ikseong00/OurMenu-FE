@@ -45,7 +45,6 @@ class MenuFolderFragment : Fragment() {
 
 
         initItemListener()
-        initTouchHelperRV()
 
         return binding.root
     }
@@ -60,13 +59,13 @@ class MenuFolderFragment : Fragment() {
                     if (response.isSuccessful) {
                         val result = response.body()
                         val menuFolders = result?.response
-//                        menuFolders?.response?.forEach {
-//                            Log.d("menuFolders", "${it.title}")
-//                        }
                         menuFolders?.let {
                             menuFolderItems = menuFolders
+                            initTouchHelperRV()
+
                         }
                     }
+
                 }
 
                 override fun onFailure(

@@ -53,7 +53,7 @@ class PostMenuFolderGetFragment(val postMenuFolderFragment: PostMenuFolderFragme
         binding.rvPmfgMenuFolder.adapter = PostMenuFolderGetRVAdapter(dummyItems).apply {
             setOnItemClickListener(object : MenuItemClickListener {
                 // 메뉴 클릭 리스너 추가
-                override fun onMenuClick() {
+                override fun onMenuClick(menuFolderId: Int) {
                     val postMenuFolderGetDetailFragment = PostMenuFolderGetDetailFragment(postMenuFolderFragment)
 
                     parentFragmentManager.beginTransaction()
