@@ -62,6 +62,13 @@ class MenuFolderRVAdapter(
                 }
             }
 
+            binding.ivItemMenuFolderImage.setOnClickListener {
+                if (!swipeItemTouchHelperCallback.isEditable()) {
+
+                    itemClickListener.onMenuClick(position)
+                }
+            }
+
 
         }
     }

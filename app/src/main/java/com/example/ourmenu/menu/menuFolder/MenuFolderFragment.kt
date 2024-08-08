@@ -95,7 +95,7 @@ class MenuFolderFragment : Fragment() {
         }
 
         // 전체 메뉴판 보기
-        binding.btnMenuAllMenu.setOnClickListener {
+        binding.ivMenuAllMenu.setOnClickListener {
             val intent = Intent(context, MenuFolderDetailActivity::class.java)
             intent.putExtra("isAll", true)
             startActivity(intent)

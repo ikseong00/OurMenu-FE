@@ -31,11 +31,16 @@ class MenuFolderDetailAllFragment : Fragment() {
         initChips()
         initSpinner()
         initListener()
+        initRVAdapter()
 
 
 
 
         return binding.root
+    }
+
+    private fun initRVAdapter() {
+
     }
 
     private fun initChips() {
