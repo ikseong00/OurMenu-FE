@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuSearchResultRVAdapter
 import com.example.ourmenu.data.place.PlaceDetailData
@@ -308,25 +309,21 @@ class AddMenuMapFragment :
         binding.tvAddMenuBsPlaceName.text = item.placeTitle
         binding.tvAddMenuBsAddress.text = item.placeAddress
         binding.tvAddMenuBsTime.text = item.timeInfo
-//        binding.sivAddMenuBsImg1.setImageResource(item.imgs[0])
-//        binding.sivAddMenuBsImg2.setImageResource(item.imgs[1])
-//        binding.sivAddMenuBsImg3.setImageResource(item.imgs[2])
 
         // 이미지 로드
-//        if (item.images.isNotEmpty()) {
-//            binding.sivAddMenuBsImg1.visibility = View.VISIBLE
-//            binding.sivAddMenuBsImg2.visibility = View.VISIBLE
-//            binding.sivAddMenuBsImg3.visibility = View.VISIBLE
+        if (item.placeImgsUrl.isNotEmpty()) {
+            binding.sivAddMenuBsImg1.visibility = View.VISIBLE
+            binding.sivAddMenuBsImg2.visibility = View.VISIBLE
+            binding.sivAddMenuBsImg3.visibility = View.VISIBLE
 
-        // Glide를 사용해 이미지를 로드하는 예시 (Glide는 의존성 추가 필요)
-//            Glide.with(this).load(item.images[0]).into(binding.sivAddMenuBsImg1)
-//            Glide.with(this).load(item.images[1]).into(binding.sivAddMenuBsImg2)
-//            Glide.with(this).load(item.images[2]).into(binding.sivAddMenuBsImg3)
-//        } else {
-        binding.sivAddMenuBsImg1.visibility = View.GONE
-        binding.sivAddMenuBsImg2.visibility = View.GONE
-        binding.sivAddMenuBsImg3.visibility = View.GONE
-//        }
+            Glide.with(this).load(item.placeImgsUrl[0]).into(binding.sivAddMenuBsImg1)
+            Glide.with(this).load(item.placeImgsUrl[1]).into(binding.sivAddMenuBsImg2)
+            Glide.with(this).load(item.placeImgsUrl[2]).into(binding.sivAddMenuBsImg3)
+        } else {
+            binding.sivAddMenuBsImg1.visibility = View.GONE
+            binding.sivAddMenuBsImg2.visibility = View.GONE
+            binding.sivAddMenuBsImg3.visibility = View.GONE
+        }
 
         // 지도에 핀 찍기
         val mapx = item.latitude.toDouble()
