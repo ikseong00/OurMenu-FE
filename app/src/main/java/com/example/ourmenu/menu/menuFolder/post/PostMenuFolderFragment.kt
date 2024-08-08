@@ -19,7 +19,6 @@ import com.example.ourmenu.R
 import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.data.menuFolder.request.MenuFolderRequest
 import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
-import com.example.ourmenu.data.menuFolder.response.PostMenuFolderResponse
 import com.example.ourmenu.databinding.FragmentPostMenuFolderBinding
 import com.example.ourmenu.menu.menuFolder.post.adapter.PostMenuFolderRVAdapter
 import com.example.ourmenu.retrofit.RetrofitObject
@@ -158,10 +157,10 @@ class PostMenuFolderFragment : Fragment() {
 
     private fun postMenuFolder() {
         service.postMenuFolder(MenuFolderRequest(",1", "1", "1")).enqueue(
-            object : Callback<PostMenuFolderResponse> {
+            object : Callback<MenuFolderResponse> {
                 override fun onResponse(
-                    call: Call<PostMenuFolderResponse>,
-                    response: Response<PostMenuFolderResponse>
+                    call: Call<MenuFolderResponse>,
+                    response: Response<MenuFolderResponse>
                 ) {
                     if (response.isSuccessful) {
                         val result = response.body()
@@ -172,7 +171,7 @@ class PostMenuFolderFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<PostMenuFolderResponse>, t: Throwable) {
+                override fun onFailure(call: Call<MenuFolderResponse>, t: Throwable) {
                     Log.d("postMenuFolder", t.message.toString())
                 }
 

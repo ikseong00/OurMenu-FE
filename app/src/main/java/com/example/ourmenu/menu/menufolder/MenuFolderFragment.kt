@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
-import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
+import com.example.ourmenu.data.menuFolder.response.MenuFolderResponseArray
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
@@ -52,10 +52,10 @@ class MenuFolderFragment : Fragment() {
 
     private fun getMenuFolders() {
         service.getMenuFolders().enqueue(
-            object : Callback<MenuFolderResponse> {
+            object : Callback<MenuFolderResponseArray> {
                 override fun onResponse(
-                    call: Call<MenuFolderResponse>,
-                    response: Response<MenuFolderResponse>,
+                    call: Call<MenuFolderResponseArray>,
+                    response: Response<MenuFolderResponseArray>,
                 ) {
                     if (response.isSuccessful) {
                         val result = response.body()
@@ -70,7 +70,7 @@ class MenuFolderFragment : Fragment() {
                 }
 
                 override fun onFailure(
-                    call: Call<MenuFolderResponse>,
+                    call: Call<MenuFolderResponseArray>,
                     t: Throwable,
                 ) {
                     Log.d("menuFolders", t.message.toString())
