@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import com.example.ourmenu.R
-import com.example.ourmenu.databinding.CommunityFilterSpinnerDefaultBinding
 import com.example.ourmenu.databinding.CommunityFilterSpinnerItemBinding
+import com.example.ourmenu.databinding.MenuFolderDetailSpinnerDefaultBinding
 import com.example.ourmenu.util.Utils.viewGone
 
 
-class MenuFolderAllFilterSpinnerAdapter<T>(
+class MenuFolderDetailFilterSpinnerAdapter<T>(
     private val context: Context,
     private val items: List<String>,
 ) :
@@ -24,9 +24,9 @@ class MenuFolderAllFilterSpinnerAdapter<T>(
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // 스피너의 기본 선택된 항목을 위한 뷰
-        val binding = CommunityFilterSpinnerDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = MenuFolderDetailSpinnerDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        binding.itemCfsdDropdownText.text = this.getItem(position)
+        binding.itemMfdspDropdownText.text = this.getItem(position)
 
         return binding.root
     }

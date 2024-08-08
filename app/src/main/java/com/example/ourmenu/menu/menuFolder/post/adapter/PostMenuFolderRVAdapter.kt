@@ -19,7 +19,7 @@ class PostMenuFolderRVAdapter(private val items: ArrayList<DummyMenuData>) :
         fun bind(item: DummyMenuData) {
             binding.sivItemMfdMenuImage
             binding.tvItemMfdMenuName.text = item.menu
-            binding.tvItemMfdMenuStore.text = item.store
+            binding.tvItemMfdMenuPlace.text = item.store
             binding.tvItemMfdMenuPlace.text = item.address
             // 안보이게
             binding.ivItemMfdExtraButton.visibility = View.GONE

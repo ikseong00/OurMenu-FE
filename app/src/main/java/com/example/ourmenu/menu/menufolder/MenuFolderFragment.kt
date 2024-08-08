@@ -20,6 +20,8 @@ import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.menu.menuFolder.post.PostMenuFolderActivity
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
+import com.example.ourmenu.util.Utils.dpToPx
+import okhttp3.internal.addHeaderLenient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +32,7 @@ class MenuFolderFragment : Fragment() {
     lateinit var itemClickListener: MenuItemClickListener
     lateinit var menuFolderItems: ArrayList<MenuFolderData>
     private val retrofit = RetrofitObject.retrofit
-    private val service = retrofit.create(MenuFolderService::class.java)
+    private val menuFolderService = retrofit.create(MenuFolderService::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +52,7 @@ class MenuFolderFragment : Fragment() {
     }
 
     private fun getMenuFolders() {
-        service.getMenuFolders().enqueue(
+        menuFolderService.getMenuFolders().enqueue(
             object : Callback<MenuFolderArrayResponse> {
                 override fun onResponse(
                     call: Call<MenuFolderArrayResponse>,
@@ -64,7 +66,7 @@ class MenuFolderFragment : Fragment() {
                             initTouchHelperRV()
 
                         }
-                    }else{
+                    } else {
                         Log.d("err", response.errorBody().toString())
                     }
 
@@ -124,35 +126,25 @@ class MenuFolderFragment : Fragment() {
     //
     @SuppressLint("ClickableViewAccessibility") // 이줄 없으면 setOnTouchListener 에 밑줄생김
     private fun initTouchHelperRV() {
-        val dummyItems = ArrayList<HomeMenuData>()
-        for (i in 1..6) {
-            dummyItems.add(
-                HomeMenuData("1", "menu2", "store3"),
-            )
-        }
 
-        val clamp: Float
-
-        // TODO Util 로 뺴기
-        fun dpToPx(dp: Int): Int {
-            val density = resources.displayMetrics.density
-            return (dp * density).toInt()
-        }
-        clamp = dpToPx(120).toFloat()
+        val clamp: Float = dpToPx(requireContext(), 120).toFloat()
 
         val swipeItemTouchHelperCallback =
             SwipeItemTouchHelperCallback().apply {
                 setClamp(clamp)
             }
+        val menuFolderRVAdapter =
+            MenuFolderRVAdapter(menuFolderItems, requireContext(), swipeItemTouchHelperCallback).apply {
+                setOnItemClickListener(itemClickListener)
+            }
+
+        swipeItemTouchHelperCallback.setAdapter(menuFolderRVAdapter)
 
         val itemTouchHelper = ItemTouchHelper(swipeItemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvMenuMenuFolder)
         // 리사이클러 뷰 설정
         with(binding.rvMenuMenuFolder) {
-            adapter =
-                MenuFolderRVAdapter(menuFolderItems, requireContext(), swipeItemTouchHelperCallback).apply {
-                    setOnItemClickListener(itemClickListener)
-                }
+            adapter = menuFolderRVAdapter
             // 다른 뷰를 건들면 기존 뷰의 swipe 가 초기화 됨
             setOnTouchListener { _, _ ->
                 swipeItemTouchHelperCallback.removePreviousClamp(this)
