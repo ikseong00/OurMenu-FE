@@ -65,10 +65,7 @@ class HomeFragment : Fragment() {
 
 
 
-        binding.ivHomeTitleAdd.setOnClickListener {
-            val intent = Intent(requireContext(), AddMenuActivity::class.java)
-            startActivity(intent)
-        }
+
 
         return binding.root
     }
@@ -187,6 +184,11 @@ class HomeFragment : Fragment() {
                     startActivity(intent)
                 }
             }
+
+        binding.ivHomeTitleAdd.setOnClickListener {
+            val intent = Intent(requireContext(), AddMenuActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initSubMenuRV() {
