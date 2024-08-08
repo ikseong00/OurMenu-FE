@@ -11,7 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.ourmenu.addMenu.AddMenuActivity
 import com.example.ourmenu.data.HomeMenuData
-import com.example.ourmenu.data.MenuFolderResponse
+import com.example.ourmenu.data.menuFolder.data.MenuFolderData
+import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
 import com.example.ourmenu.menu.adapter.MenuFolderRVAdapter
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
@@ -27,6 +28,7 @@ import retrofit2.Response
 class MenuFolderFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderBinding
     lateinit var itemClickListener: MenuItemClickListener
+    lateinit var menuFolderItems: ArrayList<MenuFolderData>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,10 +47,13 @@ class MenuFolderFragment : Fragment() {
                     response: Response<MenuFolderResponse>,
                 ) {
                     if (response.isSuccessful) {
-                        val menuFolders = response.body()
-
-                        menuFolders?.response?.forEach {
-                            Log.d("menuFolders", "${it.title}")
+                        val result = response.body()
+                        val menuFolders = result?.response
+//                        menuFolders?.response?.forEach {
+//                            Log.d("menuFolders", "${it.title}")
+//                        }
+                        menuFolders?.let {
+                            menuFolderItems = menuFolders
                         }
                     }
                 }
@@ -59,8 +64,8 @@ class MenuFolderFragment : Fragment() {
                 ) {
                     Log.d("menuFolders", t.message.toString())
                 }
-            },
-        )
+            })
+
 
         initItemListener()
         initTouchHelperRV()
@@ -138,7 +143,7 @@ class MenuFolderFragment : Fragment() {
         // 리사이클러 뷰 설정
         with(binding.rvMenuMenuFolder) {
             adapter =
-                MenuFolderRVAdapter(dummyItems, requireContext(), swipeItemTouchHelperCallback).apply {
+                MenuFolderRVAdapter(menuFolderItems, requireContext(), swipeItemTouchHelperCallback).apply {
                     setOnItemClickListener(itemClickListener)
                 }
             // 다른 뷰를 건들면 기존 뷰의 swipe 가 초기화 됨
