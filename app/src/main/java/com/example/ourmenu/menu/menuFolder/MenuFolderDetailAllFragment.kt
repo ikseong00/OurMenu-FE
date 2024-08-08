@@ -78,8 +78,23 @@ class MenuFolderDetailAllFragment : Fragment() {
     }
 
     private fun initRVAdapter() {
+        val dummyItems = ArrayList<MenuData>()
+        for (i in 1..9) {
+            dummyItems.add(
+                MenuData(
+                    groupId = 0,
+                    menuId = 0,
+                    menuImgUrl = "",
+                    menuPrice = 0,
+                    menuTitle = "menu$i",
+                    placeAddress = "address$i",
+                    placeTitle = "place$i"
+                ),
+            )
+        }
+
         rvAdapter =
-            MenuFolderDetailAllRVAdapter(menuItems, requireContext())
+            MenuFolderDetailAllRVAdapter(dummyItems, requireContext())
         binding.rvMfdaMenu.adapter = rvAdapter
     }
 
@@ -109,7 +124,7 @@ class MenuFolderDetailAllFragment : Fragment() {
         binding.spnMfdaFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 adapter.selectedPos = position
-                sortBySpinner(position)
+//                sortBySpinner(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -140,6 +155,10 @@ class MenuFolderDetailAllFragment : Fragment() {
     }
 
     private fun initListener() {
+
+        binding.ivMfdaBack.setOnClickListener {
+            requireActivity().finish()
+        }
 
         binding.chipMfdaAll.setOnClickListener {
 
