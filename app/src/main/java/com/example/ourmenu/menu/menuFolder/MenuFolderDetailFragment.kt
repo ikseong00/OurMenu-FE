@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -27,6 +28,7 @@ import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
 import com.example.ourmenu.data.menu.response.MenuArrayResponse
 import com.example.ourmenu.databinding.CommunityDeleteDialogBinding
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
+import com.example.ourmenu.menu.adapter.MenuFolderAllFilterSpinnerAdapter
 import com.example.ourmenu.menu.adapter.MenuFolderDetailRVAdapter
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
@@ -41,7 +43,10 @@ import retrofit2.Response
 class MenuFolderDetailFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderDetailBinding
     lateinit var menuItems: ArrayList<MenuData>
+    lateinit var sortedMenuItems: ArrayList<MenuData>
     private var menuFolderId = 0
+    lateinit var rvAdapter: MenuFolderDetailRVAdapter
+
     private val retrofit = RetrofitObject.retrofit
     private val menuFolderService = retrofit.create(MenuFolderService::class.java)
     private val menuService = retrofit.create(MenuService::class.java)
@@ -92,30 +97,71 @@ class MenuFolderDetailFragment : Fragment() {
         initListener()
         initKebabOnClickListener()
         getMenuItems()
+        initSpinner()
         initRV()
         // 수정화면이면 함수 사용, 아니면 그냥 실행
 
         arguments?.getBoolean("isEdit")?.let {
             editClicked()
         }
-
         return binding.root
     }
 
+    private fun initSpinner() {
+        val adapter =
+            MenuFolderAllFilterSpinnerAdapter<String>(requireContext(), arrayListOf("이름순", "등록순", "가격순"))
+        adapter.setDropDownViewResource(R.layout.spinner_item_background)
+        binding.spnMenuFolderDetailFilter.adapter = adapter
+        binding.spnMenuFolderDetailFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                adapter.selectedPos = position
+                sortBySpinner(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+        }
+    }
+
+    private fun sortBySpinner(position: Int) {
+        when (position) {
+            0 -> { // 이름순, 이름이 같아면 가격순
+                sortedMenuItems.sortWith(compareBy<MenuData> { it.menuTitle }.thenBy { it.menuPrice })
+            }
+
+            1 -> { // 등록순
+                sortedMenuItems.sortBy { it.menuTitle }
+            }
+
+            2 -> { // 가격순, 가격이 같다면 이름순
+                sortedMenuItems.sortWith(compareBy<MenuData> { it.menuPrice }.thenBy { it.menuTitle })
+            }
+
+            else -> return
+        }
+        rvAdapter.updateList(sortedMenuItems)
+
+
+    }
+
     private fun getMenuItems() {
-        menuService.getMenus().enqueue(object : Callback<MenuArrayResponse> {
+        menuService.getMenus(
+            menuTitle = "", menuTag = ArrayList<String>(), menuFolderId = menuFolderId
+        ).enqueue(object : Callback<MenuArrayResponse> {
             override fun onResponse(call: Call<MenuArrayResponse>, response: Response<MenuArrayResponse>) {
                 if (response.isSuccessful) {
                     val result = response.body()
                     val menuData = result?.response
                     menuData?.let {
                         menuItems = menuData
+                        sortedMenuItems = menuData
                     }
                 }
             }
 
             override fun onFailure(call: Call<MenuArrayResponse>, t: Throwable) {
-                Log.d("menuFolders", t.message.toString())
+                Log.d("MenuFolderDetail", t.message.toString())
             }
 
         })
@@ -137,14 +183,23 @@ class MenuFolderDetailFragment : Fragment() {
     }
 
     private fun initRV() {
-        val dummyItems = ArrayList<HomeMenuData>()
+        val dummyItems = ArrayList<MenuData>()
         for (i in 1..9) {
             dummyItems.add(
-                HomeMenuData(i.toString(), i.toString(), "store3"),
+                MenuData(
+                    groupId = 0,
+                    menuId = 0,
+                    menuImgUrl = "",
+                    menuPrice = 0,
+                    menuTitle = "menu$i",
+                    placeAddress = "address$i",
+                    placeTitle = "place$i"
+                ),
             )
         }
 
-        binding.rvMenuFolderMenuList.adapter = MenuFolderDetailRVAdapter(dummyItems)
+        rvAdapter = MenuFolderDetailRVAdapter(dummyItems, requireContext())
+        binding.rvMenuFolderMenuList.adapter = rvAdapter
         binding.rvMenuFolderMenuList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
@@ -166,7 +221,7 @@ class MenuFolderDetailFragment : Fragment() {
         binding.llMenuFolderEdit.visibility = View.VISIBLE
 
         // edittext enabled, drawable 적용
-        with(binding.etMenuFolderMainName) {
+        with(binding.etMenuFolderTitle) {
             isEnabled = true
             setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pen, 0, 0, 0)
         }
@@ -217,7 +272,7 @@ class MenuFolderDetailFragment : Fragment() {
             binding.ivMenuFolderMainImage.setRenderEffect(null) // 상단 이미지 blur 효과 적용
             binding.ivMenuFolderKebab.visibility = View.VISIBLE // Kebab 버튼 visible
             binding.llMenuFolderEdit.visibility = View.GONE // 카메라 , textView visible
-            with(binding.etMenuFolderMainName) { // edittext 원상 복구
+            with(binding.etMenuFolderTitle) { // edittext 원상 복구
                 isEnabled = false
                 setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
             }
@@ -234,7 +289,7 @@ class MenuFolderDetailFragment : Fragment() {
         val id = arguments?.getInt("menuFolderId")
         val requestBody = MenuFolderRequest(
             menuFolderIcon = "",
-            menuFolderTitle = binding.etMenuFolderMainName.text.toString(),
+            menuFolderTitle = binding.etMenuFolderTitle.text.toString(),
             menuFolderImgUrl = imageUri
         )
         menuFolderService.patchMenuFolder(id!!, requestBody).enqueue(object : Callback<MenuFolderResponse> {

@@ -131,6 +131,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/btn_mfda_add_menu"
         app:layout_constraintTop_toBottomOf="@id/hsv_mfda_filter"
         tools:listitem="@layout/item_menu_folder_detail_menu" />

@@ -5,10 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 // /menuFolder
 data class MenuFolderData(
+    val menuFolderId: Int,
+    val menuFolderTitle: String,
     val menuCount: Int,
-    val menuFolderIcon: String,
     val menuFolderImgUrl: String,
-    val menuFolderPriority: Int,
-    val menuFolderTitle: String
+    val menuFolderIcon: String,
+    val menuFolderPriority: Int
 )
 

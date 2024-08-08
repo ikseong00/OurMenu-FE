@@ -2,14 +2,24 @@ package com.example.ourmenu.menu.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.ourmenu.addMenu.adapter.AddMenuImageAdapter.ViewHolder
+import com.example.ourmenu.data.AddMenuImageData
+import com.example.ourmenu.data.BaseResponse
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
 import com.example.ourmenu.databinding.ItemMenuFolderBinding
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
 import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
+import com.example.ourmenu.retrofit.RetrofitObject
+import com.example.ourmenu.retrofit.service.MenuFolderService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MenuFolderRVAdapter(
     val items: ArrayList<MenuFolderData>, val context: Context,
@@ -17,6 +27,8 @@ class MenuFolderRVAdapter(
 ) : RecyclerView.Adapter<MenuFolderRVAdapter.ViewHolder>() {
 
     private lateinit var itemClickListener: MenuItemClickListener
+    private val retrofit = RetrofitObject.retrofit
+    private val menuFolderService = retrofit.create(MenuFolderService::class.java)
 
     fun setOnItemClickListener(onItemClickListener: MenuItemClickListener) {
         itemClickListener = onItemClickListener
@@ -39,8 +51,8 @@ class MenuFolderRVAdapter(
             binding.tvItemMenuFolderMenuCount.text = "메뉴 $item.menuCount개"
 
 
-            binding.ivItemMenuFolderImage.setOnClickListener{
-                if(!swipeItemTouchHelperCallback.isEditable()) {
+            binding.ivItemMenuFolderImage.setOnClickListener {
+                if (!swipeItemTouchHelperCallback.isEditable()) {
 
                     itemClickListener.onMenuClick(position)
                 }
@@ -72,6 +84,33 @@ class MenuFolderRVAdapter(
 
         }
     }
+
+    // 드래그 앤 드롭시 교환하는 함수
+    fun moveItem(fromPosition: Int, toPosition: Int) {
+        val item = items.removeAt(fromPosition)
+        items.add(toPosition, item)
+        notifyItemMoved(fromPosition, toPosition)
+
+        // TODO 순서 변경 API
+        val menuFolderId = items[fromPosition].menuFolderId
+        menuFolderService.patchPriority(
+            menuFolderId = menuFolderId, newPriority = toPosition + 1
+        )
+            .enqueue(object : Callback<BaseResponse> {
+                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                    if (response.isSuccessful) {
+                        val result = response.body()
+                        Log.d("patchPriority", result.toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    Log.d("patchPriority", t.toString())
+                }
+
+            })
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuFolderRVAdapter.ViewHolder {
         val binding = ItemMenuFolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
