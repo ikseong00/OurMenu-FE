@@ -1,22 +1,73 @@
 package com.example.ourmenu.menu.menuFolder
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.graphics.RenderEffect
 import android.graphics.Shader
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ourmenu.R
 import com.example.ourmenu.data.HomeMenuData
+import com.example.ourmenu.data.menuFolder.data.MenuData
+import com.example.ourmenu.data.menuFolder.request.MenuFolderRequest
+import com.example.ourmenu.data.menuFolder.response.MenuFolderResponse
+import com.example.ourmenu.data.menuFolder.response.MenuResponseArray
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
 import com.example.ourmenu.menu.adapter.MenuFolderDetailRVAdapter
+import com.example.ourmenu.retrofit.RetrofitObject
+import com.example.ourmenu.retrofit.service.MenuFolderService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MenuFolderDetailFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderDetailBinding
+    lateinit var menuItems: ArrayList<MenuData>
+    private val retrofit = RetrofitObject.retrofit
+    private val service = retrofit.create(MenuFolderService::class.java)
+
+    private var imageUri: Uri? = null
+
+    // 갤러리 open
+    private val galleryPermissionLauncher: ActivityResultLauncher<String> =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.setDataAndType(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    "image/*"
+                )
+                pickImageLauncher.launch(intent)
+            } else {
+            }
+        }
+
+    private val pickImageLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            Log.d("res", result.resultCode.toString())
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+
+                data?.data?.let {
+                    imageUri = it
+                    binding.ivMenuFolderMainImage.setImageURI(imageUri)
+                }
+            }
+        }
+
 
     @RequiresApi(Build.VERSION_CODES.S) // 이거 있어야 setRenderEffect 가능
     override fun onCreateView(
@@ -28,6 +79,7 @@ class MenuFolderDetailFragment : Fragment() {
 
         initItemClickListener()
         initVertOnClickListener()
+        getMenuItems()
         initRV()
         // 수정화면이면 함수 사용, 아니면 그냥 실행
 
@@ -36,6 +88,25 @@ class MenuFolderDetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun getMenuItems() {
+        service.getMenus().enqueue(object : Callback<MenuResponseArray> {
+            override fun onResponse(call: Call<MenuResponseArray>, response: Response<MenuResponseArray>) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    val menuData = result?.response
+                    menuData?.let {
+                        menuItems = menuData
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<MenuResponseArray>, t: Throwable) {
+                Log.d("menuFolders", t.message.toString())
+            }
+
+        })
     }
 
     private fun initItemClickListener() {
@@ -150,7 +221,36 @@ class MenuFolderDetailFragment : Fragment() {
             binding.btnMenuFolderEditOk.visibility = View.GONE
             // 메뉴 추가하기 버튼 visible
             binding.btnMenuFolderAddMenu.visibility = View.VISIBLE
-            // TODO 확인 버튼 클릭 API 구현
+
+            // 메뉴판 수정하기 API
+            patchMenuFolder()
+
         }
+    }
+
+    private fun patchMenuFolder() {
+        val id = arguments?.getInt("menuFolderId")
+        val requestBody = MenuFolderRequest(
+            menuFolderIcon = "",
+            menuFolderTitle = binding.etMenuFolderMainName.text.toString(),
+            menuFolderImgUrl = imageUri.toString()
+        )
+        service.patchMenuFolder(id!!, requestBody).enqueue(object : Callback<MenuFolderResponse> {
+            override fun onResponse(call: Call<MenuFolderResponse>, response: Response<MenuFolderResponse>) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    val menuFolder = result?.response
+                    menuFolder?.let {
+                        Log.d("menuFolder", menuFolder.toString())
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<MenuFolderResponse>, t: Throwable) {
+                Log.d("patchMenuFolder", t.message.toString())
+
+            }
+
+        })
     }
 }

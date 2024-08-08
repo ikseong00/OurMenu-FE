@@ -17,20 +17,15 @@ class MenuFolderDetailActivity : AppCompatActivity() {
 
         // 전체 메뉴판 클릭인지 확인
         val isAll =
-            intent.getBooleanExtra(
-                "isAll"/* true */,
-                false
-            )
+            intent.getBooleanExtra("isAll"/* true */, false)
 
         if (isAll) {
-
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.menu_folder_frm, MenuFolderDetailAllFragment())
                 .commitAllowingStateLoss()
 
         } else {
-
             // 메뉴화면에서 수정버튼으로 클릭되면 true, 기본값이면 false
             val isEdit =
                 intent.getBooleanExtra(

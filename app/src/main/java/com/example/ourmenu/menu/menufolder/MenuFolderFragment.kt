@@ -102,8 +102,9 @@ class MenuFolderFragment : Fragment() {
 
         itemClickListener =
             object : MenuItemClickListener {
-                override fun onMenuClick() {
+                override fun onMenuClick(menuFolderId: Int) {
                     val intent = Intent(context, MenuFolderDetailActivity::class.java)
+                    intent.putExtra("menuFolderId", menuFolderId)
                     startActivity(intent)
                 }
 
@@ -115,7 +116,6 @@ class MenuFolderFragment : Fragment() {
                 }
 
                 override fun onDeleteClick() {
-                    TODO("Not yet implemented")
                 }
             }
     }

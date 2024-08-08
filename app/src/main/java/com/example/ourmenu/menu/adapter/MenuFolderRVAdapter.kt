@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.ourmenu.data.MenuFolderData
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
 import com.example.ourmenu.databinding.ItemMenuFolderBinding
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
@@ -26,7 +25,7 @@ class MenuFolderRVAdapter(
     inner class ViewHolder(val binding: ItemMenuFolderBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: MenuFolderData) {
+        fun bind(item: MenuFolderData, position: Int) {
             // 왼쪽으로 swipe 된 상태, 수정버튼 삭제버튼 누를 수 있음.
             Glide.with(context)
                 .load(item.menuFolderImgUrl)
@@ -40,6 +39,12 @@ class MenuFolderRVAdapter(
             binding.tvItemMenuFolderMenuCount.text = "메뉴 $item.menuCount개"
 
 
+            binding.ivItemMenuFolderImage.setOnClickListener{
+                if(!swipeItemTouchHelperCallback.isEditable()) {
+
+                    itemClickListener.onMenuClick(position)
+                }
+            }
 
             binding.clItemMenuFolderEdit.setOnClickListener {
                 if (swipeItemTouchHelperCallback.isEditable()) {
@@ -67,7 +72,7 @@ class MenuFolderRVAdapter(
     }
 
     override fun onBindViewHolder(holder: MenuFolderRVAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], position)
     }
 
     override fun getItemCount(): Int = items.size
