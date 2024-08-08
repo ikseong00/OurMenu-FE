@@ -1,4 +1,4 @@
-package com.example.ourmenu
+package com.example.ourmenu.addMenu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ourmenu.addMenu.AddMenuNameFragment
+import com.example.ourmenu.R
 import com.example.ourmenu.addMenu.adapter.AddMenuPlaceMenuRVAdapter
 import com.example.ourmenu.data.PlaceInfoData
 import com.example.ourmenu.data.PlaceMenuData
@@ -99,6 +99,8 @@ class AddMenuSelectMenuFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "1270127015",
+                    "375705633",
                 ),
                 PlaceInfoData(
                     "아워 떡볶이",
@@ -109,6 +111,8 @@ class AddMenuSelectMenuFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "1270901844",
+                    "375537588",
                 ),
                 PlaceInfoData(
                     "쿠잇 분식점",
@@ -119,6 +123,8 @@ class AddMenuSelectMenuFragment : Fragment() {
                     "매일 10:00 - 21:00",
                     placeMenuImgItems,
                     placeMenuItems,
+                    "1270716909",
+                    "375426950",
                 ),
             )
     }
