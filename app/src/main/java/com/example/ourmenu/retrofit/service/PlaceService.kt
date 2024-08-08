@@ -5,6 +5,7 @@ import com.example.ourmenu.data.place.PlaceSearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PlaceService {
@@ -19,9 +20,9 @@ interface PlaceService {
         @Header("Authorization") token: String,
     ): Call<PlaceSearchResponse>
 
-    @GET("place/{id}")
+    @GET("place/search/{id}")
     fun getPlaceInfoDetail(
         @Header("Authorization") token: String,
-        @Query("id") id: String,
+        @Path("id") id: String,
     ): Call<PlaceDetailResponse>
 }
