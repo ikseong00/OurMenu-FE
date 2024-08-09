@@ -19,5 +19,6 @@ class MenuInfoActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.menu_info_frm, MenuInfoFragment())
             .commitAllowingStateLoss()
+
     }
 }

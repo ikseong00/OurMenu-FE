@@ -4,17 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.ourmenu.addMenu.adapter.AddMenuImageAdapter.ViewHolder
-import com.example.ourmenu.data.AddMenuImageData
 import com.example.ourmenu.data.BaseResponse
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
 import com.example.ourmenu.databinding.ItemMenuFolderBinding
 import com.example.ourmenu.menu.callback.SwipeItemTouchHelperCallback
-import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
+import com.example.ourmenu.menu.iteminterface.MenuFolderItemClickListener
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
 import retrofit2.Call
@@ -26,11 +23,11 @@ class MenuFolderRVAdapter(
     val swipeItemTouchHelperCallback: SwipeItemTouchHelperCallback
 ) : RecyclerView.Adapter<MenuFolderRVAdapter.ViewHolder>() {
 
-    private lateinit var itemClickListener: MenuItemClickListener
+    private lateinit var itemClickListener: MenuFolderItemClickListener
     private val retrofit = RetrofitObject.retrofit
     private val menuFolderService = retrofit.create(MenuFolderService::class.java)
 
-    fun setOnItemClickListener(onItemClickListener: MenuItemClickListener) {
+    fun setOnItemClickListener(onItemClickListener: MenuFolderItemClickListener) {
         itemClickListener = onItemClickListener
     }
 
@@ -39,9 +36,13 @@ class MenuFolderRVAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(item: MenuFolderData, position: Int) {
             // 왼쪽으로 swipe 된 상태, 수정버튼 삭제버튼 누를 수 있음.
-            Glide.with(context)
-                .load(item.menuFolderImgUrl)
-                .into(binding.ivItemMenuFolderImage)
+            if (item.menuFolderImgUrl != "") {
+                Glide.with(context)
+                    .load(item.menuFolderImgUrl)
+                    .into(binding.ivItemMenuFolderImage)
+            } else {
+
+            }
 
             Glide.with(context)
                 .load(item.menuFolderIcon)

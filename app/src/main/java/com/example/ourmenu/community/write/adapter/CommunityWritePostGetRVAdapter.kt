@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ourmenu.data.DummyMenuData
 import com.example.ourmenu.databinding.ItemMenuFolderBinding
-import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
+import com.example.ourmenu.menu.iteminterface.MenuFolderItemClickListener
 
 class CommunityWritePostGetRVAdapter(private val items: ArrayList<DummyMenuData>) :
     RecyclerView.Adapter<CommunityWritePostGetRVAdapter.ViewHolder>() {
 
-    lateinit var itemClickListener: MenuItemClickListener
+    lateinit var itemClickListener: MenuFolderItemClickListener
 
-    fun setOnItemClickListener(onItemListener: MenuItemClickListener) {
+    fun setOnItemClickListener(onItemListener: MenuFolderItemClickListener) {
         itemClickListener = onItemListener
     }
 

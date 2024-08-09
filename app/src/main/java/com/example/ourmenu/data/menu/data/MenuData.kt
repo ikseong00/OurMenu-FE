@@ -2,11 +2,11 @@ package com.example.ourmenu.data.menu.data
 
 
 data class MenuData(
-    val groupId: Int,
     val menuId: Int,
-    val menuImgUrl: String,
-    val menuPrice: Int,
+    val groupId: Int,
     val menuTitle: String,
+    val placeTitle: String,
     val placeAddress: String,
-    val placeTitle: String
+    val menuPrice: Int,
+    val menuImgUrl: String
 )

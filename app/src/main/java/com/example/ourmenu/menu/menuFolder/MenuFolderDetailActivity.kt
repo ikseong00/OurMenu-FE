@@ -18,7 +18,6 @@ class MenuFolderDetailActivity : AppCompatActivity() {
         // 전체 메뉴판 클릭인지 확인
         val isAll =
             intent.getBooleanExtra("isAll"/* true */, false)
-        val menuFolderId = intent.getIntExtra("menuFolderId", 0)
 
         // 전체 메뉴판 프래그먼트
         if (isAll) {
@@ -34,6 +33,7 @@ class MenuFolderDetailActivity : AppCompatActivity() {
                     "isEdit",/* true */
                     false,
                 )
+            val menuFolderId = intent.getIntExtra("menuFolderId", 0)
 
             // 수정화면 인지 기본화면 인지 세팅하는 부분
             val menuFolderDetailFragment = MenuFolderDetailFragment()

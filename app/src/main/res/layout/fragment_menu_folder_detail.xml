@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_menu_folder_arrow_left"
+            android:id="@+id/iv_menu_folder_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -116,14 +116,14 @@
             style="@style/Spinner.Email"
             android:layout_width="72dp"
             android:layout_height="32dp"
-            android:layout_marginTop="72dp"
             android:layout_marginEnd="20dp"
             android:background="@null"
             android:dropDownWidth="match_parent"
             android:dropDownVerticalOffset="10dp"
             android:popupBackground="@drawable/btn_bg_8_white"
+            app:layout_constraintBottom_toBottomOf="@id/et_menu_folder_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/et_menu_folder_title" />
 
 
         <androidx.core.widget.NestedScrollView

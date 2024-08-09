@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ourmenu.R
 import com.example.ourmenu.databinding.FragmentMenuInfoBinding
-import com.example.ourmenu.menu.adapter.MenuInfoVPAdapter
+import com.example.ourmenu.menu.menuInfo.adapter.MenuInfoVPAdapter
 
 class MenuInfoFragment : Fragment() {
     lateinit var binding: FragmentMenuInfoBinding

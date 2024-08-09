@@ -30,6 +30,8 @@ import com.example.ourmenu.databinding.CommunityDeleteDialogBinding
 import com.example.ourmenu.databinding.FragmentMenuFolderDetailBinding
 import com.example.ourmenu.menu.adapter.MenuFolderAllFilterSpinnerAdapter
 import com.example.ourmenu.menu.adapter.MenuFolderDetailRVAdapter
+import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
+import com.example.ourmenu.menu.menuInfo.MenuInfoActivity
 import com.example.ourmenu.retrofit.RetrofitObject
 import com.example.ourmenu.retrofit.service.MenuFolderService
 import com.example.ourmenu.retrofit.service.MenuService
@@ -44,8 +46,9 @@ class MenuFolderDetailFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderDetailBinding
     lateinit var menuItems: ArrayList<MenuData>
     lateinit var sortedMenuItems: ArrayList<MenuData>
-    private var menuFolderId = 0
     lateinit var rvAdapter: MenuFolderDetailRVAdapter
+    private var isEdit: Boolean = false
+    private var menuFolderId = 0
 
     private val retrofit = RetrofitObject.retrofit
     private val menuFolderService = retrofit.create(MenuFolderService::class.java)
@@ -101,8 +104,9 @@ class MenuFolderDetailFragment : Fragment() {
         initRV()
         // 수정화면이면 함수 사용, 아니면 그냥 실행
 
-        arguments?.getBoolean("isEdit")?.let {
-            editClicked()
+        isEdit = arguments?.getBoolean("isEdit")!!
+        if (isEdit) {
+            setEdit()
         }
         return binding.root
     }
@@ -169,8 +173,9 @@ class MenuFolderDetailFragment : Fragment() {
 
     private fun initListener() {
         // TODO 뒤로가기 설정
-        binding.ivMenuFolderArrowLeft.setOnClickListener {
-            requireActivity().finish()
+        binding.ivMenuFolderBack.setOnClickListener {
+            if (isEdit) resetEdit()
+            else requireActivity().finish()
         }
 
         // 이미지 가져오기
@@ -190,21 +195,41 @@ class MenuFolderDetailFragment : Fragment() {
                     groupId = 0,
                     menuId = 0,
                     menuImgUrl = "",
-                    menuPrice = 0,
+                    menuPrice = 1000 * i,
                     menuTitle = "menu$i",
                     placeAddress = "address$i",
                     placeTitle = "place$i"
                 ),
             )
         }
+        sortedMenuItems = dummyItems
 
-        rvAdapter = MenuFolderDetailRVAdapter(dummyItems, requireContext())
+        rvAdapter = MenuFolderDetailRVAdapter(dummyItems, requireContext()).apply {
+            setOnItemClickListener(object : MenuItemClickListener {
+
+                override fun onMenuClick(groupId: Int) {
+                    val intent = Intent(context, MenuInfoActivity::class.java)
+                    intent.putExtra("groupId", groupId)
+                    intent.putExtra("tag", "menuInfo")
+                    startActivity(intent)
+                }
+
+                override fun onMapClick(groupId: Int) {
+                    val intent = Intent(context, MenuInfoActivity::class.java)
+                    intent.putExtra("groupId", groupId)
+                    intent.putExtra("tag", "menuInfoMap")
+                    startActivity(intent)
+                }
+
+            })
+        }
         binding.rvMenuFolderMenuList.adapter = rvAdapter
         binding.rvMenuFolderMenuList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
-    private fun editClicked() {
+    private fun setEdit() {
+        isEdit = true
         // blur 효과 제거
         binding.clMenuFolderBlur.setRenderEffect(null)
         // 메뉴판 수정하기, 삭제하기, 취소 gone
@@ -233,6 +258,23 @@ class MenuFolderDetailFragment : Fragment() {
         binding.btnMenuFolderEditOk.visibility = View.VISIBLE
     }
 
+    private fun resetEdit() {
+        isEdit = false
+
+        binding.ivMenuFolderMainImage.setRenderEffect(null) // 상단 이미지 blur 효과 적용
+        binding.ivMenuFolderKebab.visibility = View.VISIBLE // Kebab 버튼 visible
+        binding.llMenuFolderEdit.visibility = View.GONE // 카메라 , textView visible
+        with(binding.etMenuFolderTitle) { // edittext 원상 복구
+            isEnabled = false
+            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+        }
+        binding.btnMenuFolderEditOk.visibility = View.GONE  // 확인 버튼 gone
+        binding.btnMenuFolderAddMenu.visibility = View.VISIBLE // 메뉴 추가하기 버튼 visible
+
+        // 메뉴판 PATCH API
+        patchMenuFolder()
+    }
+
     @RequiresApi(Build.VERSION_CODES.S) // 이거 있어야 setRenderEffect 가능
     private fun initKebabOnClickListener() {
         // Kebab 버튼 클릭
@@ -246,7 +288,7 @@ class MenuFolderDetailFragment : Fragment() {
 
         // 메뉴판 수정하기
         binding.btnMenuFolderEdit.setOnClickListener {
-            editClicked()
+            setEdit()
         }
 
         // 삭제하기
@@ -268,20 +310,7 @@ class MenuFolderDetailFragment : Fragment() {
 
         // 확인
         binding.btnMenuFolderEditOk.setOnClickListener {
-
-            binding.ivMenuFolderMainImage.setRenderEffect(null) // 상단 이미지 blur 효과 적용
-            binding.ivMenuFolderKebab.visibility = View.VISIBLE // Kebab 버튼 visible
-            binding.llMenuFolderEdit.visibility = View.GONE // 카메라 , textView visible
-            with(binding.etMenuFolderTitle) { // edittext 원상 복구
-                isEnabled = false
-                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
-            }
-            binding.btnMenuFolderEditOk.visibility = View.GONE  // 확인 버튼 gone
-            binding.btnMenuFolderAddMenu.visibility = View.VISIBLE // 메뉴 추가하기 버튼 visible
-
-            // 메뉴판 PATCH API
-            patchMenuFolder()
-
+            resetEdit()
         }
     }
 

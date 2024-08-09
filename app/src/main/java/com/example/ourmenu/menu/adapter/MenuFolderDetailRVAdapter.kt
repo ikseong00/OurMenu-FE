@@ -9,11 +9,18 @@ import com.bumptech.glide.Glide
 import com.example.ourmenu.data.menu.data.MenuData
 import com.example.ourmenu.databinding.ItemMenuFolderDetailMenuBinding
 import com.example.ourmenu.menu.callback.DiffUtilCallback
+import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 import com.example.ourmenu.util.Utils.toWon
 
 // TODO 데이터 종류 수정
 class MenuFolderDetailRVAdapter(val items: ArrayList<MenuData>, val context: Context) :
     RecyclerView.Adapter<MenuFolderDetailRVAdapter.ViewHolder>() {
+
+    lateinit var itemClickListener: MenuItemClickListener
+
+    fun setOnItemClickListener(onItemClickListener: MenuItemClickListener){
+        this.itemClickListener = onItemClickListener
+    }
 
     inner class ViewHolder(val binding: ItemMenuFolderDetailMenuBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -23,10 +30,21 @@ class MenuFolderDetailRVAdapter(val items: ArrayList<MenuData>, val context: Con
             binding.tvItemMfdMenuAddress.text = item.placeAddress
             binding.tvItemMfdPrice.text = toWon(item.menuPrice)
 
-            Glide.with(context)
-                .load(item.menuImgUrl)
-                .into(binding.sivItemMfdMenuImage)
+            if (item.menuImgUrl == "") {
 
+            } else {
+                Glide.with(context)
+                    .load(item.menuImgUrl)
+                    .into(binding.sivItemMfdMenuImage)
+            }
+
+            binding.root.setOnClickListener {
+                itemClickListener.onMenuClick(item.groupId)
+            }
+
+            binding.root.setOnClickListener {
+                itemClickListener.onMapClick(item.groupId)
+            }
         }
     }
 

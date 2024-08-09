@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ourmenu.R
 import com.example.ourmenu.data.DummyMenuData
-import com.example.ourmenu.databinding.ItemMenuFolderBinding
 import com.example.ourmenu.databinding.ItemMenuFolderDetailMenuBinding
-import com.example.ourmenu.menu.iteminterface.MenuItemClickListener
 
 class PostMenuFolderRVAdapter(private val items: ArrayList<DummyMenuData>) :
     RecyclerView.Adapter<PostMenuFolderRVAdapter.ViewHolder>() {
