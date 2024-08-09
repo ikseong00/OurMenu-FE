@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.ourmenu.addMenu.AddMenuActivity
+import com.example.ourmenu.data.BaseResponse
 import com.example.ourmenu.data.menuFolder.data.MenuFolderData
 import com.example.ourmenu.data.menuFolder.response.MenuFolderArrayResponse
 import com.example.ourmenu.databinding.FragmentMenuFolderBinding
@@ -28,9 +29,18 @@ import retrofit2.Response
 class MenuFolderFragment : Fragment() {
     lateinit var binding: FragmentMenuFolderBinding
     lateinit var itemClickListener: MenuFolderItemClickListener
-    lateinit var menuFolderItems: ArrayList<MenuFolderData>
+    private var menuFolderItems = ArrayList<MenuFolderData>()
     private val retrofit = RetrofitObject.retrofit
     private val menuFolderService = retrofit.create(MenuFolderService::class.java)
+    lateinit var rvAdapter: MenuFolderRVAdapter
+    lateinit var swipeItemTouchHelperCallback: SwipeItemTouchHelperCallback
+
+    override fun onStart() {
+        super.onStart()
+        if (menuFolderItems.size > 0) {
+            getMenuFolders()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,12 +50,9 @@ class MenuFolderFragment : Fragment() {
         binding = FragmentMenuFolderBinding.inflate(inflater, container, false)
 
 
-
         getMenuFolders()
-
+        initTouchHelper()
         initItemListener()
-
-        initTouchHelperRV()
 
 
 
@@ -64,7 +71,8 @@ class MenuFolderFragment : Fragment() {
                         val menuFolders = result?.response
                         menuFolders?.let {
                             menuFolderItems = menuFolders
-//                            initTouchHelperRV()
+                            Log.d("size", menuFolderItems.size.toString())
+                            initRV()
 
                         }
                     } else {
@@ -119,60 +127,59 @@ class MenuFolderFragment : Fragment() {
                     startActivity(intent)
                 }
 
-                override fun onDeleteClick() {
+                override fun onDeleteClick(menuFolderId: Int, position: Int) {
+                    // /menuFolder/{menuFolderId} DELETE API
+                    menuFolderService.deleteMenuFolder(menuFolderId).enqueue(object : Callback<BaseResponse> {
+                        override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                            if (response.isSuccessful) {
+                                val result = response.body()
+                                Log.d("deleteMenuFolder", result.toString())
+                                rvAdapter.notifyItemRemoved(position)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                            Log.d("deleteMenuFolder", t.toString())
+                        }
+
+                    })
                 }
             }
     }
 
-    //
     @SuppressLint("ClickableViewAccessibility") // 이줄 없으면 setOnTouchListener 에 밑줄생김
-    private fun initTouchHelperRV() {
-
-        val dummyItems = ArrayList<MenuFolderData>()
-        for (i in 0..7) {
-            dummyItems.add(
-                MenuFolderData(
-                    menuFolderId = i,
-                    menuFolderTitle = "menuFolder$i",
-                    menuCount = 7,
-                    menuFolderImgUrl = "",
-                    menuFolderIcon = "",
-                    menuFolderPriority = i + 1,
-                    menuIds = arrayListOf()
-                )
-            )
+    private fun initRV() {
+        rvAdapter = MenuFolderRVAdapter(
+            menuFolderItems, requireContext(), swipeItemTouchHelperCallback
+        ).apply {
+            setOnItemClickListener(itemClickListener)
         }
 
-
-        val clamp: Float = dpToPx(requireContext(), 120).toFloat()
-
-        val swipeItemTouchHelperCallback =
-            SwipeItemTouchHelperCallback().apply {
-                setClamp(clamp)
-            }
-
-        val menuFolderRVAdapter =
-            MenuFolderRVAdapter(
-//                menuFolderItems,
-                dummyItems,
-                requireContext(),
-                swipeItemTouchHelperCallback
-            ).apply {
-                setOnItemClickListener(itemClickListener)
-            }
-
-        swipeItemTouchHelperCallback.setAdapter(menuFolderRVAdapter)
+        swipeItemTouchHelperCallback.setAdapter(rvAdapter)
 
         val itemTouchHelper = ItemTouchHelper(swipeItemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvMenuMenuFolder)
         // 리사이클러 뷰 설정
         with(binding.rvMenuMenuFolder) {
-            adapter = menuFolderRVAdapter
+            adapter = rvAdapter
             // 다른 뷰를 건들면 기존 뷰의 swipe 가 초기화 됨
             setOnTouchListener { _, _ ->
                 swipeItemTouchHelperCallback.removePreviousClamp(this)
                 false
             }
         }
+    }
+
+    //
+    private fun initTouchHelper() {
+
+        val clamp: Float = dpToPx(requireContext(), 120).toFloat()
+
+        swipeItemTouchHelperCallback =
+            SwipeItemTouchHelperCallback().apply {
+                setClamp(clamp)
+            }
+
+
     }
 }
